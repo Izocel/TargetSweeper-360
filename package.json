@@ -1,0 +1,37 @@
+{
+  "name": "targetsweeper-360",
+  "version": "1.0.0",
+  "description": "A TypeScript application for generating sweep coordinates around a target location",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "clean": "rimraf dist",
+    "postinstall": "npm outdated > outdated.md || echo 'Check outdated.md for package updates.'"
+  },
+  "keywords": [
+    "typescript",
+    "distance",
+    "calculator",
+    "target",
+    "practice",
+    "coordinates",
+    "geospatial",
+    "radius",
+    "sweep"
+  ],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/jszip": "latest",
+    "@types/node": "latest",
+    "rimraf": "latest",
+    "ts-node": "latest",
+    "typescript": "latest"
+  },
+  "dependencies": {
+    "jszip": "latest"
+  }
+}
