@@ -9,6 +9,7 @@
 ## 📋 Table of Contents
 
 - [Overview](#-overview)
+- [Demo](#-demo)
 - [Features](#-features)
 - [Quick Start](#-quick-start)
 - [Configuration](#-configuration)
@@ -31,6 +32,23 @@ TargetSweeper-360 is a professional-grade tactical sweep pattern generator desig
 - 🏷️ **8 Label Styles** - From tactical military to descriptive civilian formats
 - 📦 **Batch Processing** - Generate multiple projects from configuration files
 - ⚡ **High Performance** - Efficient algorithms for large-scale pattern generation
+
+## 🎬 Demo
+
+See the TargetSweeper-360 output in action! This video demonstrates importing a generated KMZ file into Google Earth:
+
+https://github.com/Izocel/TargetSweeper-360/raw/master/Live.mp4
+
+_Video: Demonstration of importing TargetSweeper-360 generated KMZ file into Google Earth with tactical sweep pattern visualization_
+
+**What you'll see in the demo:**
+
+- 🎯 Visualizing the complete sweep pattern around target location
+- � Tactical sweep points with MOA-based precision
+- 🏷️ Point labels showing distance, direction, and timing
+- 🎨 Color-coded rings and styling for operational clarity
+
+---
 
 ## ✨ Features
 
