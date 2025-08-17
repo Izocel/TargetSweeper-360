@@ -32,10 +32,8 @@ async function main() {
     }
 }
 
-// Run the main function if this file is executed directly
-if (require.main === module) {
-    main();
-}
+
+main();
 
 // Export for use as a module
 export {

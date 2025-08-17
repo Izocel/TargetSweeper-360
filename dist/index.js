@@ -37,8 +37,5 @@ async function main() {
         process.exit(1);
     }
 }
-// Run the main function if this file is executed directly
-if (require.main === module) {
-    main();
-}
+main();
 //# sourceMappingURL=index.js.map
