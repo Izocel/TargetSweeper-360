@@ -46,7 +46,6 @@ pids
 .env.test
 
 # IDE
-.vscode/
 .idea/
 *.swp
 *.swo

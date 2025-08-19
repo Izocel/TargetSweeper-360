@@ -1,10 +1,11 @@
 import * as fs from "fs";
 import JSZip from 'jszip';
-import { Target } from '../models/Target';
-import { SweepPoint } from '../models/SweepPoint';
-import { SweepConfiguration } from '../models/SweepConfiguration';
-import { SweepPatternGenerator } from './SweepPatternGenerator';
+import { EARTH_RADIUS } from "..";
 import { LabelFormat } from '../constants/enums/LabelFormats';
+import { SweepConfiguration } from '../models/SweepConfiguration';
+import { SweepPoint } from '../models/SweepPoint';
+import { Target } from '../models/Target';
+import { SweepPatternGenerator } from './SweepPatternGenerator';
 
 // 🎨 Style definitions for different sweep rings
 export interface PlacemarkStyle {
@@ -40,10 +41,10 @@ export interface SweepConfig {
     };
 }
 
-export class KMZGenerator {
+export class KMLGenerator {
+    private zip: JSZip;
     private target: Target;
     private config: SweepConfiguration;
-    private zip: JSZip;
     private patternGenerator: SweepPatternGenerator;
 
     constructor(
@@ -57,31 +58,11 @@ export class KMZGenerator {
         this.patternGenerator = new SweepPatternGenerator(target, config, labelFormat);
     }
 
-    // Legacy constructor for backward compatibility
-    static fromLegacyConfig(legacyConfig: SweepConfig): KMZGenerator {
-        const target = new Target(
-            legacyConfig.target.lon,
-            legacyConfig.target.lat,
-            legacyConfig.target.name || "Target"
-        );
-
-        const config = new SweepConfiguration(
-            legacyConfig.diameterStep,
-            legacyConfig.maxDiameter,
-            legacyConfig.angleStep * 60 // Convert degrees back to MOA
-        );
-
-        return new KMZGenerator(target, config, LabelFormat.TACTICAL);
-    }
-
-    // 🌍 Earth radius in meters
-    private readonly EARTH_RADIUS = 6371000;
-
     // 📐 Converts meters to degrees (approximate, valid for small distances)
     private offsetInDegrees(meters: number, latitude: number): { dx: number; dy: number } {
         const latRad = (latitude * Math.PI) / 180;
-        const dx = (meters / this.EARTH_RADIUS) * (180 / Math.PI) / Math.cos(latRad);
-        const dy = (meters / this.EARTH_RADIUS) * (180 / Math.PI);
+        const dx = (meters / EARTH_RADIUS) * (180 / Math.PI) / Math.cos(latRad);
+        const dy = (meters / EARTH_RADIUS) * (180 / Math.PI);
         return { dx, dy };
     }
 
@@ -352,7 +333,7 @@ export class KMZGenerator {
     }
 
     // 📦 Generate KMZ file
-    async generateKMZ(outputPath: string): Promise<void> {
+    async generateKMZ(outputPath: string): Promise<{ content: Buffer, path: string }> {
         const kmlContent = this.generateKML();
 
         // Add KML to ZIP
@@ -372,18 +353,24 @@ export class KMZGenerator {
 
         // Write to file
         fs.writeFileSync(outputPath, zipBuffer);
+
+        return { content: zipBuffer, path: outputPath };
     }
 
     // 📄 Generate standalone KML file
-    generateKMLFile(outputPath: string): void {
+    generateKMLFile(outputPath: string): { content: string, path: string } {
         const kmlContent = this.generateKML();
         fs.writeFileSync(outputPath, kmlContent);
+
+        return { content: kmlContent, path: outputPath };
     }
 
     // 📊 Generate CSV file using SweepPatternGenerator
-    generateCSVFile(outputPath: string): void {
+    generateCSVFile(outputPath: string): { content: string, path: string } {
         const csvContent = this.patternGenerator.generateCSV();
         fs.writeFileSync(outputPath, csvContent);
+
+        return { content: csvContent, path: outputPath };
     }
 
     // 🎯 Get pattern generator for advanced usage

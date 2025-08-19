@@ -10,8 +10,8 @@ import { LabelFormat, LabelFormatter, LabelFormatParams } from '../constants/enu
  */
 export class SweepPatternGenerator {
     private target: Target;
-    private config: SweepConfiguration;
     private labelFormat: LabelFormat;
+    private config: SweepConfiguration;
 
     constructor(
         target: Target,

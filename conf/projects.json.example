@@ -3,6 +3,7 @@
     "generations": [
         {
             "ProjectName": "Urban Surveillance Zone Alpha",
+            "LabelFormat": "SIMPLE",
             "Target": {
                 "name": "San Francisco Target",
                 "longitude": -122.4194,
@@ -11,8 +12,7 @@
             "Sweeper": {
                 "radiusStep": 10,
                 "maxRadius": 500,
-                "angleStepMOA": 300,
-                "format": "SIMPLE"
+                "angleStepMOA": 300
             }
         }
     ]

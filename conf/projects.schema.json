@@ -14,6 +14,14 @@
                         "type": "string",
                         "description": "Human-readable project identifier"
                     },
+                    "LabelFormat": {
+                        "type": "string",
+                        "description": "Format for labeling generated coordinates",
+                        "enum": [
+                            "SIMPLE",
+                            "DETAILED"
+                        ]
+                    },
                     "Target": {
                         "type": "object",
                         "description": "Target location definition",
@@ -55,34 +63,20 @@
                                 "type": "number",
                                 "description": "Angular step size in Minutes of Angle (MOA - 1/60th of a degree)\n\nThis defines the angular resolution of the sweep pattern.\n\nExample: 300 MOA corresponds to 5 degrees (300/60)",
                                 "minimum": 1
-                            },
-                            "format": {
-                                "type": "string",
-                                "description": "Label format for sweep points:\n\n - TACTICAL: NNE-050-1500-0025\n\n - DESCRIPTIVE: 50m NNE @1h (25min/1500MOA)\n\n - CLOCK_NAVIGATION: R50 @01:00 NNE (30°/1500MOA)\n\n - COMPACT_GRID: NNE50-00:25-1500\n\n - BEARING_RANGE: BRG030-RNG050-MOA1500-T0025\n\n - SEARCH_PATTERN: SP-NNE-050m-00:25-1500MOA\n\n - AVIATION: RADIAL030/050M/1500/0025Z\n\n - SIMPLE: NNE 50m @00:25 (1500MOA)",
-                                "enum": [
-                                    "TACTICAL",
-                                    "DESCRIPTIVE",
-                                    "CLOCK_NAVIGATION",
-                                    "COMPACT_GRID",
-                                    "BEARING_RANGE",
-                                    "SEARCH_PATTERN",
-                                    "AVIATION",
-                                    "SIMPLE"
-                                ]
                             }
                         },
                         "required": [
                             "radiusStep",
                             "maxRadius",
-                            "angleStepMOA",
-                            "format"
+                            "angleStepMOA"
                         ]
                     }
                 },
                 "required": [
                     "ProjectName",
                     "Target",
-                    "Sweeper"
+                    "Sweeper",
+                    "labelFormat"
                 ]
             }
         }
