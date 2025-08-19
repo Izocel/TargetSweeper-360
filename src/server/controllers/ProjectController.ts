@@ -1,7 +1,7 @@
-import { Request, Response, NextFunction } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { ProjectManager } from '../../lib/services/ProjectManager';
 
-class KmlController {
+class ProjectController {
     static async generateAll(_req: Request, res: Response, next: NextFunction) {
         try {
             const manager = new ProjectManager();
@@ -13,4 +13,4 @@ class KmlController {
     }
 }
 
-export default KmlController;
+export default ProjectController;

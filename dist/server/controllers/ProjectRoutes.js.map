@@ -1,0 +1,1 @@
+{"version":3,"file":"ProjectRoutes.js","sourceRoot":"","sources":["../../../src/server/controllers/ProjectRoutes.ts"],"names":[],"mappings":";;;;;AACA,4EAAoD;AAEpD,MAAM,aAAa;IACf,MAAM,CAAC,QAAQ,CAAC,MAAc;QAC1B,oCAAoC;QACpC,MAAM,CAAC,GAAG,CAAC,wBAAwB,EAAE,2BAAiB,CAAC,WAAW,CAAC,CAAC;IACxE,CAAC;CACJ;AAED,kBAAe,aAAa,CAAC"}

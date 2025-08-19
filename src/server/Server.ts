@@ -1,6 +1,11 @@
-import express, { Application, Request, Response, NextFunction } from 'express';
-import morgan from 'morgan';
+
+
 import cors from 'cors';
+import express, { Application, NextFunction, Request, Response, Router } from 'express';
+import fs from 'fs';
+import https from 'https';
+import morgan from 'morgan';
+import ProjectRoutes from './routes/ProjectRoutes';
 
 class Server {
     private app: Application;
@@ -25,6 +30,10 @@ class Server {
             res.json({ message: 'Welcome to TargetSweeper-360 API!' });
         });
 
+        // Register project-related routes
+        const router = Router();
+        ProjectRoutes.register(router);
+        this.app.use('/api', router);
     }
 
     private errorHandler() {
@@ -35,9 +44,18 @@ class Server {
     }
 
     public start() {
-        this.app.listen(this.port, () => {
-            console.log(`Server running on http://localhost:${this.port}`);
-        });
+        const keyPath = __dirname + '/certs/key.pem';
+        const certPath = __dirname + '/certs/cert.pem';
+        if (fs.existsSync(keyPath) && fs.existsSync(certPath)) {
+            const key = fs.readFileSync(keyPath);
+            const cert = fs.readFileSync(certPath);
+            https.createServer({ key, cert }, this.app).listen(this.port, () => {
+                console.log(`HTTPS server running on https://localhost:${this.port}`);
+            });
+        } else {
+            console.error('SSL certificate or key not found. Run the certificate generation script first.');
+            process.exit(1);
+        }
     }
 }
 
