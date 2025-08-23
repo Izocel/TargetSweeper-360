@@ -36,7 +36,7 @@ class ProjectController {
         try {
             let project = null;
             const name: string | undefined = _req.query.name?.toString();
-            const output: string = _req.query.output?.toString() ?? "content";
+            const output: string = _req.query.output?.toString() ?? "file";
             const type: string = _req.query.type?.toString() ?? "kml";
 
             if (name) {

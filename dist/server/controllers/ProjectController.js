@@ -33,7 +33,7 @@ class ProjectController {
         try {
             let project = null;
             const name = _req.query.name?.toString();
-            const output = _req.query.output?.toString() ?? "content";
+            const output = _req.query.output?.toString() ?? "file";
             const type = _req.query.type?.toString() ?? "kml";
             if (name) {
                 project = await ProjectManager_1.ProjectManager.getProjectByName(name, type);
