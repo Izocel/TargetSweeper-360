@@ -1,4 +1,4 @@
-import TargetSweeperApi from "../api/index";
+import { TargetSweeperApi } from "../api/index";
 import { LabelFormat } from './constants/enums/LabelFormats';
 import { SweeperConfigs } from './models/SweeperConfigs';
 import { Target } from './models/Target';

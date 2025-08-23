@@ -1,11 +1,8 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TargetSweeperApi = exports.Target = exports.SweeperConfigs = exports.ProjectManager = exports.PatternGenerator = exports.LabelFormat = exports.KMLGenerator = exports.EARTH_RADIUS = void 0;
-const index_1 = __importDefault(require("../api/index"));
-exports.TargetSweeperApi = index_1.default;
+const index_1 = require("../api/index");
+Object.defineProperty(exports, "TargetSweeperApi", { enumerable: true, get: function () { return index_1.TargetSweeperApi; } });
 const LabelFormats_1 = require("./constants/enums/LabelFormats");
 Object.defineProperty(exports, "LabelFormat", { enumerable: true, get: function () { return LabelFormats_1.LabelFormat; } });
 const SweeperConfigs_1 = require("./models/SweeperConfigs");

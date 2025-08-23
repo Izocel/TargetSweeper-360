@@ -1,6 +1,6 @@
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
 import ProjectsApi from './ProjectsApi';
-export default class TargetSweeperApi {
+export declare class TargetSweeperApi {
     private readonly axiosInstance;
     readonly Projects: ProjectsApi;
     constructor(apiUrl: string, config?: AxiosRequestConfig);
