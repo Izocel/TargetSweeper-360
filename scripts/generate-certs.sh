@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/bin/sh
+set -e
+
 echo "Self-signed certificate and key generated in $CERT_DIR"
 
 # Generate a self-signed SSL certificate for development

@@ -1,5 +1,5 @@
-# Use official Node.js LTS image as the base
-FROM node:22-alpine
+# Use official Node.js LTS image with Debian Bullseye for more tools
+FROM node:22-bullseye
 
 # Set working directory
 WORKDIR /app
@@ -8,17 +8,20 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install --production
+RUN npm ci
 
 # Copy the rest of the application code
 COPY . .
 
+# Generate SSL certificates
+RUN chmod +x scripts/generate-certs.sh
+RUN ./scripts/generate-certs.sh
+
 # Build the TypeScript code
-RUN npm run certs
 RUN npm run build
 
 # Expose the port (adjust if your app uses a different port)
 EXPOSE 3000
 
 # Start the application
-CMD ["node", "dist/index.js"]
+CMD ["node", "dist/server/index.js"]
