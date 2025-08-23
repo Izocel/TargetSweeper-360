@@ -1,3 +1,4 @@
+import TargetSweeperApi from "../api/index";
 import { LabelFormat } from './constants/enums/LabelFormats';
 import { SweeperConfigs } from './models/SweeperConfigs';
 import { Target } from './models/Target';
@@ -12,6 +13,6 @@ export const EARTH_RADIUS = 6378137.0;
 
 // Lib-Module
 export {
-    KMLGenerator, LabelFormat, PatternGenerator, ProjectManager, SweeperConfigs, Target
+    KMLGenerator, LabelFormat, PatternGenerator, ProjectManager, SweeperConfigs, Target, TargetSweeperApi
 };
 

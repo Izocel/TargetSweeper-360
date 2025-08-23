@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import ProjectsApi from './ProjectsApi';
 
-class TargetSweeperApi {
+export default class TargetSweeperApi {
     private readonly axiosInstance: AxiosInstance;
     public readonly Projects: ProjectsApi;
 
@@ -29,5 +29,3 @@ class TargetSweeperApi {
         return this.axiosInstance.delete<T>(url, config);
     }
 }
-
-export default TargetSweeperApi;
