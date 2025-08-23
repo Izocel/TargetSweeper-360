@@ -4,7 +4,7 @@
   "description": "A TypeScript application for generating sweep coordinates around a target location",
   "main": "dist/index.js",
   "scripts": {
-    "build": "npm run copy-certs && tsc",
+    "build": "tsc",
     "certs": "bash scripts/generate-certs.sh",
     "copy-certs": "cpx \"certs/*\" dist/certs/",
     "watch": "tsc -w",
