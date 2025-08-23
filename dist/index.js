@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TargetSweeperApi = exports.Target = exports.SweeperConfigs = exports.ProjectManager = exports.PatternGenerator = exports.LabelFormat = exports.KMLGenerator = void 0;
+exports.TargetSweeperApi = exports.Target = exports.SweeperConfigs = exports.ProjectManager = exports.PatternGenerator = exports.LabelFormat = exports.KMLGenerator = exports.EARTH_RADIUS = void 0;
 const api_1 = require("./api");
 Object.defineProperty(exports, "TargetSweeperApi", { enumerable: true, get: function () { return api_1.TargetSweeperApi; } });
 const LabelFormats_1 = require("./lib/constants/enums/LabelFormats");
@@ -15,4 +15,5 @@ const PatternGenerator_1 = require("./lib/services/PatternGenerator");
 Object.defineProperty(exports, "PatternGenerator", { enumerable: true, get: function () { return PatternGenerator_1.PatternGenerator; } });
 const ProjectManager_1 = require("./lib/services/ProjectManager");
 Object.defineProperty(exports, "ProjectManager", { enumerable: true, get: function () { return ProjectManager_1.ProjectManager; } });
+exports.EARTH_RADIUS = 6378137;
 //# sourceMappingURL=index.js.map

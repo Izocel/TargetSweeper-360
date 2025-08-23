@@ -5,4 +5,5 @@ import { Target } from './lib/models/Target';
 import { KMLGenerator } from './lib/services/KMLGenerator';
 import { PatternGenerator } from './lib/services/PatternGenerator';
 import { ProjectManager } from './lib/services/ProjectManager';
+export declare const EARTH_RADIUS = 6378137;
 export { KMLGenerator, LabelFormat, PatternGenerator, ProjectManager, SweeperConfigs, Target, TargetSweeperApi };

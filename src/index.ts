@@ -6,6 +6,8 @@ import { KMLGenerator } from './lib/services/KMLGenerator';
 import { PatternGenerator } from './lib/services/PatternGenerator';
 import { ProjectManager } from './lib/services/ProjectManager';
 
+export const EARTH_RADIUS = 6378137;
+
 
 // Export for use as a module
 export {

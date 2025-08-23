@@ -1,5 +1,7 @@
 import z from "zod";
-import { LabelFormat, SweeperConfigs, Target } from "../../lib";
+import { LabelFormat } from "../../lib/constants/enums/LabelFormats";
+import { SweeperConfigs } from "../../lib/models/SweeperConfigs";
+import { Target } from "../../lib/models/Target";
 import { BaseRequest } from "./BaseRequest";
 
 export const ProjectConfigsSchema = z.object({

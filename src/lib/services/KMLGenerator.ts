@@ -1,7 +1,7 @@
 import * as fs from "fs";
 import JSZip from 'jszip';
 import z from "zod";
-import { EARTH_RADIUS } from "..";
+import { EARTH_RADIUS } from "../..";
 import { LabelFormat } from '../constants/enums/LabelFormats';
 import { SweeperConfigs } from "../models/SweeperConfigs";
 import { SweepPoint } from '../models/SweepPoint';
