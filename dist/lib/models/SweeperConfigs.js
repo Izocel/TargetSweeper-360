@@ -1,10 +1,14 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SweepConfiguration = void 0;
+exports.SweeperConfigs = void 0;
+const zod_1 = __importDefault(require("zod"));
 /**
  * Configuration class for sweep pattern generation
  */
-class SweepConfiguration {
+class SweeperConfigs {
     constructor(radiusStep = 10, maxRadius = 500, angleStepMOA = 300) {
         this.radiusStep = radiusStep;
         this.maxRadius = maxRadius;
@@ -48,5 +52,11 @@ class SweepConfiguration {
         return `Radius: ${this.maxRadius}m, Step: ${this.radiusStep}m, Angle: ${this.moaToMinutes(this.angleStepMOA)}min (${this.angleStepDegrees}°), Points: ${this.getTotalPoints()}`;
     }
 }
-exports.SweepConfiguration = SweepConfiguration;
-//# sourceMappingURL=SweepConfiguration.js.map
+exports.SweeperConfigs = SweeperConfigs;
+SweeperConfigs.Schema = zod_1.default.object({
+    radiusStep: zod_1.default.number(),
+    maxRadius: zod_1.default.number(),
+    angleStepMOA: zod_1.default.number(),
+    angleStepDegrees: zod_1.default.number().optional(),
+});
+//# sourceMappingURL=SweeperConfigs.js.map

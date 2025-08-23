@@ -1,3 +1,5 @@
+import z from "zod";
+
 /**
  * Represents a target location with coordinates and metadata
  */
@@ -5,6 +7,12 @@ export class Target {
     public readonly name: string;
     public readonly longitude: number;
     public readonly latitude: number;
+
+    static readonly Schema = z.object({
+        name: z.string(),
+        longitude: z.number(),
+        latitude: z.number(),
+    });
 
     constructor(longitude: number, latitude: number, name: string = "Target") {
         this.longitude = longitude;

@@ -30,7 +30,6 @@ class Server {
             res.json({ message: 'Welcome to TargetSweeper-360 API!' });
         });
 
-        // Register project-related routes
         const router = Router();
         ProjectRoutes.register(router);
         this.app.use('/api', router);

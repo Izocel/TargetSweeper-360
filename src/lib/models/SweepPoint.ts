@@ -1,3 +1,5 @@
+import z from "zod";
+
 /**
  * Represents a single sweep point in the search pattern
  */
@@ -9,6 +11,16 @@ export class SweepPoint {
     public readonly moa: number;
     public readonly timeMinutes: number;
     public readonly description: string | undefined;
+
+    static readonly Schema = z.object({
+        longitude: z.number(),
+        latitude: z.number(),
+        radius: z.number(),
+        angle: z.number(),
+        moa: z.number(),
+        timeMinutes: z.number(),
+        description: z.string().optional(),
+    });
 
     constructor(
         longitude: number,

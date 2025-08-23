@@ -1,15 +1,30 @@
-import { Target } from '../models/Target';
-import { SweepPoint } from '../models/SweepPoint';
-import { SweepConfiguration } from '../models/SweepConfiguration';
+import z from 'zod';
 import { LabelFormat } from '../constants/enums/LabelFormats';
+import { SweeperConfigs } from '../models/SweeperConfigs';
+import { SweepPoint } from '../models/SweepPoint';
+import { Target } from '../models/Target';
 /**
  * Main class for generating sweep patterns around a target
  */
-export declare class SweepPatternGenerator {
+export declare class PatternGenerator {
     private target;
-    private config;
     private labelFormat;
-    constructor(target: Target, config: SweepConfiguration, labelFormat?: LabelFormat);
+    private config;
+    static readonly Schema: z.ZodObject<{
+        target: z.ZodObject<{
+            name: z.ZodString;
+            longitude: z.ZodNumber;
+            latitude: z.ZodNumber;
+        }, z.core.$strip>;
+        config: z.ZodObject<{
+            radiusStep: z.ZodNumber;
+            maxRadius: z.ZodNumber;
+            angleStepMOA: z.ZodNumber;
+            angleStepDegrees: z.ZodOptional<z.ZodNumber>;
+        }, z.core.$strip>;
+        labelFormat: z.ZodEnum<typeof LabelFormat>;
+    }, z.core.$strip>;
+    constructor(target: Target, config: SweeperConfigs, labelFormat?: LabelFormat);
     /**
      * Generate all sweep points for the pattern
      */
@@ -47,5 +62,5 @@ export declare class SweepPatternGenerator {
     /**
      * Get configuration
      */
-    getConfiguration(): SweepConfiguration;
+    getConfiguration(): SweeperConfigs;
 }

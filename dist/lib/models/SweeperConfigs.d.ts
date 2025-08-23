@@ -1,11 +1,18 @@
+import z from "zod";
 /**
  * Configuration class for sweep pattern generation
  */
-export declare class SweepConfiguration {
+export declare class SweeperConfigs {
     readonly radiusStep: number;
     readonly maxRadius: number;
     readonly angleStepMOA: number;
     readonly angleStepDegrees: number;
+    static readonly Schema: z.ZodObject<{
+        radiusStep: z.ZodNumber;
+        maxRadius: z.ZodNumber;
+        angleStepMOA: z.ZodNumber;
+        angleStepDegrees: z.ZodOptional<z.ZodNumber>;
+    }, z.core.$strip>;
     constructor(radiusStep?: number, maxRadius?: number, angleStepMOA?: number);
     /**
      * Get the total number of radius steps

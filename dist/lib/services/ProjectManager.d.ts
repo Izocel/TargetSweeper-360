@@ -1,71 +1,35 @@
-import { LabelFormat } from '../constants/enums/LabelFormats';
-import { SweepConfiguration } from '../models/SweepConfiguration';
-import { Target } from '../models/Target';
-/**
- * Interface matching the projects.json structure
- */
-export interface ProjectGeneration {
-    Target: Target;
-    ProjectName: string;
-    LabelFormat: LabelFormat;
-    Sweeper: SweepConfiguration;
-}
-export interface ProjectsConfig {
-    generations: ProjectGeneration[];
-}
+import { ProjectConfigs } from '../models/ProjectConfigs';
 /**
  * Manages project configurations and generates outputs
+ * @param config The project configuration
+ * @param outputDir The output directory for generated files
  */
 export declare class ProjectManager {
-    private outputBaseDir;
-    private projectsConfigPath;
-    constructor(projectsConfigPath?: string, outputBaseDir?: string);
-    /**
-     * Load and parse the projects configuration file
-     */
-    loadProjectsConfig(): ProjectsConfig;
+    private static outputBaseDir;
     /**
      * Validate a project generation configuration
+     * @param config The project configuration
      */
-    private validateGeneration;
+    static validateConfig(config: ProjectConfigs): {
+        valid: boolean;
+        errors?: string[];
+    };
     /**
-     * Convert project generation config to domain models
+     * Generate project files
+     * @param configs The project configuration
      */
-    private convertToModels;
-    /**
-     * Parse and validate label format string
-     */
-    private parseLabelFormat;
-    /**
-     * Create output directory for a project
-     */
-    private createProjectDirectory;
-    /**
-     * Generate outputs for a single project
-     */
-    generateProjectOutputs(generation: ProjectGeneration, outputDir: string): Promise<{
-        csvPath: string;
-        kmlPath: string;
-        kmzPath: string;
+    static generate(configs: ProjectConfigs): Promise<{
+        files: any[];
         summary: any;
     }>;
     /**
-     * Generate outputs for all projects in the configuration
+     * Get project details by name
+     * @param name The project name
+     * @param type The file type to filter by (default is ".kml")
+     * @returns The project files and their content
      */
-    generateAllProjects(): Promise<{
-        successful: number;
-        failed: number;
-        results: Array<{
-            projectName: string;
-            status: 'success' | 'error';
-            outputDir?: string;
-            files?: {
-                csvPath: string;
-                kmlPath: string;
-                kmzPath: string;
-            };
-            summary?: any;
-            error?: string;
-        }>;
-    }>;
+    static getProjectByName(name: string, type?: string): Promise<{
+        path: string;
+        content: string;
+    }[] | void>;
 }

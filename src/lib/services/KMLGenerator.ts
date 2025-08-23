@@ -1,11 +1,13 @@
 import * as fs from "fs";
 import JSZip from 'jszip';
+import z from "zod";
 import { EARTH_RADIUS } from "..";
 import { LabelFormat } from '../constants/enums/LabelFormats';
-import { SweepConfiguration } from '../models/SweepConfiguration';
+import { ProjectConfigs } from "../models/ProjectConfigs";
+import { SweeperConfigs } from "../models/SweeperConfigs";
 import { SweepPoint } from '../models/SweepPoint';
 import { Target } from '../models/Target';
-import { SweepPatternGenerator } from './SweepPatternGenerator';
+import { PatternGenerator } from './PatternGenerator';
 
 // 🎨 Style definitions for different sweep rings
 export interface PlacemarkStyle {
@@ -44,18 +46,29 @@ export interface SweepConfig {
 export class KMLGenerator {
     private zip: JSZip;
     private target: Target;
-    private config: SweepConfiguration;
-    private patternGenerator: SweepPatternGenerator;
+    private config: SweeperConfigs;
+    private patternGenerator: PatternGenerator;
+
+    static readonly Schema = z.object({
+        target: Target.Schema,
+        config: SweeperConfigs.Schema,
+        labelFormat: z.enum(LabelFormat),
+    });
 
     constructor(
         target: Target,
-        config: SweepConfiguration,
+        config: SweeperConfigs,
         labelFormat: LabelFormat = LabelFormat.TACTICAL
     ) {
         this.target = target;
         this.config = config;
         this.zip = new JSZip();
-        this.patternGenerator = new SweepPatternGenerator(target, config, labelFormat);
+        this.patternGenerator = new PatternGenerator(target, config, labelFormat);
+    }
+
+    // 🎯 Get pattern generator for advanced usage
+    getPatternGenerator(): PatternGenerator {
+        return this.patternGenerator;
     }
 
     // 📐 Converts meters to degrees (approximate, valid for small distances)
@@ -99,12 +112,12 @@ export class KMLGenerator {
         return "N"; // fallback
     }
 
-    // 🏷️ Generate tactical label using SweepPatternGenerator
+    // 🏷️ Generate tactical label using PatternGenerator
     private generateTacticalLabel(point: SweepPoint): string {
         return this.patternGenerator.generateLabel(point);
     }
 
-    // 🔁 Generate sweep points using SweepPatternGenerator
+    // 🔁 Generate sweep points using PatternGenerator
     private generateSweepPoints(): SweepPoint[] {
         return this.patternGenerator.generateSweepPoints();
     }
@@ -365,7 +378,7 @@ export class KMLGenerator {
         return { content: kmlContent, path: outputPath };
     }
 
-    // 📊 Generate CSV file using SweepPatternGenerator
+    // 📊 Generate CSV file using PatternGenerator
     generateCSVFile(outputPath: string): { content: string, path: string } {
         const csvContent = this.patternGenerator.generateCSV();
         fs.writeFileSync(outputPath, csvContent);
@@ -373,8 +386,20 @@ export class KMLGenerator {
         return { content: csvContent, path: outputPath };
     }
 
-    // 🎯 Get pattern generator for advanced usage
-    getPatternGenerator(): SweepPatternGenerator {
-        return this.patternGenerator;
+    generateJsonFile(outputPath: string, configs: ProjectConfigs): { content: string, path: string } {
+        const jsonContent = JSON.stringify(configs, null, 2);
+        fs.writeFileSync(outputPath, jsonContent);
+
+        return { content: jsonContent, path: outputPath };
+    }
+
+    async generateAllFiles(outputPath: string, configs: ProjectConfigs): Promise<{ content: string | Buffer, path: string }[]> {
+        const files: { content: string | Buffer, path: string }[] = [];
+        files.push(this.generateJsonFile(`${outputPath}/doc.json`, configs));
+        files.push(await this.generateKMZ(`${outputPath}/doc.kmz`));
+        files.push(this.generateCSVFile(`${outputPath}/doc.csv`));
+        files.push(this.generateKMLFile(`${outputPath}/doc.kml`));
+
+        return files;
     }
 }

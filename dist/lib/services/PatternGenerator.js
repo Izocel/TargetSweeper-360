@@ -1,65 +1,48 @@
-import { Target } from '../models/Target';
-import { SweepPoint } from '../models/SweepPoint';
-import { SweepConfiguration } from '../models/SweepConfiguration';
-import { GeoCalculator } from '../utils/GeoCalculator';
-import { DirectionCalculator } from '../utils/DirectionCalculator';
-import { LabelFormat, LabelFormatter, LabelFormatParams } from '../constants/enums/LabelFormats';
-
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.PatternGenerator = void 0;
+const zod_1 = __importDefault(require("zod"));
+const LabelFormats_1 = require("../constants/enums/LabelFormats");
+const SweeperConfigs_1 = require("../models/SweeperConfigs");
+const SweepPoint_1 = require("../models/SweepPoint");
+const Target_1 = require("../models/Target");
+const DirectionCalculator_1 = require("../utils/DirectionCalculator");
+const GeoCalculator_1 = require("../utils/GeoCalculator");
 /**
  * Main class for generating sweep patterns around a target
  */
-export class SweepPatternGenerator {
-    private target: Target;
-    private labelFormat: LabelFormat;
-    private config: SweepConfiguration;
-
-    constructor(
-        target: Target,
-        config: SweepConfiguration,
-        labelFormat: LabelFormat = LabelFormat.SIMPLE
-    ) {
+class PatternGenerator {
+    constructor(target, config, labelFormat = LabelFormats_1.LabelFormat.SIMPLE) {
         this.target = target;
         this.config = config;
         this.labelFormat = labelFormat;
     }
-
     /**
      * Generate all sweep points for the pattern
      */
-    public generateSweepPoints(): SweepPoint[] {
-        const points: SweepPoint[] = [];
-
+    generateSweepPoints() {
+        const points = [];
         for (let radius = this.config.radiusStep; radius <= this.config.maxRadius; radius += this.config.radiusStep) {
             for (let angleMOA = 0; angleMOA < 21600; angleMOA += this.config.angleStepMOA) {
                 const angle = this.config.moaToDegrees(angleMOA);
-                const [longitude, latitude] = GeoCalculator.calculatePoint(this.target, radius, angle);
+                const [longitude, latitude] = GeoCalculator_1.GeoCalculator.calculatePoint(this.target, radius, angle);
                 const timeMinutes = this.config.moaToMinutes(angleMOA);
-
-                const point = new SweepPoint(
-                    longitude,
-                    latitude,
-                    radius,
-                    angle,
-                    angleMOA,
-                    timeMinutes,
-                    `Sweep point at ${radius}m, ${angle}° from target`
-                );
-
+                const point = new SweepPoint_1.SweepPoint(longitude, latitude, radius, angle, angleMOA, timeMinutes, `Sweep point at ${radius}m, ${angle}° from target`);
                 points.push(point);
             }
         }
-
         return points;
     }
-
     /**
      * Generate a formatted label for a sweep point
      */
-    public generateLabel(point: SweepPoint): string {
-        const direction = DirectionCalculator.getTacticalDirection(point.angle);
-        const clockPosition = DirectionCalculator.getClockPosition(point.angle);
-
-        const params: LabelFormatParams = {
+    generateLabel(point) {
+        const direction = DirectionCalculator_1.DirectionCalculator.getTacticalDirection(point.angle);
+        const clockPosition = DirectionCalculator_1.DirectionCalculator.getClockPosition(point.angle);
+        const params = {
             direction,
             distance: point.radius,
             angle: point.angle,
@@ -68,42 +51,29 @@ export class SweepPatternGenerator {
             clockHour: parseInt(clockPosition.clock.replace('h', '')),
             clockMinutes: Math.floor((point.timeMinutes % 60))
         };
-
-        return LabelFormatter.formatLabel(this.labelFormat, params);
+        return LabelFormats_1.LabelFormatter.formatLabel(this.labelFormat, params);
     }
-
     /**
      * Generate CSV output
      */
-    public generateCSV(): string {
+    generateCSV() {
         const points = this.generateSweepPoints();
-        const lines: string[] = [];
-
+        const lines = [];
         lines.push("WKT,Description");
-
         // Add target point at the beginning
         const targetWKT = `"POINT (${this.target.longitude} ${this.target.latitude})"`;
         lines.unshift(`${targetWKT},Target | ${this.target.name}`);
-
         // Add all sweep points
         for (const point of points) {
             const label = this.generateLabel(point);
             lines.push(`${point.toWKT()},${label}`);
         }
-
         return lines.join('\n');
     }
-
     /**
      * Get configuration summary
      */
-    public getSummary(): {
-        target: string;
-        maxRadius: number;
-        stepSize: string;
-        totalPoints: number;
-        labelFormat: string;
-    } {
+    getSummary() {
         return {
             target: this.target.toString(),
             maxRadius: this.config.maxRadius,
@@ -112,32 +82,35 @@ export class SweepPatternGenerator {
             labelFormat: this.labelFormat
         };
     }
-
     /**
      * Set label format
      */
-    public setLabelFormat(format: LabelFormat): void {
+    setLabelFormat(format) {
         this.labelFormat = format;
     }
-
     /**
      * Get current label format
      */
-    public getLabelFormat(): LabelFormat {
+    getLabelFormat() {
         return this.labelFormat;
     }
-
     /**
      * Get target
      */
-    public getTarget(): Target {
+    getTarget() {
         return this.target;
     }
-
     /**
      * Get configuration
      */
-    public getConfiguration(): SweepConfiguration {
+    getConfiguration() {
         return this.config;
     }
 }
+exports.PatternGenerator = PatternGenerator;
+PatternGenerator.Schema = zod_1.default.object({
+    target: Target_1.Target.Schema,
+    config: SweeperConfigs_1.SweeperConfigs.Schema,
+    labelFormat: zod_1.default.enum(LabelFormats_1.LabelFormat)
+});
+//# sourceMappingURL=PatternGenerator.js.map

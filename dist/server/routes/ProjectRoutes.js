@@ -6,8 +6,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const ProjectController_1 = __importDefault(require("../controllers/ProjectController"));
 class ProjectRoutes {
     static register(router) {
-        // Example route, add more as needed
-        router.get('/projects/generate-all', ProjectController_1.default.generateAll);
+        router.route('/projects')
+            .put(ProjectController_1.default.put)
+            .get(ProjectController_1.default.get);
     }
 }
 exports.default = ProjectRoutes;

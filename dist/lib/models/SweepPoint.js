@@ -1,6 +1,10 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SweepPoint = void 0;
+const zod_1 = __importDefault(require("zod"));
 /**
  * Represents a single sweep point in the search pattern
  */
@@ -58,4 +62,13 @@ class SweepPoint {
     }
 }
 exports.SweepPoint = SweepPoint;
+SweepPoint.Schema = zod_1.default.object({
+    longitude: zod_1.default.number(),
+    latitude: zod_1.default.number(),
+    radius: zod_1.default.number(),
+    angle: zod_1.default.number(),
+    moa: zod_1.default.number(),
+    timeMinutes: zod_1.default.number(),
+    description: zod_1.default.string().optional(),
+});
 //# sourceMappingURL=SweepPoint.js.map

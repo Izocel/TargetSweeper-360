@@ -59,7 +59,6 @@ class Server {
         this.app.get('/', (_req, res) => {
             res.json({ message: 'Welcome to TargetSweeper-360 API!' });
         });
-        // Register project-related routes
         const router = (0, express_1.Router)();
         ProjectRoutes_1.default.register(router);
         this.app.use('/api', router);

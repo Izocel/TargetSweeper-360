@@ -1,7 +1,9 @@
+import z from "zod";
 import { LabelFormat } from '../constants/enums/LabelFormats';
-import { SweepConfiguration } from '../models/SweepConfiguration';
+import { ProjectConfigs } from "../models/ProjectConfigs";
+import { SweeperConfigs } from "../models/SweeperConfigs";
 import { Target } from '../models/Target';
-import { SweepPatternGenerator } from './SweepPatternGenerator';
+import { PatternGenerator } from './PatternGenerator';
 export interface PlacemarkStyle {
     iconUrl?: string;
     iconScale?: number;
@@ -40,7 +42,22 @@ export declare class KMLGenerator {
     private target;
     private config;
     private patternGenerator;
-    constructor(target: Target, config: SweepConfiguration, labelFormat?: LabelFormat);
+    static readonly Schema: z.ZodObject<{
+        target: z.ZodObject<{
+            name: z.ZodString;
+            longitude: z.ZodNumber;
+            latitude: z.ZodNumber;
+        }, z.core.$strip>;
+        config: z.ZodObject<{
+            radiusStep: z.ZodNumber;
+            maxRadius: z.ZodNumber;
+            angleStepMOA: z.ZodNumber;
+            angleStepDegrees: z.ZodOptional<z.ZodNumber>;
+        }, z.core.$strip>;
+        labelFormat: z.ZodEnum<typeof LabelFormat>;
+    }, z.core.$strip>;
+    constructor(target: Target, config: SweeperConfigs, labelFormat?: LabelFormat);
+    getPatternGenerator(): PatternGenerator;
     private offsetInDegrees;
     private getTacticalDirection;
     private generateTacticalLabel;
@@ -63,5 +80,12 @@ export declare class KMLGenerator {
         content: string;
         path: string;
     };
-    getPatternGenerator(): SweepPatternGenerator;
+    generateJsonFile(outputPath: string, configs: ProjectConfigs): {
+        content: string;
+        path: string;
+    };
+    generateAllFiles(outputPath: string, configs: ProjectConfigs): Promise<{
+        content: string | Buffer;
+        path: string;
+    }[]>;
 }

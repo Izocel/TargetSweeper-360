@@ -39,15 +39,22 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.KMLGenerator = void 0;
 const fs = __importStar(require("fs"));
 const jszip_1 = __importDefault(require("jszip"));
+const zod_1 = __importDefault(require("zod"));
 const __1 = require("..");
 const LabelFormats_1 = require("../constants/enums/LabelFormats");
-const SweepPatternGenerator_1 = require("./SweepPatternGenerator");
+const SweeperConfigs_1 = require("../models/SweeperConfigs");
+const Target_1 = require("../models/Target");
+const PatternGenerator_1 = require("./PatternGenerator");
 class KMLGenerator {
     constructor(target, config, labelFormat = LabelFormats_1.LabelFormat.TACTICAL) {
         this.target = target;
         this.config = config;
         this.zip = new jszip_1.default();
-        this.patternGenerator = new SweepPatternGenerator_1.SweepPatternGenerator(target, config, labelFormat);
+        this.patternGenerator = new PatternGenerator_1.PatternGenerator(target, config, labelFormat);
+    }
+    // 🎯 Get pattern generator for advanced usage
+    getPatternGenerator() {
+        return this.patternGenerator;
     }
     // 📐 Converts meters to degrees (approximate, valid for small distances)
     offsetInDegrees(meters, latitude) {
@@ -85,11 +92,11 @@ class KMLGenerator {
         }
         return "N"; // fallback
     }
-    // 🏷️ Generate tactical label using SweepPatternGenerator
+    // 🏷️ Generate tactical label using PatternGenerator
     generateTacticalLabel(point) {
         return this.patternGenerator.generateLabel(point);
     }
-    // 🔁 Generate sweep points using SweepPatternGenerator
+    // 🔁 Generate sweep points using PatternGenerator
     generateSweepPoints() {
         return this.patternGenerator.generateSweepPoints();
     }
@@ -326,16 +333,30 @@ class KMLGenerator {
         fs.writeFileSync(outputPath, kmlContent);
         return { content: kmlContent, path: outputPath };
     }
-    // 📊 Generate CSV file using SweepPatternGenerator
+    // 📊 Generate CSV file using PatternGenerator
     generateCSVFile(outputPath) {
         const csvContent = this.patternGenerator.generateCSV();
         fs.writeFileSync(outputPath, csvContent);
         return { content: csvContent, path: outputPath };
     }
-    // 🎯 Get pattern generator for advanced usage
-    getPatternGenerator() {
-        return this.patternGenerator;
+    generateJsonFile(outputPath, configs) {
+        const jsonContent = JSON.stringify(configs, null, 2);
+        fs.writeFileSync(outputPath, jsonContent);
+        return { content: jsonContent, path: outputPath };
+    }
+    async generateAllFiles(outputPath, configs) {
+        const files = [];
+        files.push(this.generateJsonFile(`${outputPath}/doc.json`, configs));
+        files.push(await this.generateKMZ(`${outputPath}/doc.kmz`));
+        files.push(this.generateCSVFile(`${outputPath}/doc.csv`));
+        files.push(this.generateKMLFile(`${outputPath}/doc.kml`));
+        return files;
     }
 }
 exports.KMLGenerator = KMLGenerator;
+KMLGenerator.Schema = zod_1.default.object({
+    target: Target_1.Target.Schema,
+    config: SweeperConfigs_1.SweeperConfigs.Schema,
+    labelFormat: zod_1.default.enum(LabelFormats_1.LabelFormat),
+});
 //# sourceMappingURL=KMLGenerator.js.map

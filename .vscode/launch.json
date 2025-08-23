@@ -1,0 +1,50 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Main App (TypeScript, ts-node)",
+            "program": "${workspaceFolder}/src/index.ts",
+            "runtimeArgs": [
+                "-r",
+                "ts-node/register"
+            ],
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "TS_NODE_PROJECT": "${workspaceFolder}/tsconfig.json"
+            }
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Server (TypeScript, ts-node)",
+            "program": "${workspaceFolder}/src/server/index.ts",
+            "preLaunchTask": "npm: build",
+            "runtimeArgs": [
+                "-r",
+                "ts-node/register"
+            ],
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "TS_NODE_PROJECT": "${workspaceFolder}/tsconfig.json"
+            }
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Main App (built JS)",
+            "program": "${workspaceFolder}/dist/index.js",
+            "preLaunchTask": "npm: build",
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Server (built JS)",
+            "program": "${workspaceFolder}/dist/server/index.js",
+            "preLaunchTask": "npm: build",
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}

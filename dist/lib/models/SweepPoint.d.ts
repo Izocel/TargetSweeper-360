@@ -1,3 +1,4 @@
+import z from "zod";
 /**
  * Represents a single sweep point in the search pattern
  */
@@ -9,6 +10,15 @@ export declare class SweepPoint {
     readonly moa: number;
     readonly timeMinutes: number;
     readonly description: string | undefined;
+    static readonly Schema: z.ZodObject<{
+        longitude: z.ZodNumber;
+        latitude: z.ZodNumber;
+        radius: z.ZodNumber;
+        angle: z.ZodNumber;
+        moa: z.ZodNumber;
+        timeMinutes: z.ZodNumber;
+        description: z.ZodOptional<z.ZodString>;
+    }, z.core.$strip>;
     constructor(longitude: number, latitude: number, radius: number, angle: number, moa: number, timeMinutes: number, description?: string);
     /**
      * Get coordinates as a tuple

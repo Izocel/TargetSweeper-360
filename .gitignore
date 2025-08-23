@@ -64,3 +64,4 @@ Thumbs.db
 *.csv
 projects/
 conf/projects.json
+*.pem

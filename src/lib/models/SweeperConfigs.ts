@@ -1,11 +1,21 @@
+import z from "zod";
+
 /**
  * Configuration class for sweep pattern generation
  */
-export class SweepConfiguration {
+export class SweeperConfigs {
     public readonly radiusStep: number;
     public readonly maxRadius: number;
     public readonly angleStepMOA: number;
     public readonly angleStepDegrees: number;
+
+    static readonly Schema = z.object({
+        radiusStep: z.number(),
+        maxRadius: z.number(),
+        angleStepMOA: z.number(),
+        angleStepDegrees: z.number().optional(),
+    });
+
 
     constructor(
         radiusStep: number = 10,
