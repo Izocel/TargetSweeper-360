@@ -1,6 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Target = exports.SweeperConfigs = exports.ProjectManager = exports.PatternGenerator = exports.LabelFormat = exports.KMLGenerator = void 0;
+exports.TargetSweeperApi = exports.Target = exports.SweeperConfigs = exports.ProjectManager = exports.PatternGenerator = exports.LabelFormat = exports.KMLGenerator = void 0;
+const api_1 = require("./api");
+Object.defineProperty(exports, "TargetSweeperApi", { enumerable: true, get: function () { return api_1.TargetSweeperApi; } });
 const LabelFormats_1 = require("./lib/constants/enums/LabelFormats");
 Object.defineProperty(exports, "LabelFormat", { enumerable: true, get: function () { return LabelFormats_1.LabelFormat; } });
 const SweeperConfigs_1 = require("./lib/models/SweeperConfigs");
