@@ -4,5 +4,3 @@ dist/
 *.log
 npm-debug.log
 .DS_Store
-*.pem
-*.key
