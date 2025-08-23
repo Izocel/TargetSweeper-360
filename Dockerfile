@@ -13,10 +13,6 @@ RUN npm ci
 # Copy the rest of the application code
 COPY . .
 
-# Generate SSL certificates
-RUN chmod +x scripts/generate-certs.sh
-RUN ./scripts/generate-certs.sh
-
 # Build the TypeScript code
 RUN npm run build
 
