@@ -70,8 +70,9 @@ class Server {
         });
     }
     start() {
-        const keyPath = __dirname + '/certs/key.pem';
-        const certPath = __dirname + '/certs/cert.pem';
+        const path = require('path');
+        const keyPath = path.resolve(__dirname, '../certs/key.pem');
+        const certPath = path.resolve(__dirname, '../certs/cert.pem');
         if (fs_1.default.existsSync(keyPath) && fs_1.default.existsSync(certPath)) {
             const key = fs_1.default.readFileSync(keyPath);
             const cert = fs_1.default.readFileSync(certPath);

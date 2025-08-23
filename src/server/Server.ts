@@ -43,8 +43,9 @@ class Server {
     }
 
     public start() {
-        const keyPath = __dirname + '/certs/key.pem';
-        const certPath = __dirname + '/certs/cert.pem';
+        const path = require('path');
+        const keyPath = path.resolve(__dirname, '../certs/key.pem');
+        const certPath = path.resolve(__dirname, '../certs/cert.pem');
         if (fs.existsSync(keyPath) && fs.existsSync(certPath)) {
             const key = fs.readFileSync(keyPath);
             const cert = fs.readFileSync(certPath);
