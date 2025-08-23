@@ -3,7 +3,6 @@ import JSZip from 'jszip';
 import z from "zod";
 import { EARTH_RADIUS } from "..";
 import { LabelFormat } from '../constants/enums/LabelFormats';
-import { ProjectConfigs } from "../models/ProjectConfigs";
 import { SweeperConfigs } from "../models/SweeperConfigs";
 import { SweepPoint } from '../models/SweepPoint';
 import { Target } from '../models/Target';
@@ -386,14 +385,14 @@ export class KMLGenerator {
         return { content: csvContent, path: outputPath };
     }
 
-    generateJsonFile(outputPath: string, configs: ProjectConfigs): { content: string, path: string } {
+    generateJsonFile(outputPath: string, configs: any): { content: string, path: string } {
         const jsonContent = JSON.stringify(configs, null, 2);
         fs.writeFileSync(outputPath, jsonContent);
 
         return { content: jsonContent, path: outputPath };
     }
 
-    async generateAllFiles(outputPath: string, configs: ProjectConfigs): Promise<{ content: string | Buffer, path: string }[]> {
+    async generateAllFiles(outputPath: string, configs: any): Promise<{ content: string | Buffer, path: string }[]> {
         const files: { content: string | Buffer, path: string }[] = [];
         files.push(this.generateJsonFile(`${outputPath}/doc.json`, configs));
         files.push(await this.generateKMZ(`${outputPath}/doc.kmz`));

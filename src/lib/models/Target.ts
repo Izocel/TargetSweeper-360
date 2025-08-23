@@ -8,17 +8,17 @@ export class Target {
     public readonly longitude: number;
     public readonly latitude: number;
 
-    static readonly Schema = z.object({
-        name: z.string(),
-        longitude: z.number(),
-        latitude: z.number(),
-    });
-
     constructor(longitude: number, latitude: number, name: string = "Target") {
         this.longitude = longitude;
         this.latitude = latitude;
         this.name = name;
     }
+
+    static readonly Schema = z.object({
+        name: z.string(),
+        longitude: z.number(),
+        latitude: z.number(),
+    });
 
     /**
      * Get target coordinates as a tuple

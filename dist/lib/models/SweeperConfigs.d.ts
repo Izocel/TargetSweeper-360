@@ -7,13 +7,13 @@ export declare class SweeperConfigs {
     readonly maxRadius: number;
     readonly angleStepMOA: number;
     readonly angleStepDegrees: number;
+    constructor(radiusStep?: number, maxRadius?: number, angleStepMOA?: number);
     static readonly Schema: z.ZodObject<{
         radiusStep: z.ZodNumber;
         maxRadius: z.ZodNumber;
         angleStepMOA: z.ZodNumber;
         angleStepDegrees: z.ZodOptional<z.ZodNumber>;
     }, z.core.$strip>;
-    constructor(radiusStep?: number, maxRadius?: number, angleStepMOA?: number);
     /**
      * Get the total number of radius steps
      */

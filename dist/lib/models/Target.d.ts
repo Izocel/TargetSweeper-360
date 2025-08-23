@@ -6,12 +6,12 @@ export declare class Target {
     readonly name: string;
     readonly longitude: number;
     readonly latitude: number;
+    constructor(longitude: number, latitude: number, name?: string);
     static readonly Schema: z.ZodObject<{
         name: z.ZodString;
         longitude: z.ZodNumber;
         latitude: z.ZodNumber;
     }, z.core.$strip>;
-    constructor(longitude: number, latitude: number, name?: string);
     /**
      * Get target coordinates as a tuple
      */

@@ -10,6 +10,7 @@ export declare class SweepPoint {
     readonly moa: number;
     readonly timeMinutes: number;
     readonly description: string | undefined;
+    constructor(longitude: number, latitude: number, radius: number, angle: number, moa: number, timeMinutes: number, description?: string);
     static readonly Schema: z.ZodObject<{
         longitude: z.ZodNumber;
         latitude: z.ZodNumber;
@@ -19,7 +20,6 @@ export declare class SweepPoint {
         timeMinutes: z.ZodNumber;
         description: z.ZodOptional<z.ZodString>;
     }, z.core.$strip>;
-    constructor(longitude: number, latitude: number, radius: number, angle: number, moa: number, timeMinutes: number, description?: string);
     /**
      * Get coordinates as a tuple
      */

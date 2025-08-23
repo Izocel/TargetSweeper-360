@@ -1,24 +1,10 @@
-import { ProjectConfigs } from '../models/ProjectConfigs';
+import { PutProjectRequest } from '../../server/requests/PutProjectRequest';
 /**
  * Manages project configurations and generates outputs
- * @param config The project configuration
- * @param outputDir The output directory for generated files
  */
 export declare class ProjectManager {
     private static outputBaseDir;
-    /**
-     * Validate a project generation configuration
-     * @param config The project configuration
-     */
-    static validateConfig(config: ProjectConfigs): {
-        valid: boolean;
-        errors?: string[];
-    };
-    /**
-     * Generate project files
-     * @param configs The project configuration
-     */
-    static generate(configs: ProjectConfigs): Promise<{
+    static generate(request: PutProjectRequest): Promise<{
         files: any[];
         summary: any;
     }>;

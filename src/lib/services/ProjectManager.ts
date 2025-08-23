@@ -1,58 +1,39 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { ProjectConfigs } from '../models/ProjectConfigs';
+import { PutProjectRequest } from '../../server/requests/PutProjectRequest';
+import { SweeperConfigs } from '../models/SweeperConfigs';
+import { Target } from '../models/Target';
 import { KMLGenerator } from './KMLGenerator';
 
 /**
  * Manages project configurations and generates outputs
- * @param config The project configuration
- * @param outputDir The output directory for generated files
  */
 export class ProjectManager {
     private static outputBaseDir: string = path.join(process.cwd(), 'projects');
 
-    /**
-     * Validate a project generation configuration
-     * @param config The project configuration
-     */
-    static validateConfig(config: ProjectConfigs): { valid: boolean; errors?: string[] } {
-        const results = ProjectConfigs.Schema.safeParse(config);
-        if (!results.success) {
-            const errors = results.error.issues.map(issue => issue.message);
-            console.error(`Invalid project configuration: ${errors.join('; ')}`);
-            return { valid: false, errors };
-        }
-
-        return { valid: true };
-    }
-
-    /**
-     * Generate project files
-     * @param configs The project configuration
-     */
-    static async generate(configs: ProjectConfigs): Promise<{
+    static async generate(request: PutProjectRequest): Promise<{
         files: any[];
         summary: any;
     }> {
-        const validation = this.validateConfig(configs);
-        if (!validation.valid) {
-            throw new Error(`Invalid project configuration: ${validation.errors?.join('; ')}`);
-        }
+        const data = request.data!;
+        const { name, labelFormat } = data;
 
-        const { Target, SweeperConfigs, Name, LabelFormat } = configs;
+        // Create configurations
+        const target = new Target(data.target.longitude, data.target.latitude);
+        const sweeper = new SweeperConfigs(data.sweeperConfigs.radiusStep, data.sweeperConfigs.maxRadius, data.sweeperConfigs.angleStepMOA);
 
         // Generators
-        const kmlGenerator = new KMLGenerator(Target, SweeperConfigs, LabelFormat);
+        const kmlGenerator = new KMLGenerator(target, sweeper, labelFormat);
         const patternGenerator = kmlGenerator.getPatternGenerator();
 
         // Output paths
         const suffix = Date.now();
-        const baseName = Name.replace(/[^a-zA-Z0-9\-_\s]/g, '').replace(/\s+/g, '_');
+        const baseName = name.replace(/[^a-zA-Z0-9\-_\s]/g, '').replace(/\s+/g, '_');
         const outputPath = path.join(ProjectManager.outputBaseDir, `${baseName}_${suffix}`);
 
         // Generate KML files & summary
         const summary = patternGenerator.getSummary();
-        const files = await kmlGenerator.generateAllFiles(outputPath, configs);
+        const files = await kmlGenerator.generateAllFiles(outputPath, sweeper);
 
         for (const file of files) {
             console.log(`  📄  Generated: ${path.basename(file.path)}`);

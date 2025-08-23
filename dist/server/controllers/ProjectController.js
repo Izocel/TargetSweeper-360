@@ -1,6 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const ProjectManager_1 = require("../../lib/services/ProjectManager");
+const GetProjectRequest_1 = require("../requests/GetProjectRequest");
+const PutProjectRequest_1 = require("../requests/PutProjectRequest");
 class ProjectController {
     /**
      * Update a project
@@ -11,11 +13,11 @@ class ProjectController {
      */
     static async put(_req, res, next) {
         try {
-            const validation = ProjectManager_1.ProjectManager.validateConfig(_req.body);
-            if (!validation.valid) {
-                return res.status(400).json({ success: false, errors: validation.errors });
+            const request = new PutProjectRequest_1.PutProjectRequest(_req.body);
+            if (!request.isValid || !request.data) {
+                return res.status(400).json(request.toObject());
             }
-            const results = await ProjectManager_1.ProjectManager.generate(_req.body);
+            const results = await ProjectManager_1.ProjectManager.generate(request);
             return res.json(results);
         }
         catch (error) {
@@ -31,13 +33,12 @@ class ProjectController {
      */
     static async get(_req, res, next) {
         try {
-            let project = null;
-            const name = _req.query.name?.toString();
-            const output = _req.query.output?.toString() ?? "file";
-            const type = _req.query.type?.toString() ?? "kml";
-            if (name) {
-                project = await ProjectManager_1.ProjectManager.getProjectByName(name, type);
+            const request = new GetProjectRequest_1.GetProjectRequest(_req.query);
+            if (!request.isValid || !request.data) {
+                return res.status(400).json(request.toObject());
             }
+            const { name, output, type } = request.data;
+            const project = await ProjectManager_1.ProjectManager.getProjectByName(name, type);
             if (!project?.[0]) {
                 return res.status(404).json({ message: 'Project not found.' });
             }

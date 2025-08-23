@@ -12,16 +12,6 @@ export class SweepPoint {
     public readonly timeMinutes: number;
     public readonly description: string | undefined;
 
-    static readonly Schema = z.object({
-        longitude: z.number(),
-        latitude: z.number(),
-        radius: z.number(),
-        angle: z.number(),
-        moa: z.number(),
-        timeMinutes: z.number(),
-        description: z.string().optional(),
-    });
-
     constructor(
         longitude: number,
         latitude: number,
@@ -39,6 +29,16 @@ export class SweepPoint {
         this.timeMinutes = timeMinutes;
         this.description = description;
     }
+
+    static readonly Schema = z.object({
+        longitude: z.number(),
+        latitude: z.number(),
+        radius: z.number(),
+        angle: z.number(),
+        moa: z.number(),
+        timeMinutes: z.number(),
+        description: z.string().optional(),
+    });
 
     /**
      * Get coordinates as a tuple

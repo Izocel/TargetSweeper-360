@@ -1,6 +1,5 @@
 import z from "zod";
 import { LabelFormat } from '../constants/enums/LabelFormats';
-import { ProjectConfigs } from "../models/ProjectConfigs";
 import { SweeperConfigs } from "../models/SweeperConfigs";
 import { Target } from '../models/Target';
 import { PatternGenerator } from './PatternGenerator';
@@ -80,11 +79,11 @@ export declare class KMLGenerator {
         content: string;
         path: string;
     };
-    generateJsonFile(outputPath: string, configs: ProjectConfigs): {
+    generateJsonFile(outputPath: string, configs: any): {
         content: string;
         path: string;
     };
-    generateAllFiles(outputPath: string, configs: ProjectConfigs): Promise<{
+    generateAllFiles(outputPath: string, configs: any): Promise<{
         content: string | Buffer;
         path: string;
     }[]>;

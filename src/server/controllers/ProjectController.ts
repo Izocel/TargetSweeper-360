@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
-import { ProjectConfigs } from '../../lib/models/ProjectConfigs';
 import { ProjectManager } from '../../lib/services/ProjectManager';
+import { GetProjectRequest } from '../requests/GetProjectRequest';
+import { PutProjectRequest } from '../requests/PutProjectRequest';
 
 class ProjectController {
 
@@ -13,12 +14,12 @@ class ProjectController {
      */
     static async put(_req: Request, res: Response, next: NextFunction) {
         try {
-            const validation = ProjectManager.validateConfig(_req.body as ProjectConfigs);
-            if (!validation.valid) {
-                return res.status(400).json({ success: false, errors: validation.errors });
+            const request = new PutProjectRequest(_req.body as any)
+            if (!request.isValid || !request.data) {
+                return res.status(400).json(request.toObject());
             }
 
-            const results = await ProjectManager.generate(_req.body as ProjectConfigs);
+            const results = await ProjectManager.generate(request);
             return res.json(results);
         } catch (error) {
             return next(error);
@@ -34,14 +35,13 @@ class ProjectController {
      */
     static async get(_req: Request, res: Response, next: NextFunction) {
         try {
-            let project = null;
-            const name: string | undefined = _req.query.name?.toString();
-            const output: string = _req.query.output?.toString() ?? "file";
-            const type: string = _req.query.type?.toString() ?? "kml";
-
-            if (name) {
-                project = await ProjectManager.getProjectByName(name, type);
+            const request = new GetProjectRequest(_req.query as any)
+            if (!request.isValid || !request.data) {
+                return res.status(400).json(request.toObject());
             }
+
+            const { name, output, type } = request.data;
+            const project = await ProjectManager.getProjectByName(name, type);
 
             if (!project?.[0]) {
                 return res.status(404).json({ message: 'Project not found.' });
