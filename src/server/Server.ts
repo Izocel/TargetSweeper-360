@@ -2,6 +2,9 @@
 
 import cors from 'cors';
 import express, { Application, NextFunction, Request, Response, Router } from 'express';
+
+import fs from 'fs';
+import https from 'https';
 import morgan from 'morgan';
 import ProjectRoutes from './routes/ProjectRoutes';
 
@@ -41,9 +44,18 @@ class Server {
     }
 
     public start() {
-        this.app.listen(this.port, () => {
-            console.log(`HTTP server running on localhost:${this.port}`);
-        });
+        const keyPath = '/app/certs/key.pem';
+        const certPath = '/app/certs/cert.pem';
+        if (fs.existsSync(keyPath) && fs.existsSync(certPath)) {
+            const key = fs.readFileSync(keyPath);
+            const cert = fs.readFileSync(certPath);
+            https.createServer({ key, cert }, this.app).listen(this.port, () => {
+                console.log(`HTTPS server running on https://localhost:${this.port}`);
+            });
+        } else {
+            console.error('SSL certificate or key not found at /app/certs. Please mount your certs directory.');
+            process.exit(1);
+        }
     }
 }
 

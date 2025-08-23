@@ -38,6 +38,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const cors_1 = __importDefault(require("cors"));
 const express_1 = __importStar(require("express"));
+const fs_1 = __importDefault(require("fs"));
+const https_1 = __importDefault(require("https"));
 const morgan_1 = __importDefault(require("morgan"));
 const ProjectRoutes_1 = __importDefault(require("./routes/ProjectRoutes"));
 class Server {
@@ -68,9 +70,19 @@ class Server {
         });
     }
     start() {
-        this.app.listen(this.port, () => {
-            console.log(`HTTP server running on localhost:${this.port}`);
-        });
+        const keyPath = '/app/certs/key.pem';
+        const certPath = '/app/certs/cert.pem';
+        if (fs_1.default.existsSync(keyPath) && fs_1.default.existsSync(certPath)) {
+            const key = fs_1.default.readFileSync(keyPath);
+            const cert = fs_1.default.readFileSync(certPath);
+            https_1.default.createServer({ key, cert }, this.app).listen(this.port, () => {
+                console.log(`HTTPS server running on https://localhost:${this.port}`);
+            });
+        }
+        else {
+            console.error('SSL certificate or key not found at /app/certs. Please mount your certs directory.');
+            process.exit(1);
+        }
     }
 }
 exports.default = Server;

@@ -6,7 +6,6 @@
   "scripts": {
     "build": "tsc",
     "certs": "bash scripts/generate-certs.sh",
-    "copy-certs": "cpx \"certs/*\" dist/certs/",
     "watch": "tsc -w",
     "clean": "rimraf dist",
     "start": "node dist/index.js",
@@ -35,7 +34,6 @@
     "@types/jszip": "latest",
     "@types/morgan": "latest",
     "@types/node": "latest",
-    "cpx": "^1.5.0",
     "rimraf": "latest",
     "ts-node": "latest",
     "typescript": "latest"

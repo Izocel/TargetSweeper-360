@@ -8,4 +8,7 @@ services:
     volumes:
       - .:/app
       - /app/node_modules
+      # Mount Synology NAS certificate files directly for automatic HTTPS
+      - /usr/syno/etc/certificate/_archive/9jL7b6/cert.pem:/app/certs/cert.pem:ro
+      - /usr/syno/etc/certificate/_archive/9jL7b6/privkey.pem:/app/certs/key.pem:ro
     command: ["node", "dist/server/index.js"]
