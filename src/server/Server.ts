@@ -43,9 +43,23 @@ class Server {
         });
     }
 
-    public start() {
-        const keyPath = '/app/certs/key.pem';
-        const certPath = '/app/certs/cert.pem';
+    public start(useHttps: boolean = true) {
+        if (useHttps) {
+            this.startHttps();
+        } else {
+            this.startHttp();
+        }
+    }
+
+    private startHttp() {
+        this.app.listen(this.port, () => {
+            console.log(`HTTP server running on http://localhost:${this.port}`);
+        });
+    }
+
+    private startHttps() {
+        const keyPath = 'certs/key.pem';
+        const certPath = 'certs/cert.pem';
         if (fs.existsSync(keyPath) && fs.existsSync(certPath)) {
             const key = fs.readFileSync(keyPath);
             const cert = fs.readFileSync(certPath);
@@ -53,7 +67,7 @@ class Server {
                 console.log(`HTTPS server running on https://localhost:${this.port}`);
             });
         } else {
-            console.error('SSL certificate or key not found at /app/certs. Please mount your certs directory.');
+            console.error('SSL certificate or key not found. Please mount your certs directory.');
             process.exit(1);
         }
     }

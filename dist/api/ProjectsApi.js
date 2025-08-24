@@ -10,7 +10,7 @@ class ProjectsApi {
     }
     put(request) {
         request.enforce();
-        return this.axios.put('projects', { data: request.data });
+        return this.axios.put('projects', request.data);
     }
 }
 exports.default = ProjectsApi;

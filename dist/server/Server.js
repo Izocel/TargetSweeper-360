@@ -69,9 +69,22 @@ class Server {
             res.status(500).json({ error: 'Internal Server Error' });
         });
     }
-    start() {
-        const keyPath = '/app/certs/key.pem';
-        const certPath = '/app/certs/cert.pem';
+    start(useHttps = true) {
+        if (useHttps) {
+            this.startHttps();
+        }
+        else {
+            this.startHttp();
+        }
+    }
+    startHttp() {
+        this.app.listen(this.port, () => {
+            console.log(`HTTP server running on http://localhost:${this.port}`);
+        });
+    }
+    startHttps() {
+        const keyPath = 'certs/key.pem';
+        const certPath = 'certs/cert.pem';
         if (fs_1.default.existsSync(keyPath) && fs_1.default.existsSync(certPath)) {
             const key = fs_1.default.readFileSync(keyPath);
             const cert = fs_1.default.readFileSync(certPath);
@@ -80,7 +93,7 @@ class Server {
             });
         }
         else {
-            console.error('SSL certificate or key not found at /app/certs. Please mount your certs directory.');
+            console.error('SSL certificate or key not found. Please mount your certs directory.');
             process.exit(1);
         }
     }

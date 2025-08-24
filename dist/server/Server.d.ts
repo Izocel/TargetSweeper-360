@@ -5,6 +5,8 @@ declare class Server {
     private middlewares;
     private routes;
     private errorHandler;
-    start(): void;
+    start(useHttps?: boolean): void;
+    private startHttp;
+    private startHttps;
 }
 export default Server;

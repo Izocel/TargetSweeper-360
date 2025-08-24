@@ -14,8 +14,6 @@ class ProjectController {
     static async put(_req, res, next) {
         try {
             const request = new PutProjectRequest_1.PutProjectRequest(_req.body);
-            console.log(_req.body);
-            console.log(request);
             if (!request.isValid || !request.data) {
                 return res.status(400).json(request.toObject());
             }

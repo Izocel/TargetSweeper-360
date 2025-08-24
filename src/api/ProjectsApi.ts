@@ -17,7 +17,7 @@ class ProjectsApi {
 
     put<T = any>(request: PutProjectRequest): Promise<AxiosResponse<T>> {
         request.enforce();
-        return this.axios.put<T>('projects', { data: request.data });
+        return this.axios.put<T>('projects', request.data);
     }
 
 }
