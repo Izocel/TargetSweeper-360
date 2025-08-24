@@ -15,10 +15,6 @@ class ProjectController {
     static async put(_req: Request, res: Response, next: NextFunction) {
         try {
             const request = new PutProjectRequest(_req.body as any)
-
-            console.log(_req.body);
-            console.log(request);
-
             if (!request.isValid || !request.data) {
                 return res.status(400).json(request.toObject());
             }
@@ -44,7 +40,12 @@ class ProjectController {
                 return res.status(400).json(request.toObject());
             }
 
-            const { name, output, type } = request.data;
+            let { name, output, type } = request.data;
+
+            // FIXME: Temporary as the query string is not being parsed correctly by external dependencies
+            // Either <KmlLayer> or the GoogleApi itself
+            name = name.split('?=')[0] ?? name;
+
             const project = await ProjectManager.getProjectByName(name, type);
 
             if (!project?.[0]) {

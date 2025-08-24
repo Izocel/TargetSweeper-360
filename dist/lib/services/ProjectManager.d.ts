@@ -5,8 +5,9 @@ import { PutProjectRequest } from '../../server/requests/PutProjectRequest';
 export declare class ProjectManager {
     private static outputBaseDir;
     static generate(request: PutProjectRequest): Promise<{
-        files: any[];
+        projectName: string;
         summary: any;
+        files: any[];
     }>;
     /**
      * Get project details by name

@@ -55,7 +55,8 @@ class ProjectManager {
         // Output paths
         const suffix = Date.now();
         const baseName = name.replace(/[^a-zA-Z0-9\-_\s]/g, '').replace(/\s+/g, '_');
-        const outputPath = path.join(ProjectManager.outputBaseDir, `${baseName}_${suffix}`);
+        const projectName = `${baseName}_${suffix}`;
+        const outputPath = path.join(ProjectManager.outputBaseDir, projectName);
         // Generate KML files & summary
         const summary = patternGenerator.getSummary();
         const files = await kmlGenerator.generateAllFiles(outputPath, sweeper);
@@ -63,8 +64,9 @@ class ProjectManager {
             console.log(`  📄  Generated: ${path.basename(file.path)}`);
         }
         return {
+            projectName,
+            summary,
             files,
-            summary
         };
     }
     /**

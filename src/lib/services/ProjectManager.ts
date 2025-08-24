@@ -12,8 +12,9 @@ export class ProjectManager {
     private static outputBaseDir: string = path.join(process.cwd(), 'projects');
 
     static async generate(request: PutProjectRequest): Promise<{
-        files: any[];
+        projectName: string;
         summary: any;
+        files: any[];
     }> {
         const data = request.data!;
         const { name, labelFormat } = data;
@@ -29,7 +30,8 @@ export class ProjectManager {
         // Output paths
         const suffix = Date.now();
         const baseName = name.replace(/[^a-zA-Z0-9\-_\s]/g, '').replace(/\s+/g, '_');
-        const outputPath = path.join(ProjectManager.outputBaseDir, `${baseName}_${suffix}`);
+        const projectName = `${baseName}_${suffix}`;
+        const outputPath = path.join(ProjectManager.outputBaseDir, projectName);
 
         // Generate KML files & summary
         const summary = patternGenerator.getSummary();
@@ -40,8 +42,9 @@ export class ProjectManager {
         }
 
         return {
+            projectName,
+            summary,
             files,
-            summary
         };
     }
 
