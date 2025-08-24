@@ -1,16 +1,18 @@
-import { TargetSweeperApi } from './api';
-import { LabelFormat } from './lib/constants/enums/LabelFormats';
-import { SweeperConfigs } from './lib/models/SweeperConfigs';
-import { Target } from './lib/models/Target';
-import { KMLGenerator } from './lib/services/KMLGenerator';
-import { PatternGenerator } from './lib/services/PatternGenerator';
-import { ProjectManager } from './lib/services/ProjectManager';
+import { BaseRequest } from './server/requests/BaseRequest';
+import { GetProjectRequest } from './server/requests/GetProjectRequest';
+import { PutProjectRequest } from './server/requests/PutProjectRequest';
 
 export const EARTH_RADIUS = 6378137;
 
+export * from './api';
+export * from './lib/constants/enums/LabelFormats';
+export * from './lib/models/SweeperConfigs';
+export * from './lib/models/Target';
 
-// Export for use as a module
+
 export {
-    KMLGenerator, LabelFormat, PatternGenerator, ProjectManager, SweeperConfigs, Target, TargetSweeperApi
+    BaseRequest,
+    GetProjectRequest,
+    PutProjectRequest
 };
 
