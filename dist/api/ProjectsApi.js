@@ -6,11 +6,11 @@ class ProjectsApi {
     }
     get(request) {
         request.enforce();
-        return this.axios.get('projects', { params: request.data });
+        return this.axios.get('projects', { params: { ...request.data } });
     }
     put(request) {
         request.enforce();
-        return this.axios.put('projects', request.data);
+        return this.axios.put('projects', { ...request.data });
     }
 }
 exports.default = ProjectsApi;

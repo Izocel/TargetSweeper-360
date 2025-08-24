@@ -12,12 +12,12 @@ class ProjectsApi {
 
     get<T = any>(request: GetProjectRequest): Promise<AxiosResponse<T>> {
         request.enforce();
-        return this.axios.get<T>('projects', { params: request.data });
+        return this.axios.get<T>('projects', { params: { ...request.data } });
     }
 
     put<T = any>(request: PutProjectRequest): Promise<AxiosResponse<T>> {
         request.enforce();
-        return this.axios.put<T>('projects', request.data);
+        return this.axios.put<T>('projects', { ...request.data });
     }
 
 }
