@@ -394,6 +394,11 @@ export class KMLGenerator {
 
     async generateAllFiles(outputPath: string, configs: any): Promise<{ content: string | Buffer, path: string }[]> {
         const files: { content: string | Buffer, path: string }[] = [];
+
+        // Prepare directory
+        fs.mkdirSync(outputPath, { recursive: true });
+
+        // Generate all files
         files.push(this.generateJsonFile(`${outputPath}/doc.json`, configs));
         files.push(await this.generateKMZ(`${outputPath}/doc.kmz`));
         files.push(this.generateCSVFile(`${outputPath}/doc.csv`));
