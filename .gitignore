@@ -60,8 +60,4 @@ pids
 ehthumbs.db
 Thumbs.db
 
-# Generated CSV files (if needed for testing)
-*.csv
-projects/
-conf/projects.json
 *.pem

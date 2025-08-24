@@ -4,6 +4,8 @@ FROM node:22-bullseye
 # Set working directory
 WORKDIR /app
 
+COPY projects ./projects
+
 # Copy package.json and package-lock.json
 COPY package*.json ./
 
