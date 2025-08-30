@@ -14,7 +14,7 @@ class ProjectsApi {
     }
     putFile(request) {
         request.enforce();
-        return this.axios.put('projects/upload', request.data);
+        return this.axios.put('projects/upload', { ...request.data });
     }
 }
 exports.default = ProjectsApi;

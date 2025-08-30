@@ -21,7 +21,7 @@ class ProjectsApi {
     }
     putFile<T = any>(request: PutFileProjectRequest): Promise<AxiosResponse<T>> {
         request.enforce();
-        return this.axios.put<T>('projects/upload', request.data);
+        return this.axios.put<T>('projects/upload', { ...request.data });
     }
 }
 
