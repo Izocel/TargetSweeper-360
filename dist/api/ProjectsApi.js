@@ -12,6 +12,10 @@ class ProjectsApi {
         request.enforce();
         return this.axios.put('projects', { ...request.data });
     }
+    putFile(request) {
+        request.enforce();
+        return this.axios.put('projects/upload', { ...request.data });
+    }
 }
 exports.default = ProjectsApi;
 //# sourceMappingURL=ProjectsApi.js.map

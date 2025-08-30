@@ -9,6 +9,8 @@ class ProjectRoutes {
         router.route('/projects')
             .put(ProjectController_1.default.put)
             .get(ProjectController_1.default.get);
+        router.route('/projects/upload')
+            .put(ProjectController_1.default.putFile);
     }
 }
 exports.default = ProjectRoutes;

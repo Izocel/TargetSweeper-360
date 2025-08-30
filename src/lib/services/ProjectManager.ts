@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import { PutFileProjectRequest } from '../../server/requests/PutFileProjectRequest';
 import { PutProjectRequest } from '../../server/requests/PutProjectRequest';
 import { SweeperConfigs } from '../models/SweeperConfigs';
 import { Target } from '../models/Target';
@@ -78,5 +79,26 @@ export class ProjectManager {
         }
 
         return results.length ? results : undefined;
+    }
+
+    static async storeFile(request: PutFileProjectRequest): Promise<{ path: string; content: string }[] | void> {
+        const file = request.data?.file;
+        if (!file) {
+            throw new Error('No file uploaded.');
+        }
+
+        const { name } = file;
+
+        // Output paths
+        const suffix = Date.now();
+        const baseName = name.replace(/[^a-zA-Z0-9\-_\s]/g, '').replace(/\s+/g, '_');
+        const projectName = `${baseName}_${suffix}`;
+        const outputPath = path.join(ProjectManager.outputBaseDir, projectName);
+
+        const filePath = path.join(outputPath);
+        const buffer = Buffer.from(await file.arrayBuffer());
+        await fs.promises.writeFile(filePath, buffer);
+
+        return await this.getProjectByName(projectName);
     }
 }

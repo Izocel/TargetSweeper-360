@@ -8,6 +8,7 @@ declare class ProjectController {
      * @returns A promise that resolves to the response
      */
     static put(_req: Request, res: Response, next: NextFunction): Promise<void | Response<any, Record<string, any>>>;
+    static putFile(_req: Request, res: Response, next: NextFunction): Promise<void | Response<any, Record<string, any>>>;
     /**
      * Get project details by name
      * @param _req The request object

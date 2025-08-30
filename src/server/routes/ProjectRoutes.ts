@@ -6,6 +6,8 @@ class ProjectRoutes {
         router.route('/projects')
             .put(ProjectController.put)
             .get(ProjectController.get);
+        router.route('/projects/upload')
+            .put(ProjectController.putFile);
     }
 }
 

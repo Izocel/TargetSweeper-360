@@ -1,3 +1,4 @@
+import { PutFileProjectRequest } from '../../server/requests/PutFileProjectRequest';
 import { PutProjectRequest } from '../../server/requests/PutProjectRequest';
 /**
  * Manages project configurations and generates outputs
@@ -16,6 +17,10 @@ export declare class ProjectManager {
      * @returns The project files and their content
      */
     static getProjectByName(name: string, type?: string): Promise<{
+        path: string;
+        content: string;
+    }[] | void>;
+    static storeFile(request: PutFileProjectRequest): Promise<{
         path: string;
         content: string;
     }[] | void>;

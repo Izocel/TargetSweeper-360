@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const ProjectManager_1 = require("../../lib/services/ProjectManager");
 const GetProjectRequest_1 = require("../requests/GetProjectRequest");
+const PutFileProjectRequest_1 = require("../requests/PutFileProjectRequest");
 const PutProjectRequest_1 = require("../requests/PutProjectRequest");
 class ProjectController {
     /**
@@ -18,6 +19,19 @@ class ProjectController {
                 return res.status(400).json(request.toObject());
             }
             const results = await ProjectManager_1.ProjectManager.generate(request);
+            return res.json(results);
+        }
+        catch (error) {
+            return next(error);
+        }
+    }
+    static async putFile(_req, res, next) {
+        try {
+            const request = new PutFileProjectRequest_1.PutFileProjectRequest(_req.body);
+            if (!request.isValid || !request.data) {
+                return res.status(400).json(request.toObject());
+            }
+            const results = await ProjectManager_1.ProjectManager.storeFile(request);
             return res.json(results);
         }
         catch (error) {

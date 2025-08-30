@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { ProjectManager } from '../../lib/services/ProjectManager';
 import { GetProjectRequest } from '../requests/GetProjectRequest';
+import { PutFileProjectRequest } from '../requests/PutFileProjectRequest';
 import { PutProjectRequest } from '../requests/PutProjectRequest';
 
 class ProjectController {
@@ -20,6 +21,20 @@ class ProjectController {
             }
 
             const results = await ProjectManager.generate(request);
+            return res.json(results);
+        } catch (error) {
+            return next(error);
+        }
+    }
+
+    static async putFile(_req: Request, res: Response, next: NextFunction) {
+        try {
+            const request = new PutFileProjectRequest(_req.body as any)
+            if (!request.isValid || !request.data) {
+                return res.status(400).json(request.toObject());
+            }
+
+            const results = await ProjectManager.storeFile(request);
             return res.json(results);
         } catch (error) {
             return next(error);

@@ -14,12 +14,14 @@ class ProjectsApi {
         request.enforce();
         return this.axios.get<T>('projects', { params: { ...request.data } });
     }
-
     put<T = any>(request: PutProjectRequest): Promise<AxiosResponse<T>> {
         request.enforce();
         return this.axios.put<T>('projects', { ...request.data });
     }
-
+    putFile<T = any>(request: any): Promise<AxiosResponse<T>> {
+        request.enforce();
+        return this.axios.put<T>('projects/upload', { ...request.data });
+    }
 }
 
 export default ProjectsApi;

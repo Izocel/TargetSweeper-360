@@ -6,5 +6,6 @@ declare class ProjectsApi {
     constructor(axiosInstance: AxiosInstance);
     get<T = any>(request: GetProjectRequest): Promise<AxiosResponse<T>>;
     put<T = any>(request: PutProjectRequest): Promise<AxiosResponse<T>>;
+    putFile<T = any>(request: any): Promise<AxiosResponse<T>>;
 }
 export default ProjectsApi;
