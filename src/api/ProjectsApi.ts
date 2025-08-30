@@ -1,6 +1,7 @@
 
 import { AxiosInstance, AxiosResponse } from 'axios';
 import { GetProjectRequest } from '../server/requests/GetProjectRequest';
+import { PutFileProjectRequest } from '../server/requests/PutFileProjectRequest';
 import { PutProjectRequest } from '../server/requests/PutProjectRequest';
 
 class ProjectsApi {
@@ -18,9 +19,9 @@ class ProjectsApi {
         request.enforce();
         return this.axios.put<T>('projects', { ...request.data });
     }
-    putFile<T = any>(request: any): Promise<AxiosResponse<T>> {
+    putFile<T = any>(request: PutFileProjectRequest): Promise<AxiosResponse<T>> {
         request.enforce();
-        return this.axios.put<T>('projects/upload', { ...request.data });
+        return this.axios.put<T>('projects/upload', request.data);
     }
 }
 
