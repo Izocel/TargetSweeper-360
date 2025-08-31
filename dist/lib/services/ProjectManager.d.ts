@@ -2,6 +2,7 @@ import { PutProjectRequest } from '../../server/requests/PutProjectRequest';
 import { UploadProjectRequest } from '../../server/requests/UploadProjectRequest';
 export interface StoredProject {
     path?: string;
+    extension: string;
     content: string;
     endpoint: string;
 }

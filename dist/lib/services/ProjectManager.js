@@ -94,6 +94,7 @@ class ProjectManager {
             }
             results.push({
                 path: filePath,
+                extension: fileType,
                 endpoint: `api/projects?name=${name}`,
                 content: fs.readFileSync(filePath, 'utf-8')
             });

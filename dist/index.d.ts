@@ -1,3 +1,4 @@
+import { StoredProject } from './lib/services/ProjectManager';
 import { BaseRequest } from './server/requests/BaseRequest';
 import { GetProjectRequest } from './server/requests/GetProjectRequest';
 import { PutProjectRequest } from './server/requests/PutProjectRequest';
@@ -8,3 +9,4 @@ export * from './lib/constants/enums/LabelFormats';
 export * from './lib/models/SweeperConfigs';
 export * from './lib/models/Target';
 export { BaseRequest, GetProjectRequest, PutProjectRequest, UploadProjectRequest };
+export type { StoredProject };
