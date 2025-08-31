@@ -45,7 +45,7 @@ export class ProjectManager {
         const summary = patternGenerator.getSummary();
         await kmlGenerator.generateAllFiles(outputPath, sweeper);
 
-        const files = await this.getProjectByName(projectName, "kml");
+        const files = await this.getProjectByName(projectName, "all");
         files?.forEach(f => {
             delete f.path;
         });
