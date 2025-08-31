@@ -59,20 +59,21 @@ class ProjectManager {
         const outputPath = path.join(ProjectManager.outputBaseDir, projectName);
         // Generate KML files & summary
         const summary = patternGenerator.getSummary();
-        const files = await kmlGenerator.generateAllFiles(outputPath, sweeper);
-        for (const file of files) {
-            console.log(`  📄  Generated: ${path.basename(file.path)}`);
-        }
+        await kmlGenerator.generateAllFiles(outputPath, sweeper);
+        const files = await this.getProjectByName(projectName, "kml");
+        files?.forEach(f => {
+            delete f.path;
+        });
         return {
             projectName,
             summary,
-            files,
+            files
         };
     }
     /**
      * Get project details by name
      * @param name The project name
-     * @param type The file type to filter by (default is ".kml")
+     * @param type The file type to filter by (default is "kml")
      * @returns The project files and their content
      */
     static async getProjectByName(name, type = "kml") {
@@ -82,19 +83,22 @@ class ProjectManager {
         }
         const results = [];
         const files = fs.readdirSync(lookoutPath);
+        if (files.length === 0) {
+            throw new Error(`No files found for project "${name}".`);
+        }
         for (const file of files) {
             const filePath = path.join(lookoutPath, file);
             const fileType = path.extname(filePath).replace('.', '');
-            if (fileType !== type) {
+            if (type !== "all" && fileType !== type) {
                 continue;
             }
             results.push({
                 path: filePath,
-                endpoint: `api/projects/${name}`,
+                endpoint: `api/projects?name=${name}`,
                 content: fs.readFileSync(filePath, 'utf-8')
             });
         }
-        return results.length ? results : undefined;
+        return results;
     }
     static async storeFile(request) {
         const file = request.data.file;
@@ -111,8 +115,11 @@ class ProjectManager {
         await fs.promises.copyFile(file.path, filePath);
         await fs.promises.unlink(file.path);
         console.log(` 📄  Stored: ${path.basename(filePath)}`);
-        const result = await this.getProjectByName(projectName);
-        return result?.map(f => ({ content: f.content, endpoint: f.endpoint }));
+        const results = await this.getProjectByName(projectName, "kml");
+        results?.forEach(f => {
+            delete f.path;
+        });
+        return results;
     }
 }
 exports.ProjectManager = ProjectManager;

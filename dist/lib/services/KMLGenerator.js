@@ -353,6 +353,9 @@ class KMLGenerator {
         files.push(await this.generateKMZ(`${outputPath}/doc.kmz`));
         files.push(this.generateCSVFile(`${outputPath}/doc.csv`));
         files.push(this.generateKMLFile(`${outputPath}/doc.kml`));
+        files.forEach(file => {
+            console.log(` 📄  Generated: ${file.path.split('/').pop()}`);
+        });
         return files;
     }
 }

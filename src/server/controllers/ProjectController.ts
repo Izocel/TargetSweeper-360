@@ -56,29 +56,34 @@ class ProjectController {
             }
 
             const { name, output, type } = request.data;
-            const project = await ProjectManager.getProjectByName(name, type);
+            const projects = await ProjectManager.getProjectByName(name, type);
 
-            if (!project?.[0]) {
+            if (!projects?.length) {
                 return res.status(404).json({ message: 'Project not found.' });
             }
 
-            const servePath = project[0].path;
+            const project = projects[0]!;
+            const { path, content } = project;
+
+            if (!path) {
+                return res.status(404).json({ message: 'Project path not found.' });
+            }
 
             switch (output) {
                 case "download":
-                    return res.download(servePath);
+                    return res.download(path);
                 case "file":
-                    return res.sendFile(servePath);
+                    return res.sendFile(path);
                 default:
                 case "content":
                     switch (type) {
                         case "kml":
                             res.type('application/xml');
-                            return res.send(project[0].content);
+                            return res.send(content);
                         case "json":
-                            return res.json(project[0].content);
+                            return res.json(content);
                         default:
-                            return res.send(project[0].content);
+                            return res.send(content);
                     }
             }
         } catch (error) {

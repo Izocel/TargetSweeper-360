@@ -6,6 +6,12 @@ import { SweeperConfigs } from '../models/SweeperConfigs';
 import { Target } from '../models/Target';
 import { KMLGenerator } from './KMLGenerator';
 
+export interface StoredProject {
+    path?: string;
+    content: string;
+    endpoint: string;
+}
+
 /**
  * Manages project configurations and generates outputs
  */
@@ -13,9 +19,9 @@ export class ProjectManager {
     private static outputBaseDir: string = path.join(process.cwd(), 'projects');
 
     static async generate(request: PutProjectRequest): Promise<{
-        projectName: string;
         summary: any;
-        files: any[];
+        projectName: string;
+        files?: StoredProject[] | void;
     }> {
         const data = request.data!;
         const { name, labelFormat } = data;
@@ -36,53 +42,59 @@ export class ProjectManager {
 
         // Generate KML files & summary
         const summary = patternGenerator.getSummary();
-        const files = await kmlGenerator.generateAllFiles(outputPath, sweeper);
+        await kmlGenerator.generateAllFiles(outputPath, sweeper);
 
-        for (const file of files) {
-            console.log(`  📄  Generated: ${path.basename(file.path)}`);
-        }
+        const files = await this.getProjectByName(projectName, "kml");
+        files?.forEach(f => {
+            delete f.path;
+        });
 
         return {
             projectName,
             summary,
-            files,
+            files
         };
     }
 
     /**
      * Get project details by name
      * @param name The project name
-     * @param type The file type to filter by (default is ".kml")
+     * @param type The file type to filter by (default is "kml")
      * @returns The project files and their content
      */
-    static async getProjectByName(name: string, type: string = "kml"): Promise<{ path: string; content: string, endpoint: string }[] | void> {
+    static async getProjectByName(name: string, type: string = "kml"): Promise<StoredProject[] | void> {
         const lookoutPath = path.join(ProjectManager.outputBaseDir, `${name}`);
 
         if (!fs.existsSync(lookoutPath)) {
             throw new Error(`Project with name "${name}" does not exist.`);
         }
 
-        const results = [];
+        const results: StoredProject[] = [];
         const files = fs.readdirSync(lookoutPath);
+
+        if (files.length === 0) {
+            throw new Error(`No files found for project "${name}".`);
+        }
+
         for (const file of files) {
             const filePath = path.join(lookoutPath, file);
             const fileType = path.extname(filePath).replace('.', '');
 
-            if (fileType !== type) {
+            if (type !== "all" && fileType !== type) {
                 continue;
             }
 
             results.push({
                 path: filePath,
-                endpoint: `api/projects/${name}`,
+                endpoint: `api/projects?name=${name}`,
                 content: fs.readFileSync(filePath, 'utf-8')
             });
         }
 
-        return results.length ? results : undefined;
+        return results;
     }
 
-    static async storeFile(request: UploadProjectRequest): Promise<{ content: string, endpoint: string }[] | void> {
+    static async storeFile(request: UploadProjectRequest): Promise<StoredProject[] | void> {
         const file = request.data!.file as Express.Multer.File;
         if (!file) {
             throw new Error('File was not found !');
@@ -101,8 +113,12 @@ export class ProjectManager {
         await fs.promises.unlink(file.path);
 
         console.log(` 📄  Stored: ${path.basename(filePath)}`);
-        const result = await this.getProjectByName(projectName);
 
-        return result?.map(f => ({ content: f.content, endpoint: f.endpoint }));
+        const results = await this.getProjectByName(projectName, "kml");
+        results?.forEach(f => {
+            delete f.path;
+        });
+
+        return results;
     }
 }
