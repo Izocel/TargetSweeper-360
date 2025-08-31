@@ -1,5 +1,5 @@
-import { PutFileProjectRequest } from '../../server/requests/PutFileProjectRequest';
 import { PutProjectRequest } from '../../server/requests/PutProjectRequest';
+import { UploadProjectRequest } from '../../server/requests/UploadProjectRequest';
 /**
  * Manages project configurations and generates outputs
  */
@@ -19,9 +19,10 @@ export declare class ProjectManager {
     static getProjectByName(name: string, type?: string): Promise<{
         path: string;
         content: string;
+        endpoint: string;
     }[] | void>;
-    static storeFile(request: PutFileProjectRequest): Promise<{
-        path: string;
+    static storeFile(request: UploadProjectRequest): Promise<{
         content: string;
+        endpoint: string;
     }[] | void>;
 }

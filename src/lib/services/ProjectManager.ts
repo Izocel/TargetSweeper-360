@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { PutFileProjectRequest } from '../../server/requests/PutFileProjectRequest';
 import { PutProjectRequest } from '../../server/requests/PutProjectRequest';
+import { UploadProjectRequest } from '../../server/requests/UploadProjectRequest';
 import { SweeperConfigs } from '../models/SweeperConfigs';
 import { Target } from '../models/Target';
 import { KMLGenerator } from './KMLGenerator';
@@ -55,7 +55,7 @@ export class ProjectManager {
      * @param type The file type to filter by (default is ".kml")
      * @returns The project files and their content
      */
-    static async getProjectByName(name: string, type: string = "kml"): Promise<{ path: string; content: string }[] | void> {
+    static async getProjectByName(name: string, type: string = "kml"): Promise<{ path: string; content: string, endpoint: string }[] | void> {
         const lookoutPath = path.join(ProjectManager.outputBaseDir, `${name}`);
 
         if (!fs.existsSync(lookoutPath)) {
@@ -74,6 +74,7 @@ export class ProjectManager {
 
             results.push({
                 path: filePath,
+                endpoint: `api/projects/${name}`,
                 content: fs.readFileSync(filePath, 'utf-8')
             });
         }
@@ -81,24 +82,27 @@ export class ProjectManager {
         return results.length ? results : undefined;
     }
 
-    static async storeFile(request: PutFileProjectRequest): Promise<{ path: string; content: string }[] | void> {
-        const file = request.data?.file;
+    static async storeFile(request: UploadProjectRequest): Promise<{ content: string, endpoint: string }[] | void> {
+        const file = request.data!.file as Express.Multer.File;
         if (!file) {
-            throw new Error('No file uploaded.');
+            throw new Error('File was not found !');
         }
 
-        const { name } = file;
-
-        // Output paths
         const suffix = Date.now();
-        const baseName = name.replace(/[^a-zA-Z0-9\-_\s]/g, '').replace(/\s+/g, '_');
-        const projectName = `${baseName}_${suffix}`;
-        const outputPath = path.join(ProjectManager.outputBaseDir, projectName);
+        let projectName = file.originalname.replace(path.extname(file.originalname), "");
+        projectName = projectName.replace(/[^a-zA-Z0-9\-_\s]/g, '').replace(/\s+/g, '_');
+        projectName = `${projectName}_${suffix}`;
 
-        const filePath = path.join(outputPath);
-        const buffer = Buffer.from(await file.arrayBuffer());
-        await fs.promises.writeFile(filePath, buffer);
+        const folderPath = path.join(ProjectManager.outputBaseDir, projectName);
+        const filePath = path.join(folderPath, file.originalname);
 
-        return await this.getProjectByName(projectName);
+        await fs.promises.mkdir(folderPath, { recursive: true });
+        await fs.promises.copyFile(file.path, filePath);
+        await fs.promises.unlink(file.path);
+
+        console.log(` 📄  Stored: ${path.basename(filePath)}`);
+        const result = await this.getProjectByName(projectName);
+
+        return result?.map(f => ({ content: f.content, endpoint: f.endpoint }));
     }
 }

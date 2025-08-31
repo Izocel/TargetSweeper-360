@@ -2,8 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const ProjectManager_1 = require("../../lib/services/ProjectManager");
 const GetProjectRequest_1 = require("../requests/GetProjectRequest");
-const PutFileProjectRequest_1 = require("../requests/PutFileProjectRequest");
 const PutProjectRequest_1 = require("../requests/PutProjectRequest");
+const UploadProjectRequest_1 = require("../requests/UploadProjectRequest");
 class ProjectController {
     /**
      * Update a project
@@ -25,9 +25,9 @@ class ProjectController {
             return next(error);
         }
     }
-    static async putFile(_req, res, next) {
+    static async upload(_req, res, next) {
         try {
-            const request = new PutFileProjectRequest_1.PutFileProjectRequest(_req.body);
+            const request = new UploadProjectRequest_1.UploadProjectRequest({ file: _req.file });
             if (!request.isValid || !request.data) {
                 return res.status(400).json(request.toObject());
             }
@@ -51,10 +51,7 @@ class ProjectController {
             if (!request.isValid || !request.data) {
                 return res.status(400).json(request.toObject());
             }
-            let { name, output, type } = request.data;
-            // FIXME: Temporary as the query string is not being parsed correctly by external dependencies
-            // Either <KmlLayer> or the GoogleApi itself
-            name = name.split('?=')[0] ?? name;
+            const { name, output, type } = request.data;
             const project = await ProjectManager_1.ProjectManager.getProjectByName(name, type);
             if (!project?.[0]) {
                 return res.status(404).json({ message: 'Project not found.' });

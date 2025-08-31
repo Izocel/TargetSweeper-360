@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
 import { ProjectManager } from '../../lib/services/ProjectManager';
 import { GetProjectRequest } from '../requests/GetProjectRequest';
-import { PutFileProjectRequest } from '../requests/PutFileProjectRequest';
 import { PutProjectRequest } from '../requests/PutProjectRequest';
+import { UploadProjectRequest } from '../requests/UploadProjectRequest';
 
 class ProjectController {
 
@@ -27,9 +27,9 @@ class ProjectController {
         }
     }
 
-    static async putFile(_req: Request, res: Response, next: NextFunction) {
+    static async upload(_req: Request, res: Response, next: NextFunction) {
         try {
-            const request = new PutFileProjectRequest(_req.body as any)
+            const request = new UploadProjectRequest({ file: _req.file })
             if (!request.isValid || !request.data) {
                 return res.status(400).json(request.toObject());
             }
@@ -55,12 +55,7 @@ class ProjectController {
                 return res.status(400).json(request.toObject());
             }
 
-            let { name, output, type } = request.data;
-
-            // FIXME: Temporary as the query string is not being parsed correctly by external dependencies
-            // Either <KmlLayer> or the GoogleApi itself
-            name = name.split('?=')[0] ?? name;
-
+            const { name, output, type } = request.data;
             const project = await ProjectManager.getProjectByName(name, type);
 
             if (!project?.[0]) {

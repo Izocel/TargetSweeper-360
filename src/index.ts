@@ -1,7 +1,7 @@
 import { BaseRequest } from './server/requests/BaseRequest';
 import { GetProjectRequest } from './server/requests/GetProjectRequest';
-import { PutFileProjectRequest } from './server/requests/PutFileProjectRequest';
 import { PutProjectRequest } from './server/requests/PutProjectRequest';
+import { UploadProjectRequest } from './server/requests/UploadProjectRequest';
 
 export const EARTH_RADIUS = 6378137;
 
@@ -13,6 +13,6 @@ export * from './lib/models/Target';
 
 export {
     BaseRequest,
-    GetProjectRequest, PutFileProjectRequest, PutProjectRequest
+    GetProjectRequest, PutProjectRequest, UploadProjectRequest
 };
 

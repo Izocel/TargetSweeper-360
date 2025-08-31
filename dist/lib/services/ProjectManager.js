@@ -90,26 +90,29 @@ class ProjectManager {
             }
             results.push({
                 path: filePath,
+                endpoint: `api/projects/${name}`,
                 content: fs.readFileSync(filePath, 'utf-8')
             });
         }
         return results.length ? results : undefined;
     }
     static async storeFile(request) {
-        const file = request.data?.file;
+        const file = request.data.file;
         if (!file) {
-            throw new Error('No file uploaded.');
+            throw new Error('File was not found !');
         }
-        const { name } = file;
-        // Output paths
         const suffix = Date.now();
-        const baseName = name.replace(/[^a-zA-Z0-9\-_\s]/g, '').replace(/\s+/g, '_');
-        const projectName = `${baseName}_${suffix}`;
-        const outputPath = path.join(ProjectManager.outputBaseDir, projectName);
-        const filePath = path.join(outputPath);
-        const buffer = Buffer.from(await file.arrayBuffer());
-        await fs.promises.writeFile(filePath, buffer);
-        return await this.getProjectByName(projectName);
+        let projectName = file.originalname.replace(path.extname(file.originalname), "");
+        projectName = projectName.replace(/[^a-zA-Z0-9\-_\s]/g, '').replace(/\s+/g, '_');
+        projectName = `${projectName}_${suffix}`;
+        const folderPath = path.join(ProjectManager.outputBaseDir, projectName);
+        const filePath = path.join(folderPath, file.originalname);
+        await fs.promises.mkdir(folderPath, { recursive: true });
+        await fs.promises.copyFile(file.path, filePath);
+        await fs.promises.unlink(file.path);
+        console.log(` 📄  Stored: ${path.basename(filePath)}`);
+        const result = await this.getProjectByName(projectName);
+        return result?.map(f => ({ content: f.content, endpoint: f.endpoint }));
     }
 }
 exports.ProjectManager = ProjectManager;

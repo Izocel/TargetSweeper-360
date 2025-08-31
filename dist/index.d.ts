@@ -1,10 +1,10 @@
 import { BaseRequest } from './server/requests/BaseRequest';
 import { GetProjectRequest } from './server/requests/GetProjectRequest';
-import { PutFileProjectRequest } from './server/requests/PutFileProjectRequest';
 import { PutProjectRequest } from './server/requests/PutProjectRequest';
+import { UploadProjectRequest } from './server/requests/UploadProjectRequest';
 export declare const EARTH_RADIUS = 6378137;
 export * from './api';
 export * from './lib/constants/enums/LabelFormats';
 export * from './lib/models/SweeperConfigs';
 export * from './lib/models/Target';
-export { BaseRequest, GetProjectRequest, PutFileProjectRequest, PutProjectRequest };
+export { BaseRequest, GetProjectRequest, PutProjectRequest, UploadProjectRequest };

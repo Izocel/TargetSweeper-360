@@ -12,9 +12,9 @@ class ProjectsApi {
         request.enforce();
         return this.axios.put('projects', { ...request.data });
     }
-    putFile(request) {
+    upload(request) {
         request.enforce();
-        return this.axios.put('projects/upload', { ...request.data });
+        return this.axios.put('projects/upload', request.formData);
     }
 }
 exports.default = ProjectsApi;
