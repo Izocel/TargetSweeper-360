@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.BaseRequest = void 0;
 class BaseRequest {
     constructor(data, schema) {
+        this.data = undefined;
         this.schema = schema;
         const results = this.validate(data);
         this.data = results.data;

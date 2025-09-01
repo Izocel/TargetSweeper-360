@@ -61,7 +61,7 @@ class PatternGenerator {
         const lines = [];
         lines.push("WKT,Description");
         // Add target point at the beginning
-        const targetWKT = `"POINT (${this.target.longitude} ${this.target.latitude})"`;
+        const targetWKT = `"POINT (${this.target.geo.longitude} ${this.target.geo.latitude})"`;
         lines.unshift(`${targetWKT},Target | ${this.target.name}`);
         // Add all sweep points
         for (const point of points) {

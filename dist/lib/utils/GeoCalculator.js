@@ -19,9 +19,9 @@ class GeoCalculator {
      */
     static calculatePoint(target, radius, angle) {
         const radians = (angle * Math.PI) / 180;
-        const { dx, dy } = this.offsetInDegrees(radius, target.latitude);
-        const longitude = target.longitude + dx * Math.cos(radians);
-        const latitude = target.latitude + dy * Math.sin(radians);
+        const { dx, dy } = this.offsetInDegrees(radius, target.geo.latitude);
+        const longitude = target.geo.longitude + dx * Math.cos(radians);
+        const latitude = target.geo.latitude + dy * Math.sin(radians);
         return [longitude, latitude];
     }
 }

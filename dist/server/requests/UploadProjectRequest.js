@@ -20,6 +20,7 @@ class UploadProjectRequest extends BaseRequest_1.BaseRequest {
     constructor(data) {
         super(data, exports.UploadProjectRequestSchema);
         this.schema = exports.UploadProjectRequestSchema;
+        this.data = undefined;
         this.formData = new FormData();
         this.formData.append('file', data.file);
     }

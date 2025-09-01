@@ -5,8 +5,15 @@ export declare const ProjectConfigsSchema: z.ZodObject<{
     name: z.ZodString;
     target: z.ZodLazy<z.ZodObject<{
         name: z.ZodString;
-        longitude: z.ZodNumber;
-        latitude: z.ZodNumber;
+        geo: z.ZodObject<{
+            longitude: z.ZodNumber;
+            latitude: z.ZodNumber;
+            accuracy: z.ZodOptional<z.ZodNumber>;
+            altitude: z.ZodOptional<z.ZodNumber>;
+            altitudeAccuracy: z.ZodOptional<z.ZodNumber>;
+            heading: z.ZodOptional<z.ZodNumber>;
+            speed: z.ZodOptional<z.ZodNumber>;
+        }, z.core.$strip>;
     }, z.core.$strip>>;
     sweeperConfigs: z.ZodLazy<z.ZodObject<{
         radiusStep: z.ZodNumber;
@@ -21,8 +28,15 @@ export declare class PutProjectRequest extends BaseRequest {
         name: z.ZodString;
         target: z.ZodLazy<z.ZodObject<{
             name: z.ZodString;
-            longitude: z.ZodNumber;
-            latitude: z.ZodNumber;
+            geo: z.ZodObject<{
+                longitude: z.ZodNumber;
+                latitude: z.ZodNumber;
+                accuracy: z.ZodOptional<z.ZodNumber>;
+                altitude: z.ZodOptional<z.ZodNumber>;
+                altitudeAccuracy: z.ZodOptional<z.ZodNumber>;
+                heading: z.ZodOptional<z.ZodNumber>;
+                speed: z.ZodOptional<z.ZodNumber>;
+            }, z.core.$strip>;
         }, z.core.$strip>>;
         sweeperConfigs: z.ZodLazy<z.ZodObject<{
             radiusStep: z.ZodNumber;

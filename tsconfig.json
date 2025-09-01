@@ -1,8 +1,6 @@
 {
   "compilerOptions": {
-    // File Layout
-    "rootDir": "./src",
-    "outDir": "./dist",
+    "outDir": "dist",
     // Environment Settings
     "module": "commonjs",
     "target": "es2020",
@@ -33,10 +31,6 @@
     "forceConsistentCasingInFileNames": true
   },
   "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist"
+    "src"
   ]
 }

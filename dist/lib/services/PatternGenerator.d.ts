@@ -13,8 +13,15 @@ export declare class PatternGenerator {
     static readonly Schema: z.ZodObject<{
         target: z.ZodObject<{
             name: z.ZodString;
-            longitude: z.ZodNumber;
-            latitude: z.ZodNumber;
+            geo: z.ZodObject<{
+                longitude: z.ZodNumber;
+                latitude: z.ZodNumber;
+                accuracy: z.ZodOptional<z.ZodNumber>;
+                altitude: z.ZodOptional<z.ZodNumber>;
+                altitudeAccuracy: z.ZodOptional<z.ZodNumber>;
+                heading: z.ZodOptional<z.ZodNumber>;
+                speed: z.ZodOptional<z.ZodNumber>;
+            }, z.core.$strip>;
         }, z.core.$strip>;
         config: z.ZodObject<{
             radiusStep: z.ZodNumber;

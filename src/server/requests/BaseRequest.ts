@@ -4,7 +4,7 @@ export class BaseRequest {
     readonly schema?: z.ZodSchema<any>;
     readonly isValid?: boolean | undefined;
     readonly errors?: z.core.$ZodIssue[] | undefined;
-    readonly data?: z.infer<typeof this.schema> | undefined;
+    readonly data?: z.infer<typeof this.schema> | undefined = undefined;
 
     constructor(data: any, schema: z.ZodSchema<any>) {
         this.schema = schema;

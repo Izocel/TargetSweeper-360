@@ -5,38 +5,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Target = void 0;
 const zod_1 = __importDefault(require("zod"));
+const GeoCoordinates_1 = require("./GeoCoordinates");
 /**
  * Represents a target location with coordinates and metadata
  */
 class Target {
     constructor(longitude, latitude, name = "Target") {
-        this.longitude = longitude;
-        this.latitude = latitude;
+        this.geo = new GeoCoordinates_1.GeoCoordinates();
         this.name = name;
-    }
-    /**
-     * Get target coordinates as a tuple
-     */
-    getCoordinates() {
-        return [this.longitude, this.latitude];
-    }
-    /**
-     * Get target as a coordinate string for KML/CSV
-     */
-    toCoordinateString() {
-        return `${this.longitude},${this.latitude}`;
-    }
-    /**
-     * Get target information as a formatted string
-     */
-    toString() {
-        return `${this.name} (${this.latitude}, ${this.longitude})`;
+        this.geo.longitude = longitude;
+        this.geo.latitude = latitude;
     }
 }
 exports.Target = Target;
 Target.Schema = zod_1.default.object({
     name: zod_1.default.string(),
-    longitude: zod_1.default.number(),
-    latitude: zod_1.default.number(),
+    geo: GeoCoordinates_1.GeoCoordinates.Schema
 });
 //# sourceMappingURL=Target.js.map

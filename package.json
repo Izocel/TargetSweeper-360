@@ -1,8 +1,11 @@
 {
-  "name": "targetsweeper-360",
+  "license": "ISC",
   "version": "1.0.0",
-  "description": "A TypeScript application for generating sweep coordinates around a target location",
+  "author": "Izocel",
+  "type": "commonjs",
   "main": "dist/index.js",
+  "name": "targetsweeper-360",
+  "description": "A TypeScript library for calculating distances and generating search patterns around a target coordinate.",
   "scripts": {
     "build": "tsc",
     "certs": "bash scripts/generate-certs.sh",
@@ -25,9 +28,17 @@
     "radius",
     "sweep"
   ],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
+  "dependencies": {
+    "axios": "latest",
+    "cors": "latest",
+    "express": "latest",
+    "jszip": "latest",
+    "morgan": "latest",
+    "multer": "latest",
+    "zod": "latest",
+    "@types/node": "latest",
+    "typescript": "latest"
+  },
   "devDependencies": {
     "@types/cors": "latest",
     "@types/express": "latest",
@@ -36,16 +47,6 @@
     "@types/multer": "latest",
     "@types/node": "latest",
     "rimraf": "latest",
-    "ts-node": "latest",
-    "typescript": "latest"
-  },
-  "dependencies": {
-    "axios": "^1.11.0",
-    "cors": "latest",
-    "express": "latest",
-    "jszip": "latest",
-    "morgan": "latest",
-    "multer": "latest",
-    "zod": "latest"
+    "ts-node": "latest"
   }
 }

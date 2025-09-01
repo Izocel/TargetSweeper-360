@@ -19,6 +19,7 @@ class PutProjectRequest extends BaseRequest_1.BaseRequest {
     constructor(data) {
         super(data, exports.ProjectConfigsSchema);
         this.schema = exports.ProjectConfigsSchema;
+        this.data = undefined;
     }
 }
 exports.PutProjectRequest = PutProjectRequest;

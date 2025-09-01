@@ -195,7 +195,7 @@ export class KMLGenerator {
             <description>Main target location</description>
             <styleUrl>#targetStyle</styleUrl>
             <Point>
-                <coordinates>${this.target.longitude},${this.target.latitude},0</coordinates>
+                <coordinates>${this.target.geo.longitude},${this.target.geo.latitude},0</coordinates>
             </Point>
         </Placemark>`;
     }
@@ -251,11 +251,11 @@ export class KMLGenerator {
 
         return cardinalDirections.map((direction, index) => {
             const radians = (direction.angle * Math.PI) / 180;
-            const { dx, dy } = this.offsetInDegrees(this.config.maxRadius, this.target.latitude);
+            const { dx, dy } = this.offsetInDegrees(this.config.maxRadius, this.target.geo.latitude);
 
             // Calculate end point of the vector line
-            const endLon = this.target.longitude + dx * Math.cos(radians);
-            const endLat = this.target.latitude + dy * Math.sin(radians);
+            const endLon = this.target.geo.longitude + dx * Math.cos(radians);
+            const endLat = this.target.geo.latitude + dy * Math.sin(radians);
 
             // Create different colors for different directions
             const colors = [
@@ -282,7 +282,7 @@ export class KMLGenerator {
                 <LineString>
                     <tessellate>1</tessellate>
                     <coordinates>
-                        ${this.target.longitude},${this.target.latitude},0
+                        ${this.target.geo.longitude},${this.target.geo.latitude},0
                         ${endLon},${endLat},0
                     </coordinates>
                 </LineString>
@@ -300,9 +300,9 @@ export class KMLGenerator {
             // Generate circle points
             for (let angle = 0; angle <= 360; angle += 5) { // 5-degree steps for smooth circles
                 const radians = (angle * Math.PI) / 180;
-                const { dx, dy } = this.offsetInDegrees(radius, this.target.latitude);
-                const lon = this.target.longitude + dx * Math.cos(radians);
-                const lat = this.target.latitude + dy * Math.sin(radians);
+                const { dx, dy } = this.offsetInDegrees(radius, this.target.geo.latitude);
+                const lon = this.target.geo.longitude + dx * Math.cos(radians);
+                const lat = this.target.geo.latitude + dy * Math.sin(radians);
                 circlePoints.push(`${lon},${lat},0`);
             }
 

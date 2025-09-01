@@ -13,7 +13,7 @@ export const ProjectConfigsSchema = z.object({
 
 export class PutProjectRequest extends BaseRequest {
     readonly schema = ProjectConfigsSchema;
-    readonly data?: z.infer<typeof ProjectConfigsSchema>;
+    readonly data?: z.infer<typeof ProjectConfigsSchema> = undefined;
 
     constructor(data: z.infer<typeof ProjectConfigsSchema>) {
         super(data, ProjectConfigsSchema);

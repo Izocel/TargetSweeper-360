@@ -15,6 +15,7 @@ class GetProjectRequest extends BaseRequest_1.BaseRequest {
     constructor(data) {
         super(data, exports.GetProjectRequestSchema);
         this.schema = exports.GetProjectRequestSchema;
+        this.data = undefined;
     }
 }
 exports.GetProjectRequest = GetProjectRequest;
