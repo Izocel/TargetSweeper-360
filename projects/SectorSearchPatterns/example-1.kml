@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
+    <Document>
+        <name>Rescue Buoy</name>
+        <description>Sector Search - Victor Sierra (VS)</description>
+
+        <Style id="polygonStyle">
+            <LineStyle>
+                <color>ff0000ff</color>
+                <width>2</width>
+            </LineStyle>
+            <PolyStyle>
+                <color>4d0000ff</color>
+                <fill>1</fill>
+                <outline>1</outline>
+            </PolyStyle>
+        </Style>
+
+        <Style id="targetStyle">
+            <IconStyle>
+                <Icon>
+                    <href>http://maps.google.com/mapfiles/kml/shapes/placemark_circle.png</href>
+                </Icon>
+                <scale>1.0</scale>
+                <color>ff0000ff</color>
+            </IconStyle>
+            <LabelStyle>
+                <color>ffffffff</color>
+                <scale>1.0</scale>
+            </LabelStyle>
+        </Style>
+        
+        <Style id="datumStyle">
+            <IconStyle>
+                <Icon>
+                    <href>http://maps.google.com/mapfiles/kml/shapes/target.png</href>
+                </Icon>
+                <scale>1.2</scale>
+                <color>ff00ff00</color>
+            </IconStyle>
+            <LabelStyle>
+                <color>ffffffff</color>
+                <scale>1.1</scale>
+            </LabelStyle>
+        </Style>
+
+        <Placemark>
+            <name>Sector 1 Triangle</name>
+            <description>Search sector 1 triangle path</description>
+            <styleUrl>#polygonStyle</styleUrl>
+            <Polygon>
+                <outerBoundaryIs>
+                    <LinearRing>
+                        <coordinates>-90.06723415861805,25.310825821854948,0 -90.0655130158053,25.309927496580148,0 -90.06723415861805,25.309029191286708,0 -90.06723415861805,25.310825821854948,0</coordinates>
+                    </LinearRing>
+                </outerBoundaryIs>
+            </Polygon>
+        </Placemark>        <Placemark>
+            <name>Sector 2 Triangle</name>
+            <description>Search sector 2 triangle path</description>
+            <styleUrl>#polygonStyle</styleUrl>
+            <Polygon>
+                <outerBoundaryIs>
+                    <LinearRing>
+                        <coordinates>-90.06895527590908,25.30813086601228,0 -90.06895530143083,25.309927496580148,0 -90.06723415861805,25.309029191286708,0 -90.06895527590908,25.30813086601228,0</coordinates>
+                    </LinearRing>
+                </outerBoundaryIs>
+            </Polygon>
+        </Placemark>        <Placemark>
+            <name>Sector 3 Triangle</name>
+            <description>Search sector 3 triangle path</description>
+            <styleUrl>#polygonStyle</styleUrl>
+            <Polygon>
+                <outerBoundaryIs>
+                    <LinearRing>
+                        <coordinates>-90.06551304132704,25.30813086601228,0 -90.06723415861805,25.307232560718468,0 -90.06723415861805,25.309029191286708,0 -90.06551304132704,25.30813086601228,0</coordinates>
+                    </LinearRing>
+                </outerBoundaryIs>
+            </Polygon>
+        </Placemark>
+        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>S1 - T1</name>
+            <description>
+                Vessel Heading:0
+                <br />
+                Vessel Speed:10
+                <br />
+                Longitude:-90.06723415861805
+                <br />
+                Latitude:25.310825821854948
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-90.06723415861805,25.310825821854948,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>S1 - T2</name>
+            <description>
+                Vessel Heading:60
+                <br />
+                Vessel Speed:10
+                <br />
+                Longitude:-90.0655130158053
+                <br />
+                Latitude:25.309927496580148
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-90.0655130158053,25.309927496580148,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>S2 - T1</name>
+            <description>
+                Vessel Heading:240
+                <br />
+                Vessel Speed:10
+                <br />
+                Longitude:-90.06895527590908
+                <br />
+                Latitude:25.30813086601228
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-90.06895527590908,25.30813086601228,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>S2 - T2</name>
+            <description>
+                Vessel Heading:300
+                <br />
+                Vessel Speed:10
+                <br />
+                Longitude:-90.06895530143083
+                <br />
+                Latitude:25.309927496580148
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-90.06895530143083,25.309927496580148,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>S3 - T1</name>
+            <description>
+                Vessel Heading:120
+                <br />
+                Vessel Speed:10
+                <br />
+                Longitude:-90.06551304132704
+                <br />
+                Latitude:25.30813086601228
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-90.06551304132704,25.30813086601228,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>S3 - T2</name>
+            <description>
+                Vessel Heading:180
+                <br />
+                Vessel Speed:10
+                <br />
+                Longitude:-90.06723415861805
+                <br />
+                Latitude:25.307232560718468
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-90.06723415861805,25.307232560718468,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#datumStyle</styleUrl>
+            <name>Rescue Buoy</name>
+            <description>
+                Heading:0
+                <br />
+                Speed:2
+                <br />
+                Longitude:-90.06723415861805
+                <br />
+                Latitude:25.309029191286708
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-90.06723415861805,25.309029191286708,0</coordinates>
+            </Point>
+        </Placemark>
+    </Document>
+</kml>

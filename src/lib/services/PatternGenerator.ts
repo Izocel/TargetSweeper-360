@@ -39,7 +39,7 @@ export class PatternGenerator {
         for (let radius = this.config.radiusStep; radius <= this.config.maxRadius; radius += this.config.radiusStep) {
             for (let angleMOA = 0; angleMOA < 21600; angleMOA += this.config.angleStepMOA) {
                 const angle = this.config.moaToDegrees(angleMOA);
-                const [longitude, latitude] = GeoCalculator.calculatePoint(this.target, radius, angle);
+                const { longitude, latitude } = GeoCalculator.offsetTarget(this.target, radius, angle);
                 const timeMinutes = this.config.moaToMinutes(angleMOA);
 
                 const point = new SweepPoint(
@@ -89,7 +89,7 @@ export class PatternGenerator {
         lines.push("WKT,Description");
 
         // Add target point at the beginning
-        const targetWKT = `"POINT (${this.target.geo.longitude} ${this.target.geo.latitude})"`;
+        const targetWKT = `"POINT (${this.target.longitude} ${this.target.latitude})"`;
         lines.unshift(`${targetWKT},Target | ${this.target.name}`);
 
         // Add all sweep points

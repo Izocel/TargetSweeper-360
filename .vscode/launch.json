@@ -45,6 +45,14 @@
             "program": "${workspaceFolder}/dist/server/index.js",
             "preLaunchTask": "npm: build",
             "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Test (built JS)",
+            "program": "${workspaceFolder}/dist/tests/index.js",
+            "preLaunchTask": "npm: build",
+            "cwd": "${workspaceFolder}"
         }
     ]
 }

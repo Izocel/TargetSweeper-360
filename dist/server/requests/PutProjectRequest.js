@@ -11,8 +11,8 @@ const Target_1 = require("../../lib/models/Target");
 const BaseRequest_1 = require("./BaseRequest");
 exports.ProjectConfigsSchema = zod_1.default.object({
     name: zod_1.default.string(),
-    target: zod_1.default.lazy(() => Target_1.Target.Schema),
-    sweeperConfigs: zod_1.default.lazy(() => SweeperConfigs_1.SweeperConfigs.Schema),
+    target: Target_1.Target.Schema,
+    sweeperConfigs: SweeperConfigs_1.SweeperConfigs.Schema,
     labelFormat: zod_1.default.enum(LabelFormats_1.LabelFormat).optional().default(LabelFormats_1.LabelFormat.SIMPLE),
 });
 class PutProjectRequest extends BaseRequest_1.BaseRequest {

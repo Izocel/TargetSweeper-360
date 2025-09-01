@@ -6,8 +6,8 @@ import { BaseRequest } from "./BaseRequest";
 
 export const ProjectConfigsSchema = z.object({
     name: z.string(),
-    target: z.lazy(() => Target.Schema),
-    sweeperConfigs: z.lazy(() => SweeperConfigs.Schema),
+    target: Target.Schema,
+    sweeperConfigs: SweeperConfigs.Schema,
     labelFormat: z.enum(LabelFormat).optional().default(LabelFormat.SIMPLE),
 });
 

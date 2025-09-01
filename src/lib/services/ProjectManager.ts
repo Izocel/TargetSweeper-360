@@ -28,7 +28,10 @@ export class ProjectManager {
         const { name, labelFormat } = data;
 
         // Create configurations
-        const target = new Target(data.target.geo.longitude, data.target.geo.latitude);
+        const target = new Target;
+        target.latitude = data.target.latitude;
+        target.longitude = data.target.longitude;
+
         const sweeper = new SweeperConfigs(data.sweeperConfigs.radiusStep, data.sweeperConfigs.maxRadius, data.sweeperConfigs.angleStepMOA);
 
         // Generators

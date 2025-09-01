@@ -47,7 +47,9 @@ class ProjectManager {
         const data = request.data;
         const { name, labelFormat } = data;
         // Create configurations
-        const target = new Target_1.Target(data.target.geo.longitude, data.target.geo.latitude);
+        const target = new Target_1.Target;
+        target.latitude = data.target.latitude;
+        target.longitude = data.target.longitude;
         const sweeper = new SweeperConfigs_1.SweeperConfigs(data.sweeperConfigs.radiusStep, data.sweeperConfigs.maxRadius, data.sweeperConfigs.angleStepMOA);
         // Generators
         const kmlGenerator = new KMLGenerator_1.KMLGenerator(target, sweeper, labelFormat);

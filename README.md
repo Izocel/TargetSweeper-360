@@ -305,18 +305,6 @@ TargetSweeper-360/
 
 ### Core Classes
 
-#### `Target`
-
-Represents a target location with coordinates and metadata.
-
-```typescript
-const target = new Target(
-  -122.4194, // longitude
-  37.7749, // latitude
-  "SF Target" // name
-);
-```
-
 #### `SweepConfiguration`
 
 Defines sweep pattern parameters.

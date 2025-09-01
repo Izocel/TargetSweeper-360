@@ -1,21 +1,29 @@
 import z from "zod";
-import { GeoCoordinates } from "./GeoCoordinates";
 
-/**
- * Represents a target location with coordinates and metadata
- */
 export class Target {
-    readonly name: string;
-    readonly geo = new GeoCoordinates();
-
-    constructor(longitude: number, latitude: number, name: string = "Target") {
-        this.name = name;
-        this.geo.longitude = longitude;
-        this.geo.latitude = latitude;
-    }
+    name: string = "Target";
+    longitude: number = 0;
+    latitude: number = 0;
+    altitude: number = 0;
+    heading: number = 0;
+    fixedHeading: number = 0;
+    speed: number = 0;
+    fixedSpeed: number = 0;
+    accuracy: number = 0;
+    altitudeAccuracy: number = 0;
 
     static readonly Schema = z.object({
         name: z.string(),
-        geo: GeoCoordinates.Schema
+        longitude: z.number().min(-180).max(180),
+        latitude: z.number().min(-90).max(90),
+        altitude: z.number(),
+        heading: z.number().min(0).max(360),
+        fixedHeading: z.number().min(0).max(360),
+        speed: z.number().min(0),
+        fixedSpeed: z.number().min(0),
+        accuracy: z.number(),
+        altitudeAccuracy: z.number(),
     });
+
+
 }

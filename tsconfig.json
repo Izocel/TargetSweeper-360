@@ -15,7 +15,6 @@
     "declaration": true,
     // Stricter Typechecking Options
     "noUncheckedIndexedAccess": true,
-    "exactOptionalPropertyTypes": true,
     // Style Options
     "noImplicitReturns": true,
     "noUnusedLocals": true,
@@ -28,10 +27,11 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
   },
   "include": [
-    "src"
+    "src",
+    "src/tests/.ts"
   ],
   "exclude": [
     "node_modules",

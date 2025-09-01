@@ -40,10 +40,10 @@ exports.KMLGenerator = void 0;
 const fs = __importStar(require("fs"));
 const jszip_1 = __importDefault(require("jszip"));
 const zod_1 = __importDefault(require("zod"));
-const __1 = require("../..");
 const LabelFormats_1 = require("../constants/enums/LabelFormats");
 const SweeperConfigs_1 = require("../models/SweeperConfigs");
 const Target_1 = require("../models/Target");
+const GeoCalculator_1 = require("../utils/GeoCalculator");
 const PatternGenerator_1 = require("./PatternGenerator");
 class KMLGenerator {
     constructor(target, config, labelFormat = LabelFormats_1.LabelFormat.TACTICAL) {
@@ -55,13 +55,6 @@ class KMLGenerator {
     // 🎯 Get pattern generator for advanced usage
     getPatternGenerator() {
         return this.patternGenerator;
-    }
-    // 📐 Converts meters to degrees (approximate, valid for small distances)
-    offsetInDegrees(meters, latitude) {
-        const latRad = (latitude * Math.PI) / 180;
-        const dx = (meters / __1.EARTH_RADIUS) * (180 / Math.PI) / Math.cos(latRad);
-        const dy = (meters / __1.EARTH_RADIUS) * (180 / Math.PI);
-        return { dx, dy };
     }
     // 🧭 Converts degrees to tactical cardinal direction
     getTacticalDirection(angle) {
@@ -173,7 +166,7 @@ class KMLGenerator {
             <description>Main target location</description>
             <styleUrl>#targetStyle</styleUrl>
             <Point>
-                <coordinates>${this.target.geo.longitude},${this.target.geo.latitude},0</coordinates>
+                <coordinates>${this.target.longitude},${this.target.latitude},0</coordinates>
             </Point>
         </Placemark>`;
     }
@@ -226,10 +219,10 @@ class KMLGenerator {
         ];
         return cardinalDirections.map((direction, index) => {
             const radians = (direction.angle * Math.PI) / 180;
-            const { dx, dy } = this.offsetInDegrees(this.config.maxRadius, this.target.geo.latitude);
+            const { dx, dy } = GeoCalculator_1.GeoCalculator.offsetInDegrees(this.config.maxRadius, this.target.latitude);
             // Calculate end point of the vector line
-            const endLon = this.target.geo.longitude + dx * Math.cos(radians);
-            const endLat = this.target.geo.latitude + dy * Math.sin(radians);
+            const endLon = this.target.longitude + dx * Math.cos(radians);
+            const endLat = this.target.latitude + dy * Math.sin(radians);
             // Create different colors for different directions
             const colors = [
                 'ff0000ff', 'ff0080ff', 'ff00ffff', 'ff00ff80',
@@ -254,7 +247,7 @@ class KMLGenerator {
                 <LineString>
                     <tessellate>1</tessellate>
                     <coordinates>
-                        ${this.target.geo.longitude},${this.target.geo.latitude},0
+                        ${this.target.longitude},${this.target.latitude},0
                         ${endLon},${endLat},0
                     </coordinates>
                 </LineString>
@@ -269,9 +262,9 @@ class KMLGenerator {
             // Generate circle points
             for (let angle = 0; angle <= 360; angle += 5) { // 5-degree steps for smooth circles
                 const radians = (angle * Math.PI) / 180;
-                const { dx, dy } = this.offsetInDegrees(radius, this.target.geo.latitude);
-                const lon = this.target.geo.longitude + dx * Math.cos(radians);
-                const lat = this.target.geo.latitude + dy * Math.sin(radians);
+                const { dx, dy } = GeoCalculator_1.GeoCalculator.offsetInDegrees(radius, this.target.latitude);
+                const lon = this.target.longitude + dx * Math.cos(radians);
+                const lat = this.target.latitude + dy * Math.sin(radians);
                 circlePoints.push(`${lon},${lat},0`);
             }
             circles += `
