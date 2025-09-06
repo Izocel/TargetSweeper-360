@@ -1,27 +1,62 @@
+import z from "zod";
+import { BaseModel } from "./BaseModel";
 import { Target } from "./Target";
-export declare class SectorSearchPattern {
+export declare const SectorSearchPatternSchema: z.ZodObject<{
+    datum: z.ZodObject<{
+        name: z.ZodString;
+        longitude: z.ZodNumber;
+        latitude: z.ZodNumber;
+        altitude: z.ZodNumber;
+        heading: z.ZodNumber;
+        fixedHeading: z.ZodNumber;
+        speed: z.ZodNumber;
+        fixedSpeed: z.ZodNumber;
+        accuracy: z.ZodNumber;
+        altitudeAccuracy: z.ZodNumber;
+    }, z.core.$strip>;
+    speed: z.ZodNumber;
+    radius: z.ZodNumber;
+    sectors: z.ZodArray<z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        longitude: z.ZodNumber;
+        latitude: z.ZodNumber;
+        altitude: z.ZodNumber;
+        heading: z.ZodNumber;
+        fixedHeading: z.ZodNumber;
+        speed: z.ZodNumber;
+        fixedSpeed: z.ZodNumber;
+        accuracy: z.ZodNumber;
+        altitudeAccuracy: z.ZodNumber;
+    }, z.core.$strip>>>;
+}, z.core.$strip>;
+export declare class SectorSearchPattern extends BaseModel<typeof SectorSearchPatternSchema> {
+    constructor(data?: z.infer<typeof SectorSearchPatternSchema>);
     /**
-     * The center point of the search
-     * This is the point from which the search pattern is generated
+     * Gets the datum target.
+     * Represents the central reference point, or the current position of the search buoy
+     * @returns The datum target.
      */
-    datum: Target;
+    get datum(): Target;
+    set datum(datum: Target);
     /**
-     * The 9 sectors of the search pattern
-     * Each sector is represented by a 2D array of Targets
-     * Sectors 1-9 correspond to the tactical search pattern diagram
+     * Gets the speed of the search vessel.
+     * @returns The speed of the search vessel.
      */
-    sectors: Target[][];
+    get speed(): number;
+    set speed(speed: number);
     /**
-     * The radius of the sector (in meters)
-     * This is the distance from the center point to the edge of the sector
+     * Gets the radius of the search pattern.
+     * @returns The radius of the search pattern.
      */
-    radius: number;
+    get radius(): number;
+    set radius(radius: number);
     /**
-     * The speed of the search pattern
-     * This is the speed at which the search pattern is executed
+     * Gets the sectors of the search pattern.
+     * Each sector is an array of 3 targets representing the vertices of a triangle.
+     * @returns An array containing 3 sectors, each with 3 targets.
      */
-    speed: number;
-    constructor(datum: Target, radius?: number, speed?: number);
+    get sectors(): Target[][];
+    set sectors(sectors: Target[][]);
     /**
      * Updates the search pattern with new values.
      * @param datum The new values to update the search pattern with.

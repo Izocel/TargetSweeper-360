@@ -1,43 +1,82 @@
+import z from "zod";
 import { GeoCalculator } from "../utils/GeoCalculator";
 import { handleOverflow } from "../utils/Math";
+import { BaseModel } from "./BaseModel";
 import { Target } from "./Target";
 
-export class SectorSearchPattern {
-    /**
-     * The center point of the search
-     * This is the point from which the search pattern is generated
-     */
-    datum: Target = new Target;
+export const SectorSearchPatternSchema = z.object({
+    datum: Target.Schema,
+    speed: z.number().min(0),
+    radius: z.number().gt(0),
+    sectors: z.array(z.array(Target.Schema)).length(3).refine(sector => sector.length === 3, {
+        message: "Each sector must contain exactly 3 targets",
+    }),
+});
+
+export class SectorSearchPattern extends BaseModel<typeof SectorSearchPatternSchema> {
+    constructor(data?: z.infer<typeof SectorSearchPatternSchema>) {
+        super(SectorSearchPatternSchema, data ?? {
+            speed: 10,
+            radius: 200,
+            datum: new Target(),
+            sectors: [
+                [new Target(), new Target(), new Target()],
+                [new Target(), new Target(), new Target()],
+                [new Target(), new Target(), new Target()]
+            ]
+        });
+
+        this.updateDatum(this._data.datum);
+    }
 
     /**
-     * The 9 sectors of the search pattern
-     * Each sector is represented by a 2D array of Targets
-     * Sectors 1-9 correspond to the tactical search pattern diagram
+     * Gets the datum target.
+     * Represents the central reference point, or the current position of the search buoy
+     * @returns The datum target.
      */
-    sectors: Target[][] = [
-        [new Target, new Target, new Target],
-        [new Target, new Target, new Target],
-        [new Target, new Target, new Target],
-    ];
+    get datum(): Target {
+        return this.data.datum;
+    }
+
+    set datum(datum: Target) {
+        this._data.datum = datum;
+    }
 
     /**
-     * The radius of the sector (in meters)
-     * This is the distance from the center point to the edge of the sector
+     * Gets the speed of the search vessel.
+     * @returns The speed of the search vessel.
      */
-    radius: number = 200;
+    get speed(): number {
+        return this.data.speed;
+    }
+
+    set speed(speed: number) {
+        this._data.speed = speed;
+    }
 
     /**
-     * The speed of the search pattern
-     * This is the speed at which the search pattern is executed
+     * Gets the radius of the search pattern.
+     * @returns The radius of the search pattern.
      */
-    speed: number = 10;
+    get radius(): number {
+        return this.data.radius;
+    }
 
-    constructor(datum: Target, radius?: number, speed?: number) {
-        this.datum = datum;
-        this.radius = radius ?? this.radius;
-        this.speed = speed ?? this.speed;
+    set radius(radius: number) {
+        this._data.radius = radius;
+    }
 
-        this.updateDatum(this.datum);
+    /**
+     * Gets the sectors of the search pattern.
+     * Each sector is an array of 3 targets representing the vertices of a triangle.
+     * @returns An array containing 3 sectors, each with 3 targets.
+     */
+    get sectors(): Target[][] {
+        return this.data.sectors;
+    }
+
+    set sectors(sectors: Target[][]) {
+        this._data.sectors = sectors;
     }
 
     /**

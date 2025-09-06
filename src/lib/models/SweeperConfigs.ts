@@ -20,14 +20,12 @@ export class SweeperConfigs {
         this.angleStepDegrees = angleStepMOA / 60; // Convert MOA to degrees
     }
 
-
     static readonly Schema = z.object({
         radiusStep: z.number(),
         maxRadius: z.number(),
         angleStepMOA: z.number(),
         angleStepDegrees: z.number().optional(),
     });
-
 
     /**
      * Get the total number of radius steps

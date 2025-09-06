@@ -1,40 +1,77 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SectorSearchPattern = void 0;
+exports.SectorSearchPattern = exports.SectorSearchPatternSchema = void 0;
+const zod_1 = __importDefault(require("zod"));
 const GeoCalculator_1 = require("../utils/GeoCalculator");
 const Math_1 = require("../utils/Math");
+const BaseModel_1 = require("./BaseModel");
 const Target_1 = require("./Target");
-class SectorSearchPattern {
-    constructor(datum, radius, speed) {
-        /**
-         * The center point of the search
-         * This is the point from which the search pattern is generated
-         */
-        this.datum = new Target_1.Target;
-        /**
-         * The 9 sectors of the search pattern
-         * Each sector is represented by a 2D array of Targets
-         * Sectors 1-9 correspond to the tactical search pattern diagram
-         */
-        this.sectors = [
-            [new Target_1.Target, new Target_1.Target, new Target_1.Target],
-            [new Target_1.Target, new Target_1.Target, new Target_1.Target],
-            [new Target_1.Target, new Target_1.Target, new Target_1.Target],
-        ];
-        /**
-         * The radius of the sector (in meters)
-         * This is the distance from the center point to the edge of the sector
-         */
-        this.radius = 200;
-        /**
-         * The speed of the search pattern
-         * This is the speed at which the search pattern is executed
-         */
-        this.speed = 10;
-        this.datum = datum;
-        this.radius = radius ?? this.radius;
-        this.speed = speed ?? this.speed;
-        this.updateDatum(this.datum);
+exports.SectorSearchPatternSchema = zod_1.default.object({
+    datum: Target_1.Target.Schema,
+    speed: zod_1.default.number().min(0),
+    radius: zod_1.default.number().gt(0),
+    sectors: zod_1.default.array(zod_1.default.array(Target_1.Target.Schema)).length(3).refine(sector => sector.length === 3, {
+        message: "Each sector must contain exactly 3 targets",
+    }),
+});
+class SectorSearchPattern extends BaseModel_1.BaseModel {
+    constructor(data) {
+        super(exports.SectorSearchPatternSchema, data ?? {
+            speed: 10,
+            radius: 200,
+            datum: new Target_1.Target(),
+            sectors: [
+                [new Target_1.Target(), new Target_1.Target(), new Target_1.Target()],
+                [new Target_1.Target(), new Target_1.Target(), new Target_1.Target()],
+                [new Target_1.Target(), new Target_1.Target(), new Target_1.Target()]
+            ]
+        });
+        this.updateDatum(this._data.datum);
+    }
+    /**
+     * Gets the datum target.
+     * Represents the central reference point, or the current position of the search buoy
+     * @returns The datum target.
+     */
+    get datum() {
+        return this.data.datum;
+    }
+    set datum(datum) {
+        this._data.datum = datum;
+    }
+    /**
+     * Gets the speed of the search vessel.
+     * @returns The speed of the search vessel.
+     */
+    get speed() {
+        return this.data.speed;
+    }
+    set speed(speed) {
+        this._data.speed = speed;
+    }
+    /**
+     * Gets the radius of the search pattern.
+     * @returns The radius of the search pattern.
+     */
+    get radius() {
+        return this.data.radius;
+    }
+    set radius(radius) {
+        this._data.radius = radius;
+    }
+    /**
+     * Gets the sectors of the search pattern.
+     * Each sector is an array of 3 targets representing the vertices of a triangle.
+     * @returns An array containing 3 sectors, each with 3 targets.
+     */
+    get sectors() {
+        return this.data.sectors;
+    }
+    set sectors(sectors) {
+        this._data.sectors = sectors;
     }
     /**
      * Updates the search pattern with new values.
