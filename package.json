@@ -13,6 +13,7 @@
     "clean": "rimraf dist",
     "start": "node dist/index.js",
     "dev": "ts-node src/index.ts",
+    "test": "ts-node src/tests/index.ts",
     "dev:server": "ts-node src/server/index.ts",
     "start:server": "node dist/server/index.js",
     "postinstall": "npm outdated > outdated.md || echo 'Check outdated.md for package updates.'"

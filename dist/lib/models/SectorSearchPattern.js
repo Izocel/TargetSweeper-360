@@ -73,6 +73,7 @@ class SectorSearchPattern {
             target.heading = this.datum.heading;
             target.altitude = this.datum.altitude;
             target.name = `S${index + 1} - T${i + 1}`;
+            // TODO: fix targets vessel headings
             if (i === 0) {
                 target.latitude = apexCoords.latitude;
                 target.longitude = apexCoords.longitude;
