@@ -3,14 +3,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const fs_1 = require("fs");
 const SectorSearchPattern_1 = require("../lib/models/SectorSearchPattern");
 const Target_1 = require("../lib/models/Target");
+const Math_1 = require("../lib/utils/Math");
 const SearchBuoy = new Target_1.Target();
 SearchBuoy.name = "Rescue Buoy";
-SearchBuoy.latitude = 25.309029191286708; // Rescue Buoy latitude
-SearchBuoy.longitude = -90.06723415861805; // Rescue Buoy longitude
-SearchBuoy.heading = 0; // Rescue Buoy direction (current/drift direction) north = 0 east = 90 south = 180 west = 270
 SearchBuoy.speed = 2; // Rescue Buoy speed (drift speed knots)
+SearchBuoy.heading = (0, Math_1.handleFlooredOverflow)(0, 0, 360); // Rescue Buoy direction
+SearchBuoy.latitude = (0, Math_1.handleOverflow)(25.309029191286708, -90, 90); // Rescue Buoy latitude
+SearchBuoy.longitude = (0, Math_1.handleOverflow)(-90.06723415861805, -180, 180); // Rescue Buoy longitude
 const SearchSpeed = 10; // Rescue vessel speed (knots)
-const SearchRadius = 200; // Rescue vessel search radius (meters)
+const SearchRadius = 1500; // Rescue vessel search radius (meters)
 const data = {
     datum: SearchBuoy,
     speed: SearchSpeed,

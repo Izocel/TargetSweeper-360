@@ -17,7 +17,7 @@ export class SectorSearchPattern extends BaseModel<typeof SectorSearchPatternSch
     constructor(data?: z.infer<typeof SectorSearchPatternSchema>) {
         super(SectorSearchPatternSchema, {
             speed: data?.speed ?? 10,
-            radius: data?.radius ?? 200,
+            radius: data?.radius ?? 1_500,
             datum: data?.datum ?? new Target(),
             sectors: data?.sectors ?? [
                 [new Target(), new Target(), new Target()],
@@ -138,11 +138,11 @@ export class SectorSearchPattern extends BaseModel<typeof SectorSearchPatternSch
             } else if (i === 1) {
                 target.latitude = legCoords.latitude;
                 target.longitude = legCoords.longitude;
-                target.fixedHeading = handleFlooredOverflow(legHeading + 120, 0, 360);
+                target.fixedHeading = handleFlooredOverflow(apexHeading + 240, 0, 360);
             } else {
                 target.latitude = this.datum.latitude;
                 target.longitude = this.datum.longitude;
-                target.fixedHeading = handleFlooredOverflow(legHeading + 180 + 120, 0, 360);
+                target.fixedHeading = handleFlooredOverflow(apexHeading + 180, 0, 360);
             }
         });
     }
@@ -153,6 +153,28 @@ export class SectorSearchPattern extends BaseModel<typeof SectorSearchPatternSch
      */
     generateKmlPlacemarks(): string[] {
         const placemarks: string[] = [];
+
+        // Add datum placemark
+        placemarks.push(`        <Placemark>
+            <styleUrl>#datumStyle</styleUrl>
+            <name>${this.datum.name}</name>
+            <description>
+                Speed:${this.datum.speed}
+                <br />
+                Heading:${this.datum.heading}
+                <br />
+                Longitude:${this.datum.longitude}
+                <br />
+                Latitude:${this.datum.latitude}
+                <br />
+                Altitude:${this.datum.altitude}
+            </description>
+            <Point>
+                <coordinates>${this.datum.longitude},${this.datum.latitude},${this.datum.altitude}</coordinates>
+            </Point>
+        </Placemark>`);
+
+        // Add sector target placemarks
         for (const sector of this.sectors) {
             for (let j = 0; j < sector.length - 1; j++) {
                 const target = sector[j]!;
@@ -160,9 +182,9 @@ export class SectorSearchPattern extends BaseModel<typeof SectorSearchPatternSch
             <styleUrl>#targetStyle</styleUrl>
             <name>${target.name}</name>
             <description>
-                Vessel Heading:${target.fixedHeading}
-                <br />
                 Vessel Speed:${target.fixedSpeed}
+                <br />
+                Vessel Heading:${target.fixedHeading}
                 <br />
                 Longitude:${target.longitude}
                 <br />
@@ -176,26 +198,6 @@ export class SectorSearchPattern extends BaseModel<typeof SectorSearchPatternSch
         </Placemark>`);
             }
         }
-
-        // Add datum placemark
-        placemarks.push(`        <Placemark>
-            <styleUrl>#datumStyle</styleUrl>
-            <name>${this.datum.name}</name>
-            <description>
-                Heading:${this.datum.heading}
-                <br />
-                Speed:${this.datum.speed}
-                <br />
-                Longitude:${this.datum.longitude}
-                <br />
-                Latitude:${this.datum.latitude}
-                <br />
-                Altitude:${this.datum.altitude}
-            </description>
-            <Point>
-                <coordinates>${this.datum.longitude},${this.datum.latitude},${this.datum.altitude}</coordinates>
-            </Point>
-        </Placemark>`);
 
         return placemarks;
     }
@@ -215,8 +217,8 @@ export class SectorSearchPattern extends BaseModel<typeof SectorSearchPatternSch
             }
             const coords = coordsArr.join(" ");
             polygons.push(`        <Placemark>
-            <name>Sector ${i + 1} Triangle</name>
-            <description>Search sector ${i + 1} triangle path</description>
+            <name>Sector ${i + 1}</name>
+            <description>Search sector ${i + 1} path</description>
             <styleUrl>#polygonStyle</styleUrl>
             <Polygon>
                 <outerBoundaryIs>
@@ -247,11 +249,11 @@ export class SectorSearchPattern extends BaseModel<typeof SectorSearchPatternSch
         <Style id="polygonStyle">
             <LineStyle>
                 <color>ff0000ff</color>
-                <width>2</width>
+                <width>1</width>
             </LineStyle>
             <PolyStyle>
                 <color>4d0000ff</color>
-                <fill>1</fill>
+                <fill>0</fill>
                 <outline>1</outline>
             </PolyStyle>
         </Style>
@@ -261,12 +263,12 @@ export class SectorSearchPattern extends BaseModel<typeof SectorSearchPatternSch
                 <Icon>
                     <href>http://maps.google.com/mapfiles/kml/shapes/placemark_circle.png</href>
                 </Icon>
-                <scale>1.0</scale>
-                <color>ff0000ff</color>
+                <scale>1.2</scale>
+                <color>ea2e00ff</color>
             </IconStyle>
             <LabelStyle>
                 <color>ffffffff</color>
-                <scale>1.0</scale>
+                <scale>1</scale>
             </LabelStyle>
         </Style>
         

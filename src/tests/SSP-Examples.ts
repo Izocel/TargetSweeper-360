@@ -1,16 +1,17 @@
 import { mkdirSync, writeFileSync } from "fs";
 import { SectorSearchPattern } from "../lib/models/SectorSearchPattern";
 import { Target } from "../lib/models/Target";
+import { handleFlooredOverflow, handleOverflow } from "../lib/utils/Math";
 
 const SearchBuoy = new Target();
 SearchBuoy.name = "Rescue Buoy";
-SearchBuoy.latitude = 25.309029191286708; // Rescue Buoy latitude
-SearchBuoy.longitude = -90.06723415861805; // Rescue Buoy longitude
-SearchBuoy.heading = 0; // Rescue Buoy direction (current/drift direction) north = 0 east = 90 south = 180 west = 270
 SearchBuoy.speed = 2; // Rescue Buoy speed (drift speed knots)
+SearchBuoy.heading = handleFlooredOverflow(0, 0, 360); // Rescue Buoy direction
+SearchBuoy.latitude = handleOverflow(25.309029191286708, -90, 90); // Rescue Buoy latitude
+SearchBuoy.longitude = handleOverflow(-90.06723415861805, -180, 180); // Rescue Buoy longitude
 
 const SearchSpeed = 10; // Rescue vessel speed (knots)
-const SearchRadius = 200; // Rescue vessel search radius (meters)
+const SearchRadius = 1_500; // Rescue vessel search radius (meters)
 
 const data = {
     datum: SearchBuoy,
