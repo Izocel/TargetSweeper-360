@@ -82,7 +82,7 @@
             <styleUrl>#targetStyle</styleUrl>
             <name>S1 - T1</name>
             <description>
-                Vessel Heading:0
+                Vessel Heading:120
                 <br />
                 Vessel Speed:10
                 <br />
@@ -99,7 +99,7 @@
             <styleUrl>#targetStyle</styleUrl>
             <name>S1 - T2</name>
             <description>
-                Vessel Heading:60
+                Vessel Heading:180
                 <br />
                 Vessel Speed:10
                 <br />
@@ -116,7 +116,7 @@
             <styleUrl>#targetStyle</styleUrl>
             <name>S2 - T1</name>
             <description>
-                Vessel Heading:240
+                Vessel Heading:0
                 <br />
                 Vessel Speed:10
                 <br />
@@ -133,7 +133,7 @@
             <styleUrl>#targetStyle</styleUrl>
             <name>S2 - T2</name>
             <description>
-                Vessel Heading:300
+                Vessel Heading:60
                 <br />
                 Vessel Speed:10
                 <br />
@@ -150,7 +150,7 @@
             <styleUrl>#targetStyle</styleUrl>
             <name>S3 - T1</name>
             <description>
-                Vessel Heading:120
+                Vessel Heading:240
                 <br />
                 Vessel Speed:10
                 <br />
@@ -167,7 +167,7 @@
             <styleUrl>#targetStyle</styleUrl>
             <name>S3 - T2</name>
             <description>
-                Vessel Heading:180
+                Vessel Heading:300
                 <br />
                 Vessel Speed:10
                 <br />

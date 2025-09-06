@@ -1,13 +1,13 @@
 import z from "zod";
 import { GeoCalculator } from "../utils/GeoCalculator";
-import { handleOverflow } from "../utils/Math";
+import { handleFlooredOverflow, handleOverflow } from "../utils/Math";
 import { BaseModel } from "./BaseModel";
 import { Target } from "./Target";
 
 export const SectorSearchPatternSchema = z.object({
     datum: Target.Schema,
     speed: z.number().min(0),
-    radius: z.number().gt(0),
+    radius: z.number().min(1),
     sectors: z.array(z.array(Target.Schema)).length(3).refine(sector => sector.length === 3, {
         message: "Each sector must contain exactly 3 targets",
     }),
@@ -15,11 +15,11 @@ export const SectorSearchPatternSchema = z.object({
 
 export class SectorSearchPattern extends BaseModel<typeof SectorSearchPatternSchema> {
     constructor(data?: z.infer<typeof SectorSearchPatternSchema>) {
-        super(SectorSearchPatternSchema, data ?? {
-            speed: 10,
-            radius: 200,
-            datum: new Target(),
-            sectors: [
+        super(SectorSearchPatternSchema, {
+            speed: data?.speed ?? 10,
+            radius: data?.radius ?? 200,
+            datum: data?.datum ?? new Target(),
+            sectors: data?.sectors ?? [
                 [new Target(), new Target(), new Target()],
                 [new Target(), new Target(), new Target()],
                 [new Target(), new Target(), new Target()]
@@ -27,6 +27,7 @@ export class SectorSearchPattern extends BaseModel<typeof SectorSearchPatternSch
         });
 
         this.updateDatum(this._data.datum);
+        this.validate();
     }
 
     /**
@@ -105,12 +106,20 @@ export class SectorSearchPattern extends BaseModel<typeof SectorSearchPatternSch
      * @param index The index of the sector to update (0-2).
      */
     updateSector(index: number): void {
+        if (!this.sectors[index]) {
+            this._data.sectors[index] = [new Target(), new Target(), new Target()];
+        }
+
+        while (this._data.sectors[index]!.length < 3) {
+            this._data.sectors[index]!.push(new Target());
+        }
+
         let apexHeading = index === 0 ? this.datum.heading
             : index === 1 ? this.datum.heading + 240
                 : this.datum.heading + 120;
 
-        apexHeading = handleOverflow(apexHeading, 0, 360);
-        const legHeading = handleOverflow(apexHeading + 60, 0, 360);
+        apexHeading = handleFlooredOverflow(apexHeading, 0, 360);
+        const legHeading = handleFlooredOverflow(apexHeading + 60, 0, 360);
 
         const apexCoords = GeoCalculator.offsetTarget(this.datum, this.radius, apexHeading);
         const legCoords = GeoCalculator.offsetTarget(this.datum, this.radius, legHeading);
@@ -122,19 +131,18 @@ export class SectorSearchPattern extends BaseModel<typeof SectorSearchPatternSch
             target.altitude = this.datum.altitude;
             target.name = `S${index + 1} - T${i + 1}`;
 
-            // TODO: fix targets vessel headings
             if (i === 0) {
                 target.latitude = apexCoords.latitude;
                 target.longitude = apexCoords.longitude;
-                target.fixedHeading = apexHeading;
+                target.fixedHeading = handleFlooredOverflow(apexHeading + 120, 0, 360);
             } else if (i === 1) {
                 target.latitude = legCoords.latitude;
                 target.longitude = legCoords.longitude;
-                target.fixedHeading = legHeading;
+                target.fixedHeading = handleFlooredOverflow(legHeading + 120, 0, 360);
             } else {
                 target.latitude = this.datum.latitude;
                 target.longitude = this.datum.longitude;
-                target.fixedHeading = handleOverflow(legHeading + 180, 0, 360);
+                target.fixedHeading = handleFlooredOverflow(legHeading + 180 + 120, 0, 360);
             }
         });
     }

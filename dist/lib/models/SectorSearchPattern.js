@@ -12,24 +12,25 @@ const Target_1 = require("./Target");
 exports.SectorSearchPatternSchema = zod_1.default.object({
     datum: Target_1.Target.Schema,
     speed: zod_1.default.number().min(0),
-    radius: zod_1.default.number().gt(0),
+    radius: zod_1.default.number().min(1),
     sectors: zod_1.default.array(zod_1.default.array(Target_1.Target.Schema)).length(3).refine(sector => sector.length === 3, {
         message: "Each sector must contain exactly 3 targets",
     }),
 });
 class SectorSearchPattern extends BaseModel_1.BaseModel {
     constructor(data) {
-        super(exports.SectorSearchPatternSchema, data ?? {
-            speed: 10,
-            radius: 200,
-            datum: new Target_1.Target(),
-            sectors: [
+        super(exports.SectorSearchPatternSchema, {
+            speed: data?.speed ?? 10,
+            radius: data?.radius ?? 200,
+            datum: data?.datum ?? new Target_1.Target(),
+            sectors: data?.sectors ?? [
                 [new Target_1.Target(), new Target_1.Target(), new Target_1.Target()],
                 [new Target_1.Target(), new Target_1.Target(), new Target_1.Target()],
                 [new Target_1.Target(), new Target_1.Target(), new Target_1.Target()]
             ]
         });
         this.updateDatum(this._data.datum);
+        this.validate();
     }
     /**
      * Gets the datum target.
@@ -97,11 +98,17 @@ class SectorSearchPattern extends BaseModel_1.BaseModel {
      * @param index The index of the sector to update (0-2).
      */
     updateSector(index) {
+        if (!this.sectors[index]) {
+            this._data.sectors[index] = [new Target_1.Target(), new Target_1.Target(), new Target_1.Target()];
+        }
+        while (this._data.sectors[index].length < 3) {
+            this._data.sectors[index].push(new Target_1.Target());
+        }
         let apexHeading = index === 0 ? this.datum.heading
             : index === 1 ? this.datum.heading + 240
                 : this.datum.heading + 120;
-        apexHeading = (0, Math_1.handleOverflow)(apexHeading, 0, 360);
-        const legHeading = (0, Math_1.handleOverflow)(apexHeading + 60, 0, 360);
+        apexHeading = (0, Math_1.handleFlooredOverflow)(apexHeading, 0, 360);
+        const legHeading = (0, Math_1.handleFlooredOverflow)(apexHeading + 60, 0, 360);
         const apexCoords = GeoCalculator_1.GeoCalculator.offsetTarget(this.datum, this.radius, apexHeading);
         const legCoords = GeoCalculator_1.GeoCalculator.offsetTarget(this.datum, this.radius, legHeading);
         this.sectors[index]?.forEach((target, i) => {
@@ -110,21 +117,20 @@ class SectorSearchPattern extends BaseModel_1.BaseModel {
             target.heading = this.datum.heading;
             target.altitude = this.datum.altitude;
             target.name = `S${index + 1} - T${i + 1}`;
-            // TODO: fix targets vessel headings
             if (i === 0) {
                 target.latitude = apexCoords.latitude;
                 target.longitude = apexCoords.longitude;
-                target.fixedHeading = apexHeading;
+                target.fixedHeading = (0, Math_1.handleFlooredOverflow)(apexHeading + 120, 0, 360);
             }
             else if (i === 1) {
                 target.latitude = legCoords.latitude;
                 target.longitude = legCoords.longitude;
-                target.fixedHeading = legHeading;
+                target.fixedHeading = (0, Math_1.handleFlooredOverflow)(legHeading + 120, 0, 360);
             }
             else {
                 target.latitude = this.datum.latitude;
                 target.longitude = this.datum.longitude;
-                target.fixedHeading = (0, Math_1.handleOverflow)(legHeading + 180, 0, 360);
+                target.fixedHeading = (0, Math_1.handleFlooredOverflow)(legHeading + 180 + 120, 0, 360);
             }
         });
     }

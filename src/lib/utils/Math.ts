@@ -5,7 +5,7 @@
  * For example, applying bounds to an angle of 370 degrees with a range of 0 to 360 will result in 360 degrees.
  */
 export function handleBoundary(value: number, min: number, max: number): number {
-    return Math.max(min, Math.min(max, value));
+    return (value < min) ? min : (value > max) ? max : value;
 }
 
 /**
@@ -15,10 +15,27 @@ export function handleBoundary(value: number, min: number, max: number): number 
  * For example, applying overflow to an angle of 370 degrees with a range of 0 to 360 will result in 10 degrees.
  */
 export function handleOverflow(value: number, min: number, max: number): number {
-    if (value > max) {
-        return min + ((value - max) % (max - min));
-    } else if (value < min) {
-        return max - ((min - value) % (max - min));
-    }
-    return value;
+    return (value > max) ? min + ((value - max) % (max - min))
+        : (value < min) ? max - ((min - value) % (max - min))
+            : value;
+}
+
+/** Similar to handleOverflow, but treats the maximum as exclusive.
+ * If the value equals or exceeds the maximum, it will wrap around to the minimum.
+ * If the value is below the minimum, it will wrap around to just below the maximum.
+ * For example, applying floored overflow to an angle of 360 degrees with a range of 0 to 360 will result in 0 degrees.
+ */
+export function handleFlooredOverflow(value: number, min: number, max: number): number {
+    const wrapped = handleOverflow(value, min, max);
+    return (wrapped === max) ? min : wrapped;
+}
+
+/** Similar to handleOverflow, but treats the minimum as exclusive.
+ * If the value exceeds the maximum, it will wrap around to just above the minimum.
+ * If the value equals or is below the minimum, it will wrap around to the maximum.
+ * For example, applying ceiled overflow to an angle of 0 degrees with a range of 0 to 360 will result in 359.99 degrees.
+ */
+export function handleCeiledOverflow(value: number, min: number, max: number): number {
+    const wrapped = handleOverflow(value, min, max);
+    return (wrapped === min) ? max : wrapped;
 }
