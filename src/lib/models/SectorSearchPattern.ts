@@ -1,6 +1,6 @@
 import z from "zod";
 import { GeoCalculator } from "../utils/GeoCalculator";
-import { handleFlooredOverflow, handleOverflow } from "../utils/Math";
+import { getIsosceleTriangleSideLength, handleFlooredOverflow, handleOverflow } from "../utils/Math";
 import { BaseModel } from "./BaseModel";
 import { Target } from "./Target";
 
@@ -26,7 +26,7 @@ export class SectorSearchPattern extends BaseModel<typeof SectorSearchPatternSch
             ]
         });
 
-        this.updateDatum(this._data.datum);
+        this.update();
         this.validate();
     }
 
@@ -41,6 +41,15 @@ export class SectorSearchPattern extends BaseModel<typeof SectorSearchPatternSch
 
     set datum(datum: Target) {
         this._data.datum = datum;
+
+        this.datum.speed = this.speed;
+        this.datum.stepDistance = this.radius;
+        this.datum.name = datum.name || "Datum";
+        this.datum.heading = handleFlooredOverflow(datum.heading, 0, 360);
+        this.datum.latitude = handleOverflow(datum.latitude, -90, 90);
+        this.datum.longitude = handleOverflow(datum.longitude, -180, 180);
+
+        this.update();
     }
 
     /**
@@ -53,6 +62,7 @@ export class SectorSearchPattern extends BaseModel<typeof SectorSearchPatternSch
 
     set speed(speed: number) {
         this._data.speed = Math.max(0, speed);
+        this.update();
     }
 
     /**
@@ -65,6 +75,7 @@ export class SectorSearchPattern extends BaseModel<typeof SectorSearchPatternSch
 
     set radius(radius: number) {
         this._data.radius = Math.max(1, radius);
+        this.update();
     }
 
     /**
@@ -78,23 +89,18 @@ export class SectorSearchPattern extends BaseModel<typeof SectorSearchPatternSch
 
     set sectors(sectors: Target[][]) {
         this._data.sectors = sectors;
+        this.update();
     }
 
     /**
-     * Updates the search pattern with new values.
-     * @param datum The new values to update the search pattern with.
-     * @param radius The new radius of the search pattern.
-     * @param speed The new speed of the search pattern.
+     * Updates the internal state of the search pattern.
+     * @param datum Optional new datum target to update the pattern with.
      */
-    updateDatum(datum: Target) {
-        this.datum.name = datum.name || "Datum";
-        this.datum.latitude = handleOverflow(datum.latitude, -90, 90);
-        this.datum.longitude = handleOverflow(datum.longitude, -180, 180);
-        this.datum.altitude = datum.altitude;
-        this.datum.speed = datum.speed; // Search Buoy speed (drift speed)
-        this.datum.heading = datum.heading; // Search Buoy direction (drift direction)
-        this.datum.fixedSpeed = this.speed; // Search Vessel speed
-        this.datum.fixedHeading = datum.heading; // Search Vessel heading
+    update(datum?: Target): void {
+        if (datum) {
+            this.datum = datum;
+            return;
+        }
 
         this.updateSector(0);
         this.updateSector(1);
@@ -124,25 +130,33 @@ export class SectorSearchPattern extends BaseModel<typeof SectorSearchPatternSch
         const apexCoords = GeoCalculator.offsetTarget(this.datum, this.radius, apexHeading);
         const legCoords = GeoCalculator.offsetTarget(this.datum, this.radius, legHeading);
 
+        // use trigonometry to determine distance to leg and apex
+        const longStepDistance = getIsosceleTriangleSideLength(this.radius, 60);
+
         this.sectors[index]?.forEach((target, i) => {
-            target.fixedSpeed = this.speed;
             target.speed = this.datum.speed;
             target.heading = this.datum.heading;
             target.altitude = this.datum.altitude;
             target.name = `S${index + 1} - T${i + 1}`;
+            target.stepSpeed = this.speed;
 
             if (i === 0) {
+                target.stepDistance = longStepDistance;
                 target.latitude = apexCoords.latitude;
                 target.longitude = apexCoords.longitude;
-                target.fixedHeading = handleFlooredOverflow(apexHeading + 120, 0, 360);
+                target.stepHeading = handleFlooredOverflow(apexHeading + 120, 0, 360);
             } else if (i === 1) {
+                target.stepDistance = longStepDistance;
                 target.latitude = legCoords.latitude;
                 target.longitude = legCoords.longitude;
-                target.fixedHeading = handleFlooredOverflow(apexHeading + 240, 0, 360);
+                target.stepHeading = handleFlooredOverflow(apexHeading + 240, 0, 360);
             } else {
+                target.stepDistance = this.radius;
                 target.latitude = this.datum.latitude;
                 target.longitude = this.datum.longitude;
-                target.fixedHeading = handleFlooredOverflow(apexHeading + 180, 0, 360);
+                target.stepHeading = handleFlooredOverflow(apexHeading + 180, 0, 360);
+                target.stepDistance = GeoCalculator.getDistance(this.datum, target);
+
             }
         });
     }
@@ -182,9 +196,9 @@ export class SectorSearchPattern extends BaseModel<typeof SectorSearchPatternSch
             <styleUrl>#targetStyle</styleUrl>
             <name>${target.name}</name>
             <description>
-                Vessel Speed:${target.fixedSpeed}
+                Vessel Speed:${target.stepSpeed}
                 <br />
-                Vessel Heading:${target.fixedHeading}
+                Vessel Heading:${target.stepHeading}
                 <br />
                 Longitude:${target.longitude}
                 <br />

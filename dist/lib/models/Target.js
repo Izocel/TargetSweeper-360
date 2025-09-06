@@ -12,11 +12,13 @@ class Target {
         this.latitude = 0;
         this.altitude = 0;
         this.heading = 0;
-        this.fixedHeading = 0;
         this.speed = 0;
-        this.fixedSpeed = 0;
         this.accuracy = 0;
         this.altitudeAccuracy = 0;
+        this.stepTime = 0;
+        this.stepSpeed = 0;
+        this.stepHeading = 0;
+        this.stepDistance = 0;
     }
 }
 exports.Target = Target;
@@ -26,10 +28,12 @@ Target.Schema = zod_1.default.object({
     latitude: zod_1.default.number().min(-90).max(90),
     altitude: zod_1.default.number(),
     heading: zod_1.default.number().min(0).max(360),
-    fixedHeading: zod_1.default.number().min(0).max(360),
     speed: zod_1.default.number().min(0),
-    fixedSpeed: zod_1.default.number().min(0),
     accuracy: zod_1.default.number(),
     altitudeAccuracy: zod_1.default.number(),
+    stepTime: zod_1.default.number().min(0),
+    stepSpeed: zod_1.default.number().min(0),
+    stepHeading: zod_1.default.number().min(0).max(360),
+    stepDistance: zod_1.default.number().min(0),
 });
 //# sourceMappingURL=Target.js.map

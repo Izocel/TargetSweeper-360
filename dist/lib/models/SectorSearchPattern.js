@@ -29,7 +29,7 @@ class SectorSearchPattern extends BaseModel_1.BaseModel {
                 [new Target_1.Target(), new Target_1.Target(), new Target_1.Target()]
             ]
         });
-        this.updateDatum(this._data.datum);
+        this.update();
         this.validate();
     }
     /**
@@ -42,6 +42,13 @@ class SectorSearchPattern extends BaseModel_1.BaseModel {
     }
     set datum(datum) {
         this._data.datum = datum;
+        this.datum.speed = this.speed;
+        this.datum.stepDistance = this.radius;
+        this.datum.name = datum.name || "Datum";
+        this.datum.heading = (0, Math_1.handleFlooredOverflow)(datum.heading, 0, 360);
+        this.datum.latitude = (0, Math_1.handleOverflow)(datum.latitude, -90, 90);
+        this.datum.longitude = (0, Math_1.handleOverflow)(datum.longitude, -180, 180);
+        this.update();
     }
     /**
      * Gets the speed of the search vessel.
@@ -52,6 +59,7 @@ class SectorSearchPattern extends BaseModel_1.BaseModel {
     }
     set speed(speed) {
         this._data.speed = Math.max(0, speed);
+        this.update();
     }
     /**
      * Gets the radius of the search pattern.
@@ -62,6 +70,7 @@ class SectorSearchPattern extends BaseModel_1.BaseModel {
     }
     set radius(radius) {
         this._data.radius = Math.max(1, radius);
+        this.update();
     }
     /**
      * Gets the sectors of the search pattern.
@@ -73,22 +82,17 @@ class SectorSearchPattern extends BaseModel_1.BaseModel {
     }
     set sectors(sectors) {
         this._data.sectors = sectors;
+        this.update();
     }
     /**
-     * Updates the search pattern with new values.
-     * @param datum The new values to update the search pattern with.
-     * @param radius The new radius of the search pattern.
-     * @param speed The new speed of the search pattern.
+     * Updates the internal state of the search pattern.
+     * @param datum Optional new datum target to update the pattern with.
      */
-    updateDatum(datum) {
-        this.datum.name = datum.name || "Datum";
-        this.datum.latitude = (0, Math_1.handleOverflow)(datum.latitude, -90, 90);
-        this.datum.longitude = (0, Math_1.handleOverflow)(datum.longitude, -180, 180);
-        this.datum.altitude = datum.altitude;
-        this.datum.speed = datum.speed; // Search Buoy speed (drift speed)
-        this.datum.heading = datum.heading; // Search Buoy direction (drift direction)
-        this.datum.fixedSpeed = this.speed; // Search Vessel speed
-        this.datum.fixedHeading = datum.heading; // Search Vessel heading
+    update(datum) {
+        if (datum) {
+            this.datum = datum;
+            return;
+        }
         this.updateSector(0);
         this.updateSector(1);
         this.updateSector(2);
@@ -111,26 +115,32 @@ class SectorSearchPattern extends BaseModel_1.BaseModel {
         const legHeading = (0, Math_1.handleFlooredOverflow)(apexHeading + 60, 0, 360);
         const apexCoords = GeoCalculator_1.GeoCalculator.offsetTarget(this.datum, this.radius, apexHeading);
         const legCoords = GeoCalculator_1.GeoCalculator.offsetTarget(this.datum, this.radius, legHeading);
+        // use trigonometry to determine distance to leg and apex
+        const longStepDistance = (0, Math_1.getIsosceleTriangleSideLength)(this.radius, 60);
         this.sectors[index]?.forEach((target, i) => {
-            target.fixedSpeed = this.speed;
             target.speed = this.datum.speed;
             target.heading = this.datum.heading;
             target.altitude = this.datum.altitude;
             target.name = `S${index + 1} - T${i + 1}`;
+            target.stepSpeed = this.speed;
             if (i === 0) {
+                target.stepDistance = longStepDistance;
                 target.latitude = apexCoords.latitude;
                 target.longitude = apexCoords.longitude;
-                target.fixedHeading = (0, Math_1.handleFlooredOverflow)(apexHeading + 120, 0, 360);
+                target.stepHeading = (0, Math_1.handleFlooredOverflow)(apexHeading + 120, 0, 360);
             }
             else if (i === 1) {
+                target.stepDistance = longStepDistance;
                 target.latitude = legCoords.latitude;
                 target.longitude = legCoords.longitude;
-                target.fixedHeading = (0, Math_1.handleFlooredOverflow)(apexHeading + 240, 0, 360);
+                target.stepHeading = (0, Math_1.handleFlooredOverflow)(apexHeading + 240, 0, 360);
             }
             else {
+                target.stepDistance = this.radius;
                 target.latitude = this.datum.latitude;
                 target.longitude = this.datum.longitude;
-                target.fixedHeading = (0, Math_1.handleFlooredOverflow)(apexHeading + 180, 0, 360);
+                target.stepHeading = (0, Math_1.handleFlooredOverflow)(apexHeading + 180, 0, 360);
+                target.stepDistance = GeoCalculator_1.GeoCalculator.getDistance(this.datum, target);
             }
         });
     }
@@ -167,9 +177,9 @@ class SectorSearchPattern extends BaseModel_1.BaseModel {
             <styleUrl>#targetStyle</styleUrl>
             <name>${target.name}</name>
             <description>
-                Vessel Speed:${target.fixedSpeed}
+                Vessel Speed:${target.stepSpeed}
                 <br />
-                Vessel Heading:${target.fixedHeading}
+                Vessel Heading:${target.stepHeading}
                 <br />
                 Longitude:${target.longitude}
                 <br />

@@ -24,3 +24,14 @@ export declare function handleFlooredOverflow(value: number, min: number, max: n
  * For example, applying ceiled overflow to an angle of 0 degrees with a range of 0 to 360 will result in 359.99 degrees.
  */
 export declare function handleCeiledOverflow(value: number, min: number, max: number): number;
+/**
+ * Calculates the length of the side opposite to the given angle in a triangle using the Law of Cosines.
+ * @param base - Length of one side of the triangle.
+ * @param side - Length of the other side of the triangle.
+ */
+export declare function getTriangleSideLength(base: number, side: number, angleDegrees: number): number;
+/** Calculates the length of the equal sides in an isosceles triangle given the base and the vertex angle.
+ * @param base - Length of the base of the isoscele triangle.
+ * @param angleDegrees - Vertex angle in degrees.
+ */
+export declare function getIsosceleTriangleSideLength(base: number, angleDegrees: number): number;

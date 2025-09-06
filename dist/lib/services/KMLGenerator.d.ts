@@ -48,11 +48,13 @@ export declare class KMLGenerator {
             latitude: z.ZodNumber;
             altitude: z.ZodNumber;
             heading: z.ZodNumber;
-            fixedHeading: z.ZodNumber;
             speed: z.ZodNumber;
-            fixedSpeed: z.ZodNumber;
             accuracy: z.ZodNumber;
             altitudeAccuracy: z.ZodNumber;
+            stepTime: z.ZodNumber;
+            stepSpeed: z.ZodNumber;
+            stepHeading: z.ZodNumber;
+            stepDistance: z.ZodNumber;
         }, z.core.$strip>;
         config: z.ZodObject<{
             radiusStep: z.ZodNumber;

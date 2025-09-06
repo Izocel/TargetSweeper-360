@@ -39,3 +39,22 @@ export function handleCeiledOverflow(value: number, min: number, max: number): n
     const wrapped = handleOverflow(value, min, max);
     return (wrapped === min) ? max : wrapped;
 }
+
+
+/**
+ * Calculates the length of the side opposite to the given angle in a triangle using the Law of Cosines.
+ * @param base - Length of one side of the triangle.
+ * @param side - Length of the other side of the triangle.
+ */
+export function getTriangleSideLength(base: number, side: number, angleDegrees: number): number {
+    const angleRadians = angleDegrees * (Math.PI / 180);
+    return Math.sqrt(base * base + side * side - 2 * base * side * Math.cos(angleRadians));
+}
+
+/** Calculates the length of the equal sides in an isosceles triangle given the base and the vertex angle.
+ * @param base - Length of the base of the isoscele triangle.
+ * @param angleDegrees - Vertex angle in degrees.
+ */
+export function getIsosceleTriangleSideLength(base: number, angleDegrees: number): number {
+    return getTriangleSideLength(base, base, angleDegrees);
+}

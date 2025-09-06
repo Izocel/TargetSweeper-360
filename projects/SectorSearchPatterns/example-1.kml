@@ -51,7 +51,7 @@
             <Polygon>
                 <outerBoundaryIs>
                     <LinearRing>
-                        <coordinates>-90.06723415861805,25.3225039205485,0 -90.054324965371,25.31576599387452,0 -90.06723415861805,25.309029191286708,0 -90.06723415861805,25.3225039205485,0</coordinates>
+                        <coordinates>-90.06723415861805,25.322569833632006,0 -90.05433286506782,25.315798951119863,0 -90.06723415861805,25.309029191286708,0 -90.06723415861805,25.322569833632006,0</coordinates>
                     </LinearRing>
                 </outerBoundaryIs>
             </Polygon>
@@ -62,7 +62,7 @@
             <Polygon>
                 <outerBoundaryIs>
                     <LinearRing>
-                        <coordinates>-90.08014191626631,25.302291264768385,0 -90.08014335186513,25.31576599387452,0 -90.06723415861805,25.309029191286708,0 -90.08014191626631,25.302291264768385,0</coordinates>
+                        <coordinates>-90.0801340183254,25.302258296498657,0 -90.08013545216828,25.315798951119863,0 -90.06723415861805,25.309029191286708,0 -90.0801340183254,25.302258296498657,0</coordinates>
                     </LinearRing>
                 </outerBoundaryIs>
             </Polygon>
@@ -73,7 +73,7 @@
             <Polygon>
                 <outerBoundaryIs>
                     <LinearRing>
-                        <coordinates>-90.0543264009698,25.302291264768385,0 -90.06723415861805,25.295554462024914,0 -90.06723415861805,25.309029191286708,0 -90.0543264009698,25.302291264768385,0</coordinates>
+                        <coordinates>-90.05433429891072,25.30225829649866,0 -90.06723415861805,25.295488524073956,0 -90.06723415861805,25.309029191286708,0 -90.05433429891072,25.30225829649866,0</coordinates>
                     </LinearRing>
                 </outerBoundaryIs>
             </Polygon>
@@ -105,12 +105,12 @@
                 <br />
                 Longitude:-90.06723415861805
                 <br />
-                Latitude:25.3225039205485
+                Latitude:25.322569833632006
                 <br />
                 Altitude:0
             </description>
             <Point>
-                <coordinates>-90.06723415861805,25.3225039205485,0</coordinates>
+                <coordinates>-90.06723415861805,25.322569833632006,0</coordinates>
             </Point>
         </Placemark>        <Placemark>
             <styleUrl>#targetStyle</styleUrl>
@@ -120,14 +120,14 @@
                 <br />
                 Vessel Heading:240
                 <br />
-                Longitude:-90.054324965371
+                Longitude:-90.05433286506782
                 <br />
-                Latitude:25.31576599387452
+                Latitude:25.315798951119863
                 <br />
                 Altitude:0
             </description>
             <Point>
-                <coordinates>-90.054324965371,25.31576599387452,0</coordinates>
+                <coordinates>-90.05433286506782,25.315798951119863,0</coordinates>
             </Point>
         </Placemark>        <Placemark>
             <styleUrl>#targetStyle</styleUrl>
@@ -137,14 +137,14 @@
                 <br />
                 Vessel Heading:0
                 <br />
-                Longitude:-90.08014191626631
+                Longitude:-90.0801340183254
                 <br />
-                Latitude:25.302291264768385
+                Latitude:25.302258296498657
                 <br />
                 Altitude:0
             </description>
             <Point>
-                <coordinates>-90.08014191626631,25.302291264768385,0</coordinates>
+                <coordinates>-90.0801340183254,25.302258296498657,0</coordinates>
             </Point>
         </Placemark>        <Placemark>
             <styleUrl>#targetStyle</styleUrl>
@@ -154,14 +154,14 @@
                 <br />
                 Vessel Heading:120
                 <br />
-                Longitude:-90.08014335186513
+                Longitude:-90.08013545216828
                 <br />
-                Latitude:25.31576599387452
+                Latitude:25.315798951119863
                 <br />
                 Altitude:0
             </description>
             <Point>
-                <coordinates>-90.08014335186513,25.31576599387452,0</coordinates>
+                <coordinates>-90.08013545216828,25.315798951119863,0</coordinates>
             </Point>
         </Placemark>        <Placemark>
             <styleUrl>#targetStyle</styleUrl>
@@ -171,14 +171,14 @@
                 <br />
                 Vessel Heading:240
                 <br />
-                Longitude:-90.0543264009698
+                Longitude:-90.05433429891072
                 <br />
-                Latitude:25.302291264768385
+                Latitude:25.30225829649866
                 <br />
                 Altitude:0
             </description>
             <Point>
-                <coordinates>-90.0543264009698,25.302291264768385,0</coordinates>
+                <coordinates>-90.05433429891072,25.30225829649866,0</coordinates>
             </Point>
         </Placemark>        <Placemark>
             <styleUrl>#targetStyle</styleUrl>
@@ -190,12 +190,12 @@
                 <br />
                 Longitude:-90.06723415861805
                 <br />
-                Latitude:25.295554462024914
+                Latitude:25.295488524073956
                 <br />
                 Altitude:0
             </description>
             <Point>
-                <coordinates>-90.06723415861805,25.295554462024914,0</coordinates>
+                <coordinates>-90.06723415861805,25.295488524073956,0</coordinates>
             </Point>
         </Placemark>
     </Document>

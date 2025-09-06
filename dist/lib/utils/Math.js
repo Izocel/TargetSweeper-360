@@ -4,6 +4,8 @@ exports.handleBoundary = handleBoundary;
 exports.handleOverflow = handleOverflow;
 exports.handleFlooredOverflow = handleFlooredOverflow;
 exports.handleCeiledOverflow = handleCeiledOverflow;
+exports.getTriangleSideLength = getTriangleSideLength;
+exports.getIsosceleTriangleSideLength = getIsosceleTriangleSideLength;
 /**
  * Constrains a value to be within a specified range.
  * If the value is less than the minimum, it will return the minimum.
@@ -41,5 +43,21 @@ function handleFlooredOverflow(value, min, max) {
 function handleCeiledOverflow(value, min, max) {
     const wrapped = handleOverflow(value, min, max);
     return (wrapped === min) ? max : wrapped;
+}
+/**
+ * Calculates the length of the side opposite to the given angle in a triangle using the Law of Cosines.
+ * @param base - Length of one side of the triangle.
+ * @param side - Length of the other side of the triangle.
+ */
+function getTriangleSideLength(base, side, angleDegrees) {
+    const angleRadians = angleDegrees * (Math.PI / 180);
+    return Math.sqrt(base * base + side * side - 2 * base * side * Math.cos(angleRadians));
+}
+/** Calculates the length of the equal sides in an isosceles triangle given the base and the vertex angle.
+ * @param base - Length of the base of the isoscele triangle.
+ * @param angleDegrees - Vertex angle in degrees.
+ */
+function getIsosceleTriangleSideLength(base, angleDegrees) {
+    return getTriangleSideLength(base, base, angleDegrees);
 }
 //# sourceMappingURL=Math.js.map

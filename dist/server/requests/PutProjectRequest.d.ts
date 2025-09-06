@@ -9,11 +9,13 @@ export declare const ProjectConfigsSchema: z.ZodObject<{
         latitude: z.ZodNumber;
         altitude: z.ZodNumber;
         heading: z.ZodNumber;
-        fixedHeading: z.ZodNumber;
         speed: z.ZodNumber;
-        fixedSpeed: z.ZodNumber;
         accuracy: z.ZodNumber;
         altitudeAccuracy: z.ZodNumber;
+        stepTime: z.ZodNumber;
+        stepSpeed: z.ZodNumber;
+        stepHeading: z.ZodNumber;
+        stepDistance: z.ZodNumber;
     }, z.core.$strip>;
     sweeperConfigs: z.ZodObject<{
         radiusStep: z.ZodNumber;
@@ -32,11 +34,13 @@ export declare class PutProjectRequest extends BaseRequest {
             latitude: z.ZodNumber;
             altitude: z.ZodNumber;
             heading: z.ZodNumber;
-            fixedHeading: z.ZodNumber;
             speed: z.ZodNumber;
-            fixedSpeed: z.ZodNumber;
             accuracy: z.ZodNumber;
             altitudeAccuracy: z.ZodNumber;
+            stepTime: z.ZodNumber;
+            stepSpeed: z.ZodNumber;
+            stepHeading: z.ZodNumber;
+            stepDistance: z.ZodNumber;
         }, z.core.$strip>;
         sweeperConfigs: z.ZodObject<{
             radiusStep: z.ZodNumber;

@@ -1,8 +1,8 @@
 import z from "zod";
 import { BaseModel } from "./BaseModel";
 import { Target } from "./Target";
-export declare const SectorSearchPatternSchema: z.ZodObject<{
-    datum: z.ZodObject<{
+export declare const ParallelTrackPatternSchema: z.ZodObject<{
+    vector: z.ZodObject<{
         name: z.ZodString;
         longitude: z.ZodNumber;
         latitude: z.ZodNumber;
@@ -17,8 +17,8 @@ export declare const SectorSearchPatternSchema: z.ZodObject<{
         stepDistance: z.ZodNumber;
     }, z.core.$strip>;
     speed: z.ZodNumber;
-    radius: z.ZodNumber;
-    sectors: z.ZodArray<z.ZodArray<z.ZodObject<{
+    spacing: z.ZodNumber;
+    targets: z.ZodArray<z.ZodObject<{
         name: z.ZodString;
         longitude: z.ZodNumber;
         latitude: z.ZodNumber;
@@ -31,46 +31,24 @@ export declare const SectorSearchPatternSchema: z.ZodObject<{
         stepSpeed: z.ZodNumber;
         stepHeading: z.ZodNumber;
         stepDistance: z.ZodNumber;
-    }, z.core.$strip>>>;
+    }, z.core.$strip>>;
 }, z.core.$strip>;
-export declare class SectorSearchPattern extends BaseModel<typeof SectorSearchPatternSchema> {
-    constructor(data?: z.infer<typeof SectorSearchPatternSchema>);
-    /**
-     * Gets the datum target.
-     * Represents the central reference point, or the current position of the search buoy
-     * @returns The datum target.
-     */
-    get datum(): Target;
-    set datum(datum: Target);
-    /**
-     * Gets the speed of the search vessel.
-     * @returns The speed of the search vessel.
-     */
+export declare class ParallelTrackPattern extends BaseModel<typeof ParallelTrackPatternSchema> {
+    constructor(data?: z.infer<typeof ParallelTrackPatternSchema>);
+    get vector(): Target;
+    set vector(vector: Target);
     get speed(): number;
     set speed(speed: number);
-    /**
-     * Gets the radius of the search pattern.
-     * @returns The radius of the search pattern.
-     */
-    get radius(): number;
-    set radius(radius: number);
-    /**
-     * Gets the sectors of the search pattern.
-     * Each sector is an array of 3 targets representing the vertices of a triangle.
-     * @returns An array containing 3 sectors, each with 3 targets.
-     */
-    get sectors(): Target[][];
-    set sectors(sectors: Target[][]);
+    get spacing(): number;
+    set spacing(spacing: number);
+    get targets(): Target[];
+    set targets(targets: Target[]);
     /**
      * Updates the internal state of the search pattern.
-     * @param datum Optional new datum target to update the pattern with.
+     * @param vector Optional new vector target to update the pattern with.
      */
-    update(datum?: Target): void;
-    /**
-     * Updates the specified sector with new target positions.
-     * @param index The index of the sector to update (0-2).
-     */
-    updateSector(index: number): void;
+    update(vector?: Target): void;
+    updateTargets(): void;
     /**
      * Generates KML placemarks for each target in the search pattern.
      * @returns An array of KML placemark strings.

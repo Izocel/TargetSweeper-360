@@ -1,0 +1,24 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const fs_1 = require("fs");
+const ParallelTrackPattern_1 = require("../lib/models/ParallelTrackPattern");
+const Target_1 = require("../lib/models/Target");
+const Math_1 = require("../lib/utils/Math");
+const ParallelTrackVector = new Target_1.Target();
+ParallelTrackVector.stepDistance = 80; // meters
+ParallelTrackVector.heading = (0, Math_1.handleFlooredOverflow)(63, 0, 360);
+ParallelTrackVector.latitude = (0, Math_1.handleOverflow)(43.30750, -90, 90);
+ParallelTrackVector.longitude = (0, Math_1.handleOverflow)(-79.62972, -180, 180);
+const ParallelTrackSpeed = 10; // knots/s
+const ParallelTrackSpacing = 20; // meters
+const ParallelTrackTargets = [];
+const data = {
+    speed: ParallelTrackSpeed,
+    vector: ParallelTrackVector,
+    targets: ParallelTrackTargets,
+    spacing: ParallelTrackSpacing,
+};
+const pattern = new ParallelTrackPattern_1.ParallelTrackPattern(data);
+(0, fs_1.mkdirSync)('projects/ParallelTrackPatterns', { recursive: true });
+(0, fs_1.writeFileSync)('projects/ParallelTrackPatterns/example-1.kml', pattern.generateKml());
+//# sourceMappingURL=PTS-Examples.js.map
