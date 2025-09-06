@@ -48,7 +48,7 @@ class SectorSearchPattern extends BaseModel_1.BaseModel {
         this.datum.heading = (0, Math_1.handleFlooredOverflow)(datum.heading, 0, 360);
         this.datum.latitude = (0, Math_1.handleOverflow)(datum.latitude, -90, 90);
         this.datum.longitude = (0, Math_1.handleOverflow)(datum.longitude, -180, 180);
-        this.update();
+        this.updateAllSectors();
     }
     /**
      * Gets the speed of the search vessel.
@@ -58,8 +58,11 @@ class SectorSearchPattern extends BaseModel_1.BaseModel {
         return this.data.speed;
     }
     set speed(speed) {
-        this._data.speed = Math.max(0, speed);
-        this.update();
+        const newSpeed = Math.max(0, speed);
+        if (this._data.speed !== newSpeed) {
+            this._data.speed = newSpeed;
+            this.updateAllSectors();
+        }
     }
     /**
      * Gets the radius of the search pattern.
@@ -69,8 +72,11 @@ class SectorSearchPattern extends BaseModel_1.BaseModel {
         return this.data.radius;
     }
     set radius(radius) {
-        this._data.radius = Math.max(1, radius);
-        this.update();
+        const newRadius = Math.max(1, radius);
+        if (this._data.radius !== newRadius) {
+            this._data.radius = newRadius;
+            this.updateAllSectors();
+        }
     }
     /**
      * Gets the sectors of the search pattern.
@@ -82,7 +88,7 @@ class SectorSearchPattern extends BaseModel_1.BaseModel {
     }
     set sectors(sectors) {
         this._data.sectors = sectors;
-        this.update();
+        // Note: No update call here as this is typically used internally
     }
     /**
      * Updates the internal state of the search pattern.
@@ -90,19 +96,86 @@ class SectorSearchPattern extends BaseModel_1.BaseModel {
      */
     update(datum) {
         if (datum) {
-            this.datum = datum;
-            return;
+            this._data.datum = datum;
         }
-        this.updateSector(0);
-        this.updateSector(1);
-        this.updateSector(2);
+        this.updateAllSectors();
+    }
+    /**
+     * Optimized method to update all sectors at once.
+     * Reduces redundant calculations and object creations.
+     */
+    updateAllSectors() {
+        // Pre-calculate constant values to avoid redundant calculations
+        const datumHeading = this.datum.heading;
+        const datumSpeed = this.datum.speed;
+        const datumAltitude = this.datum.altitude;
+        const datumLat = this.datum.latitude;
+        const datumLon = this.datum.longitude;
+        const radius = this.radius;
+        const speed = this.speed;
+        // Pre-calculate sector headings for all sectors
+        const sectorHeadings = [
+            datumHeading, // Sector 0
+            datumHeading + 240, // Sector 1  
+            datumHeading + 120 // Sector 2
+        ].map(h => (0, Math_1.handleFlooredOverflow)(h, 0, 360));
+        // Process all sectors in batch
+        for (let sectorIndex = 0; sectorIndex < 3; sectorIndex++) {
+            // Ensure sector exists and has correct structure
+            if (!this.sectors[sectorIndex]) {
+                this._data.sectors[sectorIndex] = [new Target_1.Target(), new Target_1.Target(), new Target_1.Target()];
+            }
+            const sector = this._data.sectors[sectorIndex];
+            while (sector.length < 3) {
+                sector.push(new Target_1.Target());
+            }
+            const apexHeading = sectorHeadings[sectorIndex];
+            const legHeading = (0, Math_1.handleFlooredOverflow)(apexHeading + 60, 0, 360);
+            // Pre-calculate coordinates for this sector
+            const apexCoords = GeoCalculator_1.GeoCalculator.offsetTarget(this.datum, radius, apexHeading);
+            const legCoords = GeoCalculator_1.GeoCalculator.offsetTarget(this.datum, radius, legHeading);
+            // Batch update all targets in this sector
+            const sectorTargets = [
+                {
+                    coords: apexCoords,
+                    stepHeading: (0, Math_1.handleFlooredOverflow)(apexHeading + 120, 0, 360)
+                },
+                {
+                    coords: legCoords,
+                    stepHeading: (0, Math_1.handleFlooredOverflow)(apexHeading + 240, 0, 360)
+                },
+                {
+                    coords: { latitude: datumLat, longitude: datumLon },
+                    stepHeading: (0, Math_1.handleFlooredOverflow)(apexHeading + 180, 0, 360)
+                }
+            ];
+            // Update all targets in this sector
+            for (let targetIndex = 0; targetIndex < 3; targetIndex++) {
+                const target = sector[targetIndex];
+                const targetData = sectorTargets[targetIndex];
+                // Batch assign all properties to minimize property access overhead
+                target.speed = datumSpeed;
+                target.heading = datumHeading;
+                target.altitude = datumAltitude;
+                target.name = `S${sectorIndex + 1} - T${targetIndex + 1}`;
+                target.stepSpeed = speed;
+                target.stepDistance = radius;
+                target.latitude = targetData.coords.latitude;
+                target.longitude = targetData.coords.longitude;
+                target.stepHeading = targetData.stepHeading;
+            }
+        }
+        // Single validation call at the end
         this.validate();
     }
     /**
      * Updates the specified sector with new target positions.
+     * @deprecated Use updateAllSectors() for better performance. This method is kept for backward compatibility.
      * @param index The index of the sector to update (0-2).
      */
     updateSector(index) {
+        if (index < 0 || index >= 3)
+            return;
         if (!this.sectors[index]) {
             this._data.sectors[index] = [new Target_1.Target(), new Target_1.Target(), new Target_1.Target()];
         }
@@ -141,6 +214,40 @@ class SectorSearchPattern extends BaseModel_1.BaseModel {
                 target.stepHeading = (0, Math_1.handleFlooredOverflow)(apexHeading + 180, 0, 360);
             }
         });
+    }
+    /**
+     * Batch update multiple properties without triggering multiple recalculations.
+     * More efficient than setting properties individually.
+     */
+    batchUpdate(updates) {
+        let hasChanges = false;
+        if (updates.datum !== undefined) {
+            this._data.datum = updates.datum;
+            this.datum.speed = this.speed;
+            this.datum.stepDistance = this.radius;
+            this.datum.name = updates.datum.name || "Datum";
+            this.datum.heading = (0, Math_1.handleFlooredOverflow)(updates.datum.heading, 0, 360);
+            this.datum.latitude = (0, Math_1.handleOverflow)(updates.datum.latitude, -90, 90);
+            this.datum.longitude = (0, Math_1.handleOverflow)(updates.datum.longitude, -180, 180);
+            hasChanges = true;
+        }
+        if (updates.speed !== undefined) {
+            const newSpeed = Math.max(0, updates.speed);
+            if (this._data.speed !== newSpeed) {
+                this._data.speed = newSpeed;
+                hasChanges = true;
+            }
+        }
+        if (updates.radius !== undefined) {
+            const newRadius = Math.max(1, updates.radius);
+            if (this._data.radius !== newRadius) {
+                this._data.radius = newRadius;
+                hasChanges = true;
+            }
+        }
+        if (hasChanges) {
+            this.updateAllSectors();
+        }
     }
     /**
      * Generates KML placemarks for each target in the search pattern.

@@ -67,10 +67,25 @@ export declare class SectorSearchPattern extends BaseModel<typeof SectorSearchPa
      */
     update(datum?: Target): void;
     /**
+     * Optimized method to update all sectors at once.
+     * Reduces redundant calculations and object creations.
+     */
+    updateAllSectors(): void;
+    /**
      * Updates the specified sector with new target positions.
+     * @deprecated Use updateAllSectors() for better performance. This method is kept for backward compatibility.
      * @param index The index of the sector to update (0-2).
      */
     updateSector(index: number): void;
+    /**
+     * Batch update multiple properties without triggering multiple recalculations.
+     * More efficient than setting properties individually.
+     */
+    batchUpdate(updates: {
+        datum?: Target;
+        speed?: number;
+        radius?: number;
+    }): void;
     /**
      * Generates KML placemarks for each target in the search pattern.
      * @returns An array of KML placemark strings.
