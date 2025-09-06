@@ -5,13 +5,13 @@ import { handleFlooredOverflow, handleOverflow } from "../lib/utils/Math";
 
 const ParallelTrackVector = new Target();
 ParallelTrackVector.stepDistance = 42_000; // meters
-ParallelTrackVector.heading = handleFlooredOverflow(0, 0, 360); //63
-ParallelTrackVector.latitude = handleOverflow(43.30186, -90, 90);
-ParallelTrackVector.longitude = handleOverflow(-79.78602, -180, 180);
+ParallelTrackVector.heading = handleFlooredOverflow(35, 0, 360);
+ParallelTrackVector.latitude = handleOverflow(43.313224532445126, -90, 90);
+ParallelTrackVector.longitude = handleOverflow(-79.7587885803533, -180, 180);
 
 const ParallelTrackSpeed = 10; // knots/s
 const ParallelTrackSpacing = 1_500; // meters
-const ParallelTrackHeight = 10_000; // meters
+const ParallelTrackHeight = 16_000; // meters
 const ParallelTrackTargets = [] as Target[];
 
 const data = {
