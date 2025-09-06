@@ -32,35 +32,44 @@ class ParallelTrackPattern extends BaseModel_1.BaseModel {
     }
     set vector(vector) {
         this._data.vector = vector;
-        this.update();
+        this.updateTargets();
     }
     get speed() {
         return this._data.speed;
     }
     set speed(speed) {
-        this._data.speed = Math.max(0, speed);
-        this.update();
+        const newSpeed = Math.max(0, speed);
+        if (this._data.speed !== newSpeed) {
+            this._data.speed = newSpeed;
+            this.updateTargets();
+        }
     }
     get height() {
         return this._data.height;
     }
     set height(height) {
-        this._data.height = Math.max(0, height);
-        this.update();
+        const newHeight = Math.max(0, height);
+        if (this._data.height !== newHeight) {
+            this._data.height = newHeight;
+            this.updateTargets();
+        }
     }
     get spacing() {
         return this._data.spacing;
     }
     set spacing(spacing) {
-        this._data.spacing = Math.max(0, spacing);
-        this.update();
+        const newSpacing = Math.max(0, spacing);
+        if (this._data.spacing !== newSpacing) {
+            this._data.spacing = newSpacing;
+            this.updateTargets();
+        }
     }
     get targets() {
         return this._data.targets;
     }
     set targets(targets) {
         this._data.targets = targets;
-        this.update();
+        // Note: No update call here as this is typically used internally
     }
     /**
      * Updates the internal state of the search pattern.
@@ -68,70 +77,120 @@ class ParallelTrackPattern extends BaseModel_1.BaseModel {
      */
     update(vector) {
         if (vector) {
-            this.vector = vector;
-            return;
+            this._data.vector = vector;
         }
         this.updateTargets();
     }
+    /**
+     * Batch update multiple properties without triggering multiple recalculations.
+     * More efficient than setting properties individually.
+     */
+    batchUpdate(updates) {
+        let hasChanges = false;
+        if (updates.vector !== undefined) {
+            this._data.vector = updates.vector;
+            hasChanges = true;
+        }
+        if (updates.speed !== undefined) {
+            const newSpeed = Math.max(0, updates.speed);
+            if (this._data.speed !== newSpeed) {
+                this._data.speed = newSpeed;
+                hasChanges = true;
+            }
+        }
+        if (updates.height !== undefined) {
+            const newHeight = Math.max(0, updates.height);
+            if (this._data.height !== newHeight) {
+                this._data.height = newHeight;
+                hasChanges = true;
+            }
+        }
+        if (updates.spacing !== undefined) {
+            const newSpacing = Math.max(0, updates.spacing);
+            if (this._data.spacing !== newSpacing) {
+                this._data.spacing = newSpacing;
+                hasChanges = true;
+            }
+        }
+        if (hasChanges) {
+            this.updateTargets();
+        }
+    }
     updateTargets() {
         const numTracks = Math.ceil(this.vector.stepDistance / this.spacing) + 1;
-        // Each track has 2 targets (start and end), so total targets = numTracks * 2
         const totalTargets = numTracks * 2;
-        // Calculate the perpendicular bearing for track direction (90° from vector heading)
+        // Pre-calculate all constant values to avoid redundant calculations
         const trackBearing = (this.vector.heading + 90) % 360;
-        // Calculate the three constant headings for the perpendicular turns
-        const headingToTrackEnd = trackBearing; // Perpendicular out (e.g., 90° for north vector)
-        const headingAlongVector = this.vector.heading; // Along vector line (e.g., 0° for north vector)  
-        const headingToVector = (trackBearing + 180) % 360; // Perpendicular back (e.g., 270° for north vector)
+        const headingToTrackEnd = trackBearing;
+        const headingAlongVector = this.vector.heading;
+        const headingToVector = (trackBearing + 180) % 360;
+        // Cache frequently accessed values
+        const vectorAltitude = this.vector.altitude;
+        const speed = this.speed;
+        const height = this.height;
+        const spacing = this.spacing;
+        // Resize targets array only if necessary
         if (this.targets.length !== totalTargets) {
-            this.targets = Array.from({ length: totalTargets }, () => new Target_1.Target());
+            // Reuse existing targets when possible to avoid object creation
+            const newTargets = new Array(totalTargets);
+            for (let i = 0; i < totalTargets; i++) {
+                newTargets[i] = i < this.targets.length ? this.targets[i] : new Target_1.Target();
+            }
+            this.targets = newTargets;
         }
+        // Pre-calculate vector positions for all tracks to minimize GeoCalculator calls
+        const vectorPositions = new Array(numTracks);
+        for (let i = 0; i < numTracks; i++) {
+            vectorPositions[i] = GeoCalculator_1.GeoCalculator.offsetTarget(this.vector, i * spacing, this.vector.heading);
+        }
+        // Batch process targets for better cache locality
         for (let trackIndex = 0; trackIndex < numTracks; trackIndex++) {
-            // Calculate position along the vector line for this track
-            const vectorDistance = trackIndex * this.spacing;
-            const vectorPosition = GeoCalculator_1.GeoCalculator.offsetTarget(this.vector, vectorDistance, this.vector.heading);
-            // For alternating pattern: even tracks go one way, odd tracks go the other way
-            const isForwardTrack = trackIndex % 2 === 0;
-            let startPosition, endPosition;
-            let startStepHeading, endStepHeading;
+            const vectorPosition = vectorPositions[trackIndex];
+            const isForwardTrack = (trackIndex & 1) === 0; // Use bitwise operation for better performance
+            const startTargetIndex = trackIndex << 1; // Use bit shift instead of multiplication
+            const endTargetIndex = startTargetIndex + 1;
+            const startTarget = this.targets[startTargetIndex];
+            const endTarget = this.targets[endTargetIndex];
+            let startPosition;
+            let endPosition;
+            let startStepHeading;
+            let endStepHeading;
             if (isForwardTrack) {
                 // Forward track: start at vector position, extend in track bearing direction
                 startPosition = vectorPosition;
-                endPosition = GeoCalculator_1.GeoCalculator.offsetTarget({ ...this.vector, longitude: vectorPosition.longitude, latitude: vectorPosition.latitude }, this.height, trackBearing);
-                startStepHeading = headingToTrackEnd; // Go perpendicular out to track end
-                endStepHeading = headingAlongVector; // Go along vector to next track start
+                endPosition = GeoCalculator_1.GeoCalculator.offsetTarget({ ...this.vector, longitude: vectorPosition.longitude, latitude: vectorPosition.latitude }, height, trackBearing);
+                startStepHeading = headingToTrackEnd;
+                endStepHeading = headingAlongVector;
             }
             else {
                 // Backward track: start at extended position, end at vector position
-                const extendedPosition = GeoCalculator_1.GeoCalculator.offsetTarget({ ...this.vector, longitude: vectorPosition.longitude, latitude: vectorPosition.latitude }, this.height, trackBearing);
-                startPosition = extendedPosition;
+                startPosition = GeoCalculator_1.GeoCalculator.offsetTarget({ ...this.vector, longitude: vectorPosition.longitude, latitude: vectorPosition.latitude }, height, trackBearing);
                 endPosition = vectorPosition;
-                startStepHeading = headingToVector; // Go perpendicular back to vector line
-                endStepHeading = headingAlongVector; // Go along vector to next track start
+                startStepHeading = headingToVector;
+                endStepHeading = headingAlongVector;
             }
-            // Start target (even indices: 0, 2, 4...)
-            const startTarget = this.targets[trackIndex * 2];
+            // Batch update start target properties
             startTarget.name = trackIndex === 0 ? "Datum" : `Track ${trackIndex + 1} Start`;
             startTarget.longitude = startPosition.longitude;
             startTarget.latitude = startPosition.latitude;
-            startTarget.altitude = this.vector.altitude;
+            startTarget.altitude = vectorAltitude;
             startTarget.heading = startStepHeading;
-            startTarget.speed = this.speed;
-            startTarget.stepDistance = this.height;
-            startTarget.stepSpeed = this.speed;
+            startTarget.speed = speed;
+            startTarget.stepDistance = height;
+            startTarget.stepSpeed = speed;
             startTarget.stepHeading = startStepHeading;
-            // End target (odd indices: 1, 3, 5...)
-            const endTarget = this.targets[trackIndex * 2 + 1];
+            // Batch update end target properties
             endTarget.name = `Track ${trackIndex + 1} End`;
             endTarget.longitude = endPosition.longitude;
             endTarget.latitude = endPosition.latitude;
-            endTarget.altitude = this.vector.altitude;
+            endTarget.altitude = vectorAltitude;
             endTarget.heading = endStepHeading;
-            endTarget.speed = this.speed;
-            endTarget.stepDistance = trackIndex < numTracks - 1 ? this.spacing : 0; // Last track has no next step
-            endTarget.stepSpeed = this.speed;
+            endTarget.speed = speed;
+            endTarget.stepDistance = trackIndex < numTracks - 1 ? spacing : 0;
+            endTarget.stepSpeed = speed;
             endTarget.stepHeading = endStepHeading;
         }
+        // Single validation call at the end instead of on every property change
         this.validate();
     }
     /**

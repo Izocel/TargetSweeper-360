@@ -51,6 +51,16 @@ export declare class ParallelTrackPattern extends BaseModel<typeof ParallelTrack
      * @param vector Optional new vector target to update the pattern with.
      */
     update(vector?: Target): void;
+    /**
+     * Batch update multiple properties without triggering multiple recalculations.
+     * More efficient than setting properties individually.
+     */
+    batchUpdate(updates: {
+        vector?: Target;
+        speed?: number;
+        height?: number;
+        spacing?: number;
+    }): void;
     updateTargets(): void;
     /**
      * Generates KML placemarks for each target in the search pattern.
