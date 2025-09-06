@@ -73,7 +73,7 @@
             <LineString>
                 <coordinates>
                     -78.81167,43.59572083736536,0
-                    -78.79309387229237,43.59571932819507,0
+                    -78.79309387247213,43.59571932844471,0
                 </coordinates>
             </LineString>
         </Placemark>        <Placemark>
@@ -81,8 +81,8 @@
             <name>Leg 3</name>
             <LineString>
                 <coordinates>
-                    -78.79309387229237,43.59571932819507,0
-                    -78.79309387229237,43.56871762144956,0
+                    -78.79309387247213,43.59571932844471,0
+                    -78.79310217273056,43.568717622621136,0
                 </coordinates>
             </LineString>
         </Placemark>        <Placemark>
@@ -90,8 +90,8 @@
             <name>Leg 4</name>
             <LineString>
                 <coordinates>
-                    -78.79309387229237,43.56871762144956,0
-                    -78.8302295244111,43.56871159042496,0
+                    -78.79310217273056,43.568717622621136,0
+                    -78.83023782726947,43.568717622621136,0
                 </coordinates>
             </LineString>
         </Placemark>        <Placemark>
@@ -99,8 +99,8 @@
             <name>Leg 5</name>
             <LineString>
                 <coordinates>
-                    -78.8302295244111,43.56871159042496,0
-                    -78.8302295244111,43.60921410257405,0
+                    -78.83023782726947,43.568717622621136,0
+                    -78.83025028146818,43.60922013334285,0
                 </coordinates>
             </LineString>
         </Placemark>        <Placemark>
@@ -108,8 +108,8 @@
             <name>Leg 6</name>
             <LineString>
                 <coordinates>
-                    -78.8302295244111,43.60921410257405,0
-                    -78.77448869232259,43.6092005136796,0
+                    -78.83025028146818,43.60922013334285,0
+                    -78.77450943892023,43.60921560520534,0
                 </coordinates>
             </LineString>
         </Placemark>        <Placemark>
@@ -117,8 +117,8 @@
             <name>Leg 7</name>
             <LineString>
                 <coordinates>
-                    -78.77448869232259,43.6092005136796,0
-                    -78.77448869232259,43.55519710000383,0
+                    -78.77450943892023,43.60921560520534,0
+                    -78.77454263995575,43.555212199055546,0
                 </coordinates>
             </LineString>
         </Placemark>        <Placemark>
@@ -126,8 +126,8 @@
             <name>Leg 8</name>
             <LineString>
                 <coordinates>
-                    -78.77448869232259,43.55519710000383,0
-                    -78.8487433744386,43.555172987231145,0
+                    -78.77454263995575,43.555212199055546,0
+                    -78.84879736004426,43.555212199055546,0
                 </coordinates>
             </LineString>
         </Placemark>        <Placemark>
@@ -135,8 +135,8 @@
             <name>Leg 9</name>
             <LineString>
                 <coordinates>
-                    -78.8487433744386,43.555172987231145,0
-                    -78.8487433744386,43.62267717459106,0
+                    -78.84879736004426,43.555212199055546,0
+                    -78.84883887404717,43.622716376717996,0
                 </coordinates>
             </LineString>
         </Placemark>        <Placemark>
@@ -144,8 +144,8 @@
             <name>Leg 10</name>
             <LineString>
                 <coordinates>
-                    -78.8487433744386,43.62267717459106,0
-                    -78.75582128382067,43.622639410027325,0
+                    -78.84883887404717,43.622716376717996,0
+                    -78.75591669357689,43.62270882752951,0
                 </coordinates>
             </LineString>
         </Placemark>        <Placemark>
@@ -153,8 +153,8 @@
             <name>Leg 11</name>
             <LineString>
                 <coordinates>
-                    -78.75582128382067,43.622639410027325,0
-                    -78.75582128382067,43.5416342886367,0
+                    -78.75591669357689,43.62270882752951,0
+                    -78.75599139591368,43.541703732048155,0
                 </coordinates>
             </LineString>
         </Placemark>        <Placemark>
@@ -162,8 +162,8 @@
             <name>Leg 12</name>
             <LineString>
                 <coordinates>
-                    -78.75582128382067,43.5416342886367,0
-                    -78.86717829861706,43.54158006045665,0
+                    -78.75599139591368,43.541703732048155,0
+                    -78.86734860408633,43.541703732048155,0
                 </coordinates>
             </LineString>
         </Placemark>        <Placemark>
@@ -171,8 +171,8 @@
             <name>Leg 13</name>
             <LineString>
                 <coordinates>
-                    -78.86717829861706,43.54158006045665,0
-                    -78.86717829861706,43.636085924282725,0
+                    -78.86734860408633,43.541703732048155,0
+                    -78.86743578350921,43.636209564736845,0
                 </coordinates>
             </LineString>
         </Placemark>        <Placemark>
@@ -180,8 +180,8 @@
             <name>Leg 14</name>
             <LineString>
                 <coordinates>
-                    -78.86717829861706,43.636085924282725,0
-                    -78.73705850093225,43.63601187130809,0
+                    -78.86743578350921,43.636209564736845,0
+                    -78.73731563067288,43.63619899266228,0
                 </coordinates>
             </LineString>
         </Placemark>        <Placemark>
@@ -189,8 +189,8 @@
             <name>Leg 15</name>
             <LineString>
                 <coordinates>
-                    -78.73705850093225,43.63601187130809,0
-                    -78.73705850093225,43.52800504036028,0
+                    -78.73731563067288,43.63619899266228,0
+                    -78.73744843484428,43.528192224341396,0
                 </coordinates>
             </LineString>
         </Placemark>        <Placemark>
@@ -198,8 +198,8 @@
             <name>Leg 16</name>
             <LineString>
                 <coordinates>
-                    -78.73705850093225,43.52800504036028,0
-                    -78.88550101694922,43.52790868035915,0
+                    -78.73744843484428,43.528192224341396,0
+                    -78.88589156515575,43.528192224341396,0
                 </coordinates>
             </LineString>
         </Placemark>        <Placemark>
@@ -207,8 +207,8 @@
             <name>Leg 17</name>
             <LineString>
                 <coordinates>
-                    -78.88550101694922,43.52790868035915,0
-                    -78.88550101694922,43.64941622319253,0
+                    -78.88589156515575,43.528192224341396,0
+                    -78.8860410156282,43.64969969464281,0
                 </coordinates>
             </LineString>
         </Placemark>        <Placemark>
@@ -216,8 +216,8 @@
             <name>Leg 18</name>
             <LineString>
                 <coordinates>
-                    -78.88550101694922,43.64941622319253,0
-                    -78.71816722924638,43.649293752502366,0
+                    -78.8860410156282,43.64969969464281,0
+                    -78.71870624443716,43.64968609784628,0
                 </coordinates>
             </LineString>
         </Placemark>        <Placemark>
@@ -225,8 +225,8 @@
             <name>Leg 19</name>
             <LineString>
                 <coordinates>
-                    -78.71816722924638,43.649293752502366,0
-                    -78.71816722924639,43.514285208639286,0
+                    -78.71870624443716,43.64968609784628,0
+                    -78.71891375098927,43.514677678675234,0
                 </coordinates>
             </LineString>
         </Placemark>        <Placemark>
@@ -234,8 +234,8 @@
             <name>Leg 20</name>
             <LineString>
                 <coordinates>
-                    -78.71816722924639,43.514285208639286,0
-                    -78.9036782220525,43.514134717930894,0
+                    -78.71891375098927,43.514677678675234,0
+                    -78.90442624901075,43.514677678675234,0
                 </coordinates>
             </LineString>
         </Placemark>        <Placemark>
@@ -243,8 +243,8 @@
             <name>Leg 21</name>
             <LineString>
                 <coordinates>
-                    -78.9036782220525,43.514134717930894,0
-                    -78.9036782220525,43.6626439440562,0
+                    -78.90442624901075,43.514677678675234,0
+                    -78.90465457617992,43.66318676367692,0
                 </coordinates>
             </LineString>
         </Placemark>        <Placemark>
@@ -252,8 +252,8 @@
             <name>Leg 22</name>
             <LineString>
                 <coordinates>
-                    -78.9036782220525,43.6626439440562,0
-                    -78.69911438681709,43.66246091011774,0
+                    -78.90465457617992,43.66318676367692,0
+                    -78.70008852909685,43.6631701403216,0
                 </coordinates>
             </LineString>
         </Placemark>        <Placemark>
@@ -261,8 +261,8 @@
             <name>Leg 23</name>
             <LineString>
                 <coordinates>
-                    -78.69911438681709,43.66246091011774,0
-                    -78.69911438681709,43.500450648007664,0
+                    -78.70008852909685,43.6631701403216,0
+                    -78.7003873385923,43.50116009778713,0
                 </coordinates>
             </LineString>
         </Placemark>        <Placemark>
@@ -270,8 +270,8 @@
             <name>Leg 24</name>
             <LineString>
                 <coordinates>
-                    -78.69911438681709,43.500450648007664,0
-                    -78.92167658075331,43.50023404561505,0
+                    -78.7003873385923,43.50116009778713,0
+                    -78.92295266140772,43.50116009778713,0
                 </coordinates>
             </LineString>
         </Placemark>        <Placemark>
@@ -279,8 +279,8 @@
             <name>Leg 25</name>
             <LineString>
                 <coordinates>
-                    -78.92167658075331,43.50023404561505,0
-                    -78.92167658075331,43.67574496151793,0
+                    -78.92295266140772,43.50116009778713,0
+                    -78.92327647094201,43.676670769077674,0
                 </coordinates>
             </LineString>
         </Placemark>        <Placemark>
@@ -288,8 +288,8 @@
             <name>Leg 26</name>
             <LineString>
                 <coordinates>
-                    -78.92167658075331,43.67574496151793,0
-                    -78.67986692640307,43.67548920300783,0
+                    -78.92327647094201,43.676670769077674,0
+                    -78.68146247887731,43.67665111732584,0
                 </coordinates>
             </LineString>
         </Placemark>        <Placemark>
@@ -297,8 +297,8 @@
             <name>Leg 27</name>
             <LineString>
                 <coordinates>
-                    -78.67986692640307,43.67548920300783,0
-                    -78.67986692640307,43.48647721488758,0
+                    -78.68146247887731,43.67665111732584,0
+                    -78.68186919189883,43.48763948441207,0
                 </coordinates>
             </LineString>
         </Placemark>        <Placemark>
@@ -306,8 +306,8 @@
             <name>Leg 28</name>
             <LineString>
                 <coordinates>
-                    -78.67986692640307,43.48647721488758,0
-                    -78.93946273604836,43.486182538225194,0
+                    -78.68186919189883,43.48763948441207,0
+                    -78.9414708081012,43.48763948441207,0
                 </coordinates>
             </LineString>
         </Placemark>        <Placemark>
@@ -315,8 +315,8 @@
             <name>Leg 29</name>
             <LineString>
                 <coordinates>
-                    -78.93946273604836,43.486182538225194,0
-                    -78.93946273604836,43.688695153049785,0
+                    -78.9414708081012,43.48763948441207,0
+                    -78.94190670569392,43.69015170808112,0
                 </coordinates>
             </LineString>
         </Placemark>        <Placemark>
@@ -324,8 +324,8 @@
             <name>Leg 30</name>
             <LineString>
                 <coordinates>
-                    -78.93946273604836,43.688695153049785,0
-                    -78.66039183732562,43.688354493393774,0
+                    -78.94190670569392,43.69015170808112,0
+                    -78.66282808800206,43.69012902609407,0
                 </coordinates>
             </LineString>
         </Placemark>        <Placemark>
@@ -333,8 +333,8 @@
             <name>Leg 31</name>
             <LineString>
                 <coordinates>
-                    -78.66039183732562,43.688354493393774,0
-                    -78.66039183732562,43.47234076861093,0
+                    -78.66282808800206,43.69012902609407,0
+                    -78.66335930515619,43.47411584128256,0
                 </coordinates>
             </LineString>
         </Placemark>        <Placemark>
@@ -342,8 +342,8 @@
             <name>Leg 32</name>
             <LineString>
                 <coordinates>
-                    -78.66039183732562,43.47234076861093,0
-                    -78.9570033095164,43.4719560740661,0
+                    -78.66335930515619,43.47411584128256,0
+                    -78.95998069484384,43.47411584128256,0
                 </coordinates>
             </LineString>
         </Placemark>        <Placemark>
@@ -351,8 +351,8 @@
             <name>Leg 33</name>
             <LineString>
                 <coordinates>
-                    -78.9570033095164,43.4719560740661,0
-                    -78.9570033095164,43.70147040007243,0
+                    -78.95998069484384,43.47411584128256,0
+                    -78.96054528621687,43.70362957792074,0
                 </coordinates>
             </LineString>
         </Placemark>        <Placemark>
@@ -360,8 +360,8 @@
             <name>Leg 34</name>
             <LineString>
                 <coordinates>
-                    -78.9570033095164,43.70147040007243,0
-                    -78.64065614811621,43.701032648087555,0
+                    -78.96054528621687,43.70362957792074,0
+                    -78.64418535069288,43.7036038638589,0
                 </coordinates>
             </LineString>
         </Placemark>        <Placemark>
@@ -369,8 +369,8 @@
             <name>Leg 35</name>
             <LineString>
                 <coordinates>
-                    -78.64065614811621,43.701032648087555,0
-                    -78.64065614811621,43.45801717264281,0
+                    -78.64418535069288,43.7036038638589,0
+                    -78.64485767261361,43.46058917112865,0
                 </coordinates>
             </LineString>
         </Placemark>        <Placemark>
@@ -378,17 +378,8 @@
             <name>Leg 36</name>
             <LineString>
                 <coordinates>
-                    -78.64065614811621,43.45801717264281,0
-                    -78.97426490413936,43.45753053625643,0
-                </coordinates>
-            </LineString>
-        </Placemark>        <Placemark>
-            <styleUrl>#trackStyle</styleUrl>
-            <name>Leg 37</name>
-            <LineString>
-                <coordinates>
-                    -78.97426490413936,43.45753053625643,0
-                    -78.97426490413936,43.71404658927763,0
+                    -78.64485767261361,43.46058917112865,0
+                    -78.97848232738642,43.46058917112865,0
                 </coordinates>
             </LineString>
         </Placemark>
@@ -440,14 +431,14 @@
                 <br />
                 Step Distance: 3000
                 <br />
-                Longitude: -78.79309387229237
+                Longitude: -78.79309387247213
                 <br />
-                Latitude: 43.59571932819507
+                Latitude: 43.59571932844471
                 <br />
                 Altitude: 0
             </description>
             <Point>
-                <coordinates>-78.79309387229237,43.59571932819507,0</coordinates>
+                <coordinates>-78.79309387247213,43.59571932844471,0</coordinates>
             </Point>
         </Placemark>        <Placemark>
             <styleUrl>#targetStyle</styleUrl>
@@ -459,14 +450,14 @@
                 <br />
                 Step Distance: 3000
                 <br />
-                Longitude: -78.79309387229237
+                Longitude: -78.79310217273056
                 <br />
-                Latitude: 43.56871762144956
+                Latitude: 43.568717622621136
                 <br />
                 Altitude: 0
             </description>
             <Point>
-                <coordinates>-78.79309387229237,43.56871762144956,0</coordinates>
+                <coordinates>-78.79310217273056,43.568717622621136,0</coordinates>
             </Point>
         </Placemark>        <Placemark>
             <styleUrl>#targetStyle</styleUrl>
@@ -478,14 +469,14 @@
                 <br />
                 Step Distance: 4500
                 <br />
-                Longitude: -78.8302295244111
+                Longitude: -78.83023782726947
                 <br />
-                Latitude: 43.56871159042496
+                Latitude: 43.568717622621136
                 <br />
                 Altitude: 0
             </description>
             <Point>
-                <coordinates>-78.8302295244111,43.56871159042496,0</coordinates>
+                <coordinates>-78.83023782726947,43.568717622621136,0</coordinates>
             </Point>
         </Placemark>        <Placemark>
             <styleUrl>#targetStyle</styleUrl>
@@ -497,14 +488,14 @@
                 <br />
                 Step Distance: 4500
                 <br />
-                Longitude: -78.8302295244111
+                Longitude: -78.83025028146818
                 <br />
-                Latitude: 43.60921410257405
+                Latitude: 43.60922013334285
                 <br />
                 Altitude: 0
             </description>
             <Point>
-                <coordinates>-78.8302295244111,43.60921410257405,0</coordinates>
+                <coordinates>-78.83025028146818,43.60922013334285,0</coordinates>
             </Point>
         </Placemark>        <Placemark>
             <styleUrl>#targetStyle</styleUrl>
@@ -516,14 +507,14 @@
                 <br />
                 Step Distance: 6000
                 <br />
-                Longitude: -78.77448869232259
+                Longitude: -78.77450943892023
                 <br />
-                Latitude: 43.6092005136796
+                Latitude: 43.60921560520534
                 <br />
                 Altitude: 0
             </description>
             <Point>
-                <coordinates>-78.77448869232259,43.6092005136796,0</coordinates>
+                <coordinates>-78.77450943892023,43.60921560520534,0</coordinates>
             </Point>
         </Placemark>        <Placemark>
             <styleUrl>#targetStyle</styleUrl>
@@ -535,14 +526,14 @@
                 <br />
                 Step Distance: 6000
                 <br />
-                Longitude: -78.77448869232259
+                Longitude: -78.77454263995575
                 <br />
-                Latitude: 43.55519710000383
+                Latitude: 43.555212199055546
                 <br />
                 Altitude: 0
             </description>
             <Point>
-                <coordinates>-78.77448869232259,43.55519710000383,0</coordinates>
+                <coordinates>-78.77454263995575,43.555212199055546,0</coordinates>
             </Point>
         </Placemark>        <Placemark>
             <styleUrl>#targetStyle</styleUrl>
@@ -554,14 +545,14 @@
                 <br />
                 Step Distance: 7500
                 <br />
-                Longitude: -78.8487433744386
+                Longitude: -78.84879736004426
                 <br />
-                Latitude: 43.555172987231145
+                Latitude: 43.555212199055546
                 <br />
                 Altitude: 0
             </description>
             <Point>
-                <coordinates>-78.8487433744386,43.555172987231145,0</coordinates>
+                <coordinates>-78.84879736004426,43.555212199055546,0</coordinates>
             </Point>
         </Placemark>        <Placemark>
             <styleUrl>#targetStyle</styleUrl>
@@ -573,14 +564,14 @@
                 <br />
                 Step Distance: 7500
                 <br />
-                Longitude: -78.8487433744386
+                Longitude: -78.84883887404717
                 <br />
-                Latitude: 43.62267717459106
+                Latitude: 43.622716376717996
                 <br />
                 Altitude: 0
             </description>
             <Point>
-                <coordinates>-78.8487433744386,43.62267717459106,0</coordinates>
+                <coordinates>-78.84883887404717,43.622716376717996,0</coordinates>
             </Point>
         </Placemark>        <Placemark>
             <styleUrl>#targetStyle</styleUrl>
@@ -592,14 +583,14 @@
                 <br />
                 Step Distance: 9000
                 <br />
-                Longitude: -78.75582128382067
+                Longitude: -78.75591669357689
                 <br />
-                Latitude: 43.622639410027325
+                Latitude: 43.62270882752951
                 <br />
                 Altitude: 0
             </description>
             <Point>
-                <coordinates>-78.75582128382067,43.622639410027325,0</coordinates>
+                <coordinates>-78.75591669357689,43.62270882752951,0</coordinates>
             </Point>
         </Placemark>        <Placemark>
             <styleUrl>#targetStyle</styleUrl>
@@ -611,14 +602,14 @@
                 <br />
                 Step Distance: 9000
                 <br />
-                Longitude: -78.75582128382067
+                Longitude: -78.75599139591368
                 <br />
-                Latitude: 43.5416342886367
+                Latitude: 43.541703732048155
                 <br />
                 Altitude: 0
             </description>
             <Point>
-                <coordinates>-78.75582128382067,43.5416342886367,0</coordinates>
+                <coordinates>-78.75599139591368,43.541703732048155,0</coordinates>
             </Point>
         </Placemark>        <Placemark>
             <styleUrl>#targetStyle</styleUrl>
@@ -630,14 +621,14 @@
                 <br />
                 Step Distance: 10500
                 <br />
-                Longitude: -78.86717829861706
+                Longitude: -78.86734860408633
                 <br />
-                Latitude: 43.54158006045665
+                Latitude: 43.541703732048155
                 <br />
                 Altitude: 0
             </description>
             <Point>
-                <coordinates>-78.86717829861706,43.54158006045665,0</coordinates>
+                <coordinates>-78.86734860408633,43.541703732048155,0</coordinates>
             </Point>
         </Placemark>        <Placemark>
             <styleUrl>#targetStyle</styleUrl>
@@ -649,14 +640,14 @@
                 <br />
                 Step Distance: 10500
                 <br />
-                Longitude: -78.86717829861706
+                Longitude: -78.86743578350921
                 <br />
-                Latitude: 43.636085924282725
+                Latitude: 43.636209564736845
                 <br />
                 Altitude: 0
             </description>
             <Point>
-                <coordinates>-78.86717829861706,43.636085924282725,0</coordinates>
+                <coordinates>-78.86743578350921,43.636209564736845,0</coordinates>
             </Point>
         </Placemark>        <Placemark>
             <styleUrl>#targetStyle</styleUrl>
@@ -668,14 +659,14 @@
                 <br />
                 Step Distance: 12000
                 <br />
-                Longitude: -78.73705850093225
+                Longitude: -78.73731563067288
                 <br />
-                Latitude: 43.63601187130809
+                Latitude: 43.63619899266228
                 <br />
                 Altitude: 0
             </description>
             <Point>
-                <coordinates>-78.73705850093225,43.63601187130809,0</coordinates>
+                <coordinates>-78.73731563067288,43.63619899266228,0</coordinates>
             </Point>
         </Placemark>        <Placemark>
             <styleUrl>#targetStyle</styleUrl>
@@ -687,14 +678,14 @@
                 <br />
                 Step Distance: 12000
                 <br />
-                Longitude: -78.73705850093225
+                Longitude: -78.73744843484428
                 <br />
-                Latitude: 43.52800504036028
+                Latitude: 43.528192224341396
                 <br />
                 Altitude: 0
             </description>
             <Point>
-                <coordinates>-78.73705850093225,43.52800504036028,0</coordinates>
+                <coordinates>-78.73744843484428,43.528192224341396,0</coordinates>
             </Point>
         </Placemark>        <Placemark>
             <styleUrl>#targetStyle</styleUrl>
@@ -706,14 +697,14 @@
                 <br />
                 Step Distance: 13500
                 <br />
-                Longitude: -78.88550101694922
+                Longitude: -78.88589156515575
                 <br />
-                Latitude: 43.52790868035915
+                Latitude: 43.528192224341396
                 <br />
                 Altitude: 0
             </description>
             <Point>
-                <coordinates>-78.88550101694922,43.52790868035915,0</coordinates>
+                <coordinates>-78.88589156515575,43.528192224341396,0</coordinates>
             </Point>
         </Placemark>        <Placemark>
             <styleUrl>#targetStyle</styleUrl>
@@ -725,14 +716,14 @@
                 <br />
                 Step Distance: 13500
                 <br />
-                Longitude: -78.88550101694922
+                Longitude: -78.8860410156282
                 <br />
-                Latitude: 43.64941622319253
+                Latitude: 43.64969969464281
                 <br />
                 Altitude: 0
             </description>
             <Point>
-                <coordinates>-78.88550101694922,43.64941622319253,0</coordinates>
+                <coordinates>-78.8860410156282,43.64969969464281,0</coordinates>
             </Point>
         </Placemark>        <Placemark>
             <styleUrl>#targetStyle</styleUrl>
@@ -744,14 +735,14 @@
                 <br />
                 Step Distance: 15000
                 <br />
-                Longitude: -78.71816722924638
+                Longitude: -78.71870624443716
                 <br />
-                Latitude: 43.649293752502366
+                Latitude: 43.64968609784628
                 <br />
                 Altitude: 0
             </description>
             <Point>
-                <coordinates>-78.71816722924638,43.649293752502366,0</coordinates>
+                <coordinates>-78.71870624443716,43.64968609784628,0</coordinates>
             </Point>
         </Placemark>        <Placemark>
             <styleUrl>#targetStyle</styleUrl>
@@ -763,14 +754,14 @@
                 <br />
                 Step Distance: 15000
                 <br />
-                Longitude: -78.71816722924639
+                Longitude: -78.71891375098927
                 <br />
-                Latitude: 43.514285208639286
+                Latitude: 43.514677678675234
                 <br />
                 Altitude: 0
             </description>
             <Point>
-                <coordinates>-78.71816722924639,43.514285208639286,0</coordinates>
+                <coordinates>-78.71891375098927,43.514677678675234,0</coordinates>
             </Point>
         </Placemark>        <Placemark>
             <styleUrl>#targetStyle</styleUrl>
@@ -782,14 +773,14 @@
                 <br />
                 Step Distance: 16500
                 <br />
-                Longitude: -78.9036782220525
+                Longitude: -78.90442624901075
                 <br />
-                Latitude: 43.514134717930894
+                Latitude: 43.514677678675234
                 <br />
                 Altitude: 0
             </description>
             <Point>
-                <coordinates>-78.9036782220525,43.514134717930894,0</coordinates>
+                <coordinates>-78.90442624901075,43.514677678675234,0</coordinates>
             </Point>
         </Placemark>        <Placemark>
             <styleUrl>#targetStyle</styleUrl>
@@ -801,14 +792,14 @@
                 <br />
                 Step Distance: 16500
                 <br />
-                Longitude: -78.9036782220525
+                Longitude: -78.90465457617992
                 <br />
-                Latitude: 43.6626439440562
+                Latitude: 43.66318676367692
                 <br />
                 Altitude: 0
             </description>
             <Point>
-                <coordinates>-78.9036782220525,43.6626439440562,0</coordinates>
+                <coordinates>-78.90465457617992,43.66318676367692,0</coordinates>
             </Point>
         </Placemark>        <Placemark>
             <styleUrl>#targetStyle</styleUrl>
@@ -820,14 +811,14 @@
                 <br />
                 Step Distance: 18000
                 <br />
-                Longitude: -78.69911438681709
+                Longitude: -78.70008852909685
                 <br />
-                Latitude: 43.66246091011774
+                Latitude: 43.6631701403216
                 <br />
                 Altitude: 0
             </description>
             <Point>
-                <coordinates>-78.69911438681709,43.66246091011774,0</coordinates>
+                <coordinates>-78.70008852909685,43.6631701403216,0</coordinates>
             </Point>
         </Placemark>        <Placemark>
             <styleUrl>#targetStyle</styleUrl>
@@ -839,14 +830,14 @@
                 <br />
                 Step Distance: 18000
                 <br />
-                Longitude: -78.69911438681709
+                Longitude: -78.7003873385923
                 <br />
-                Latitude: 43.500450648007664
+                Latitude: 43.50116009778713
                 <br />
                 Altitude: 0
             </description>
             <Point>
-                <coordinates>-78.69911438681709,43.500450648007664,0</coordinates>
+                <coordinates>-78.7003873385923,43.50116009778713,0</coordinates>
             </Point>
         </Placemark>        <Placemark>
             <styleUrl>#targetStyle</styleUrl>
@@ -858,14 +849,14 @@
                 <br />
                 Step Distance: 19500
                 <br />
-                Longitude: -78.92167658075331
+                Longitude: -78.92295266140772
                 <br />
-                Latitude: 43.50023404561505
+                Latitude: 43.50116009778713
                 <br />
                 Altitude: 0
             </description>
             <Point>
-                <coordinates>-78.92167658075331,43.50023404561505,0</coordinates>
+                <coordinates>-78.92295266140772,43.50116009778713,0</coordinates>
             </Point>
         </Placemark>        <Placemark>
             <styleUrl>#targetStyle</styleUrl>
@@ -877,14 +868,14 @@
                 <br />
                 Step Distance: 19500
                 <br />
-                Longitude: -78.92167658075331
+                Longitude: -78.92327647094201
                 <br />
-                Latitude: 43.67574496151793
+                Latitude: 43.676670769077674
                 <br />
                 Altitude: 0
             </description>
             <Point>
-                <coordinates>-78.92167658075331,43.67574496151793,0</coordinates>
+                <coordinates>-78.92327647094201,43.676670769077674,0</coordinates>
             </Point>
         </Placemark>        <Placemark>
             <styleUrl>#targetStyle</styleUrl>
@@ -896,14 +887,14 @@
                 <br />
                 Step Distance: 21000
                 <br />
-                Longitude: -78.67986692640307
+                Longitude: -78.68146247887731
                 <br />
-                Latitude: 43.67548920300783
+                Latitude: 43.67665111732584
                 <br />
                 Altitude: 0
             </description>
             <Point>
-                <coordinates>-78.67986692640307,43.67548920300783,0</coordinates>
+                <coordinates>-78.68146247887731,43.67665111732584,0</coordinates>
             </Point>
         </Placemark>        <Placemark>
             <styleUrl>#targetStyle</styleUrl>
@@ -915,14 +906,14 @@
                 <br />
                 Step Distance: 21000
                 <br />
-                Longitude: -78.67986692640307
+                Longitude: -78.68186919189883
                 <br />
-                Latitude: 43.48647721488758
+                Latitude: 43.48763948441207
                 <br />
                 Altitude: 0
             </description>
             <Point>
-                <coordinates>-78.67986692640307,43.48647721488758,0</coordinates>
+                <coordinates>-78.68186919189883,43.48763948441207,0</coordinates>
             </Point>
         </Placemark>        <Placemark>
             <styleUrl>#targetStyle</styleUrl>
@@ -934,14 +925,14 @@
                 <br />
                 Step Distance: 22500
                 <br />
-                Longitude: -78.93946273604836
+                Longitude: -78.9414708081012
                 <br />
-                Latitude: 43.486182538225194
+                Latitude: 43.48763948441207
                 <br />
                 Altitude: 0
             </description>
             <Point>
-                <coordinates>-78.93946273604836,43.486182538225194,0</coordinates>
+                <coordinates>-78.9414708081012,43.48763948441207,0</coordinates>
             </Point>
         </Placemark>        <Placemark>
             <styleUrl>#targetStyle</styleUrl>
@@ -953,14 +944,14 @@
                 <br />
                 Step Distance: 22500
                 <br />
-                Longitude: -78.93946273604836
+                Longitude: -78.94190670569392
                 <br />
-                Latitude: 43.688695153049785
+                Latitude: 43.69015170808112
                 <br />
                 Altitude: 0
             </description>
             <Point>
-                <coordinates>-78.93946273604836,43.688695153049785,0</coordinates>
+                <coordinates>-78.94190670569392,43.69015170808112,0</coordinates>
             </Point>
         </Placemark>        <Placemark>
             <styleUrl>#targetStyle</styleUrl>
@@ -972,14 +963,14 @@
                 <br />
                 Step Distance: 24000
                 <br />
-                Longitude: -78.66039183732562
+                Longitude: -78.66282808800206
                 <br />
-                Latitude: 43.688354493393774
+                Latitude: 43.69012902609407
                 <br />
                 Altitude: 0
             </description>
             <Point>
-                <coordinates>-78.66039183732562,43.688354493393774,0</coordinates>
+                <coordinates>-78.66282808800206,43.69012902609407,0</coordinates>
             </Point>
         </Placemark>        <Placemark>
             <styleUrl>#targetStyle</styleUrl>
@@ -991,14 +982,14 @@
                 <br />
                 Step Distance: 24000
                 <br />
-                Longitude: -78.66039183732562
+                Longitude: -78.66335930515619
                 <br />
-                Latitude: 43.47234076861093
+                Latitude: 43.47411584128256
                 <br />
                 Altitude: 0
             </description>
             <Point>
-                <coordinates>-78.66039183732562,43.47234076861093,0</coordinates>
+                <coordinates>-78.66335930515619,43.47411584128256,0</coordinates>
             </Point>
         </Placemark>        <Placemark>
             <styleUrl>#targetStyle</styleUrl>
@@ -1010,14 +1001,14 @@
                 <br />
                 Step Distance: 25500
                 <br />
-                Longitude: -78.9570033095164
+                Longitude: -78.95998069484384
                 <br />
-                Latitude: 43.4719560740661
+                Latitude: 43.47411584128256
                 <br />
                 Altitude: 0
             </description>
             <Point>
-                <coordinates>-78.9570033095164,43.4719560740661,0</coordinates>
+                <coordinates>-78.95998069484384,43.47411584128256,0</coordinates>
             </Point>
         </Placemark>        <Placemark>
             <styleUrl>#targetStyle</styleUrl>
@@ -1029,14 +1020,14 @@
                 <br />
                 Step Distance: 25500
                 <br />
-                Longitude: -78.9570033095164
+                Longitude: -78.96054528621687
                 <br />
-                Latitude: 43.70147040007243
+                Latitude: 43.70362957792074
                 <br />
                 Altitude: 0
             </description>
             <Point>
-                <coordinates>-78.9570033095164,43.70147040007243,0</coordinates>
+                <coordinates>-78.96054528621687,43.70362957792074,0</coordinates>
             </Point>
         </Placemark>        <Placemark>
             <styleUrl>#targetStyle</styleUrl>
@@ -1048,14 +1039,14 @@
                 <br />
                 Step Distance: 27000
                 <br />
-                Longitude: -78.64065614811621
+                Longitude: -78.64418535069288
                 <br />
-                Latitude: 43.701032648087555
+                Latitude: 43.7036038638589
                 <br />
                 Altitude: 0
             </description>
             <Point>
-                <coordinates>-78.64065614811621,43.701032648087555,0</coordinates>
+                <coordinates>-78.64418535069288,43.7036038638589,0</coordinates>
             </Point>
         </Placemark>        <Placemark>
             <styleUrl>#targetStyle</styleUrl>
@@ -1067,14 +1058,14 @@
                 <br />
                 Step Distance: 27000
                 <br />
-                Longitude: -78.64065614811621
+                Longitude: -78.64485767261361
                 <br />
-                Latitude: 43.45801717264281
+                Latitude: 43.46058917112865
                 <br />
                 Altitude: 0
             </description>
             <Point>
-                <coordinates>-78.64065614811621,43.45801717264281,0</coordinates>
+                <coordinates>-78.64485767261361,43.46058917112865,0</coordinates>
             </Point>
         </Placemark>        <Placemark>
             <styleUrl>#targetStyle</styleUrl>
@@ -1086,33 +1077,14 @@
                 <br />
                 Step Distance: 28500
                 <br />
-                Longitude: -78.97426490413936
+                Longitude: -78.97848232738642
                 <br />
-                Latitude: 43.45753053625643
-                <br />
-                Altitude: 0
-            </description>
-            <Point>
-                <coordinates>-78.97426490413936,43.45753053625643,0</coordinates>
-            </Point>
-        </Placemark>        <Placemark>
-            <styleUrl>#targetStyle</styleUrl>
-            <name>T37</name>
-            <description>
-                Step Speed: 10
-                <br />
-                Step Heading: 90
-                <br />
-                Step Distance: 28500
-                <br />
-                Longitude: -78.97426490413936
-                <br />
-                Latitude: 43.71404658927763
+                Latitude: 43.46058917112865
                 <br />
                 Altitude: 0
             </description>
             <Point>
-                <coordinates>-78.97426490413936,43.71404658927763,0</coordinates>
+                <coordinates>-78.97848232738642,43.46058917112865,0</coordinates>
             </Point>
         </Placemark>
     </Document>

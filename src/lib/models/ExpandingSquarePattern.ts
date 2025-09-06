@@ -129,32 +129,59 @@ export class ExpandingSquarePattern extends BaseModel<typeof ExpandingSquarePatt
             (baseHeading + 270) % 360      // Turn right 270° (same as left 90°)
         ];
 
-        let legNumber = 1;
-        let directionIndex = 0;
-
         // Calculate maximum radius we can search within the specified area
         const maxRadius = Math.min(this.height / 2, this.width / 2);
 
-        while (true) { // No safety limit - rely on search area bounds only
-            // Each leg length: 1n, 1n, 2n, 2n, 3n, 3n, 4n, 4n...
+        // Pre-calculate maximum number of legs needed
+        // The spiral reaches maximum radius when the cumulative distance equals maxRadius
+        // For expanding square: each complete square cycle uses 4 legs of same length
+        // Pattern: 1n, 1n, 2n, 2n, 3n, 3n, 4n, 4n...
+        let maxLegMultiplier = Math.floor(maxRadius / this.vesselVisualDistance);
+        let maxLegs = maxLegMultiplier * 4; // 4 legs per square cycle
+
+        // Pre-calculate direction constants
+        const directionOffsets = [
+            { x: 0, y: 1 },   // Forward (North relative to heading)
+            { x: 1, y: 0 },   // Right (East relative to heading)  
+            { x: 0, y: -1 },  // Back (South relative to heading)
+            { x: -1, y: 0 }   // Left (West relative to heading)
+        ];
+
+        let currentX = 0, currentY = 0; // Position relative to datum in normalized coordinates
+
+        for (let legNumber = 1; legNumber <= maxLegs; legNumber++) {
+            // Calculate leg multiplier and distance using math instead of iteration
             const legMultiplier = Math.ceil(legNumber / 2);
             const legDistance = legMultiplier * this.vesselVisualDistance;
 
-            const currentDirection = directions[directionIndex]!;
-            const nextDirection = directions[(directionIndex + 1) % 4]!;
+            // Calculate direction index using modulo
+            const directionIndex = (legNumber - 1) % 4;
+            const direction = directions[directionIndex]!;
+            const nextDirection = directions[legNumber % 4]!;
 
-            // Calculate end position of this leg
+            // Calculate relative movement for this leg
+            const offset = directionOffsets[directionIndex]!;
+            currentX += offset.x * legDistance;
+            currentY += offset.y * legDistance;
+
+            // Convert relative position to actual geographic coordinates
+            // Apply rotation based on datum heading
+            const headingRad = (this.datum.heading * Math.PI) / 180;
+            const cosHeading = Math.cos(headingRad);
+            const sinHeading = Math.sin(headingRad);
+
+            const rotatedX = currentX * cosHeading - currentY * sinHeading;
+            const rotatedY = currentX * sinHeading + currentY * cosHeading;
+
+            // Calculate actual geographic position
             const endPosition = GeoCalculator.offsetTarget(
-                { ...this.datum, longitude: currentPosition.longitude, latitude: currentPosition.latitude },
-                legDistance,
-                currentDirection
+                this.datum,
+                Math.sqrt(rotatedX * rotatedX + rotatedY * rotatedY),
+                Math.atan2(rotatedX, rotatedY) * 180 / Math.PI
             );
 
             // Check if this target is within our search area bounds
-            const distanceFromDatum = GeoCalculator.getDistance(
-                { longitude: this.datum.longitude, latitude: this.datum.latitude },
-                endPosition
-            );
+            const distanceFromDatum = Math.sqrt(rotatedX * rotatedX + rotatedY * rotatedY);
 
             // Stop if this leg would take us beyond the search area
             if (distanceFromDatum > maxRadius) {
@@ -171,20 +198,13 @@ export class ExpandingSquarePattern extends BaseModel<typeof ExpandingSquarePatt
             target.longitude = endPosition.longitude;
             target.latitude = endPosition.latitude;
             target.altitude = this.datum.altitude;
-            target.heading = currentDirection;
+            target.heading = direction;
             target.speed = this.speed;
             target.stepDistance = nextLegDistance; // Distance TO the next target
             target.stepSpeed = this.speed;
             target.stepHeading = nextDirection; // Turn 90° right for next leg
 
             targets.push(target);
-
-            // Update current position for next leg
-            currentPosition = endPosition;
-
-            // Move to next direction (turn 90° right)
-            directionIndex = (directionIndex + 1) % 4;
-            legNumber++;
         }
 
         this._data.targets = targets;
