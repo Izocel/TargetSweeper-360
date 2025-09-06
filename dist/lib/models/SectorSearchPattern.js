@@ -50,7 +50,7 @@ class SectorSearchPattern extends BaseModel_1.BaseModel {
         return this.data.speed;
     }
     set speed(speed) {
-        this._data.speed = speed;
+        this._data.speed = Math.max(0, speed);
     }
     /**
      * Gets the radius of the search pattern.
@@ -60,7 +60,7 @@ class SectorSearchPattern extends BaseModel_1.BaseModel {
         return this.data.radius;
     }
     set radius(radius) {
-        this._data.radius = radius;
+        this._data.radius = Math.max(1, radius);
     }
     /**
      * Gets the sectors of the search pattern.

@@ -51,7 +51,7 @@ export class SectorSearchPattern extends BaseModel<typeof SectorSearchPatternSch
     }
 
     set speed(speed: number) {
-        this._data.speed = speed;
+        this._data.speed = Math.max(0, speed);
     }
 
     /**
@@ -63,7 +63,7 @@ export class SectorSearchPattern extends BaseModel<typeof SectorSearchPatternSch
     }
 
     set radius(radius: number) {
-        this._data.radius = radius;
+        this._data.radius = Math.max(1, radius);
     }
 
     /**
