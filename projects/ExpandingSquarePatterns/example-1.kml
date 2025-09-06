@@ -1,0 +1,1119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
+    <Document>
+        <name>Search Buoy</name>
+        <description>Expanding Square Search (SS) - 40000m × 60000m area, 1500m visual range</description>
+
+        <Style id="trackStyle">
+            <LineStyle>
+                <color>ff0000ff</color>
+                <width>2</width>
+            </LineStyle>
+        </Style>
+
+        <Style id="connectionStyle">
+            <LineStyle>
+                <color>ff00ff00</color>
+                <width>1</width>
+            </LineStyle>
+        </Style>
+
+        <Style id="polygonStyle">
+            <LineStyle>
+                <color>ff0000ff</color>
+                <width>1</width>
+            </LineStyle>
+            <PolyStyle>
+                <color>4d0000ff</color>
+                <fill>0</fill>
+                <outline>1</outline>
+            </PolyStyle>
+        </Style>
+
+        <Style id="targetStyle">
+            <IconStyle>
+                <Icon>
+                    <href>http://maps.google.com/mapfiles/kml/shapes/placemark_circle.png</href>
+                </Icon>
+                <scale>1.2</scale>
+                <color>ea2e00ff</color>
+            </IconStyle>
+            <LabelStyle>
+                <color>ffffffff</color>
+                <scale>1</scale>
+            </LabelStyle>
+        </Style>
+        
+        <Style id="datumStyle">
+            <IconStyle>
+                <Icon>
+                    <href>http://maps.google.com/mapfiles/kml/shapes/target.png</href>
+                </Icon>
+                <scale>1.2</scale>
+                <color>ff00ff00</color>
+            </IconStyle>
+            <LabelStyle>
+                <color>ffffffff</color>
+                <scale>1.1</scale>
+            </LabelStyle>
+        </Style>
+
+        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Leg 1</name>
+            <LineString>
+                <coordinates>
+                    -78.81167,43.58222,0
+                    -78.81167,43.59572083736536,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Leg 2</name>
+            <LineString>
+                <coordinates>
+                    -78.81167,43.59572083736536,0
+                    -78.79309387229237,43.59571932819507,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Leg 3</name>
+            <LineString>
+                <coordinates>
+                    -78.79309387229237,43.59571932819507,0
+                    -78.79309387229237,43.56871762144956,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Leg 4</name>
+            <LineString>
+                <coordinates>
+                    -78.79309387229237,43.56871762144956,0
+                    -78.8302295244111,43.56871159042496,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Leg 5</name>
+            <LineString>
+                <coordinates>
+                    -78.8302295244111,43.56871159042496,0
+                    -78.8302295244111,43.60921410257405,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Leg 6</name>
+            <LineString>
+                <coordinates>
+                    -78.8302295244111,43.60921410257405,0
+                    -78.77448869232259,43.6092005136796,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Leg 7</name>
+            <LineString>
+                <coordinates>
+                    -78.77448869232259,43.6092005136796,0
+                    -78.77448869232259,43.55519710000383,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Leg 8</name>
+            <LineString>
+                <coordinates>
+                    -78.77448869232259,43.55519710000383,0
+                    -78.8487433744386,43.555172987231145,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Leg 9</name>
+            <LineString>
+                <coordinates>
+                    -78.8487433744386,43.555172987231145,0
+                    -78.8487433744386,43.62267717459106,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Leg 10</name>
+            <LineString>
+                <coordinates>
+                    -78.8487433744386,43.62267717459106,0
+                    -78.75582128382067,43.622639410027325,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Leg 11</name>
+            <LineString>
+                <coordinates>
+                    -78.75582128382067,43.622639410027325,0
+                    -78.75582128382067,43.5416342886367,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Leg 12</name>
+            <LineString>
+                <coordinates>
+                    -78.75582128382067,43.5416342886367,0
+                    -78.86717829861706,43.54158006045665,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Leg 13</name>
+            <LineString>
+                <coordinates>
+                    -78.86717829861706,43.54158006045665,0
+                    -78.86717829861706,43.636085924282725,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Leg 14</name>
+            <LineString>
+                <coordinates>
+                    -78.86717829861706,43.636085924282725,0
+                    -78.73705850093225,43.63601187130809,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Leg 15</name>
+            <LineString>
+                <coordinates>
+                    -78.73705850093225,43.63601187130809,0
+                    -78.73705850093225,43.52800504036028,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Leg 16</name>
+            <LineString>
+                <coordinates>
+                    -78.73705850093225,43.52800504036028,0
+                    -78.88550101694922,43.52790868035915,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Leg 17</name>
+            <LineString>
+                <coordinates>
+                    -78.88550101694922,43.52790868035915,0
+                    -78.88550101694922,43.64941622319253,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Leg 18</name>
+            <LineString>
+                <coordinates>
+                    -78.88550101694922,43.64941622319253,0
+                    -78.71816722924638,43.649293752502366,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Leg 19</name>
+            <LineString>
+                <coordinates>
+                    -78.71816722924638,43.649293752502366,0
+                    -78.71816722924639,43.514285208639286,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Leg 20</name>
+            <LineString>
+                <coordinates>
+                    -78.71816722924639,43.514285208639286,0
+                    -78.9036782220525,43.514134717930894,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Leg 21</name>
+            <LineString>
+                <coordinates>
+                    -78.9036782220525,43.514134717930894,0
+                    -78.9036782220525,43.6626439440562,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Leg 22</name>
+            <LineString>
+                <coordinates>
+                    -78.9036782220525,43.6626439440562,0
+                    -78.69911438681709,43.66246091011774,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Leg 23</name>
+            <LineString>
+                <coordinates>
+                    -78.69911438681709,43.66246091011774,0
+                    -78.69911438681709,43.500450648007664,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Leg 24</name>
+            <LineString>
+                <coordinates>
+                    -78.69911438681709,43.500450648007664,0
+                    -78.92167658075331,43.50023404561505,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Leg 25</name>
+            <LineString>
+                <coordinates>
+                    -78.92167658075331,43.50023404561505,0
+                    -78.92167658075331,43.67574496151793,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Leg 26</name>
+            <LineString>
+                <coordinates>
+                    -78.92167658075331,43.67574496151793,0
+                    -78.67986692640307,43.67548920300783,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Leg 27</name>
+            <LineString>
+                <coordinates>
+                    -78.67986692640307,43.67548920300783,0
+                    -78.67986692640307,43.48647721488758,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Leg 28</name>
+            <LineString>
+                <coordinates>
+                    -78.67986692640307,43.48647721488758,0
+                    -78.93946273604836,43.486182538225194,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Leg 29</name>
+            <LineString>
+                <coordinates>
+                    -78.93946273604836,43.486182538225194,0
+                    -78.93946273604836,43.688695153049785,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Leg 30</name>
+            <LineString>
+                <coordinates>
+                    -78.93946273604836,43.688695153049785,0
+                    -78.66039183732562,43.688354493393774,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Leg 31</name>
+            <LineString>
+                <coordinates>
+                    -78.66039183732562,43.688354493393774,0
+                    -78.66039183732562,43.47234076861093,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Leg 32</name>
+            <LineString>
+                <coordinates>
+                    -78.66039183732562,43.47234076861093,0
+                    -78.9570033095164,43.4719560740661,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Leg 33</name>
+            <LineString>
+                <coordinates>
+                    -78.9570033095164,43.4719560740661,0
+                    -78.9570033095164,43.70147040007243,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Leg 34</name>
+            <LineString>
+                <coordinates>
+                    -78.9570033095164,43.70147040007243,0
+                    -78.64065614811621,43.701032648087555,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Leg 35</name>
+            <LineString>
+                <coordinates>
+                    -78.64065614811621,43.701032648087555,0
+                    -78.64065614811621,43.45801717264281,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Leg 36</name>
+            <LineString>
+                <coordinates>
+                    -78.64065614811621,43.45801717264281,0
+                    -78.97426490413936,43.45753053625643,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Leg 37</name>
+            <LineString>
+                <coordinates>
+                    -78.97426490413936,43.45753053625643,0
+                    -78.97426490413936,43.71404658927763,0
+                </coordinates>
+            </LineString>
+        </Placemark>
+        <Placemark>
+            <styleUrl>#datumStyle</styleUrl>
+            <name>Start (Datum)</name>
+            <description>
+                Step Speed: 10
+                <br />
+                Step Heading: 0
+                <br />
+                Step Distance: 1500
+                <br />
+                Longitude: -78.81167
+                <br />
+                Latitude: 43.58222
+                <br />
+                Altitude: 0
+            </description>
+            <Point>
+                <coordinates>-78.81167,43.58222,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>T1</name>
+            <description>
+                Step Speed: 10
+                <br />
+                Step Heading: 90
+                <br />
+                Step Distance: 1500
+                <br />
+                Longitude: -78.81167
+                <br />
+                Latitude: 43.59572083736536
+                <br />
+                Altitude: 0
+            </description>
+            <Point>
+                <coordinates>-78.81167,43.59572083736536,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>T2</name>
+            <description>
+                Step Speed: 10
+                <br />
+                Step Heading: 180
+                <br />
+                Step Distance: 3000
+                <br />
+                Longitude: -78.79309387229237
+                <br />
+                Latitude: 43.59571932819507
+                <br />
+                Altitude: 0
+            </description>
+            <Point>
+                <coordinates>-78.79309387229237,43.59571932819507,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>T3</name>
+            <description>
+                Step Speed: 10
+                <br />
+                Step Heading: 270
+                <br />
+                Step Distance: 3000
+                <br />
+                Longitude: -78.79309387229237
+                <br />
+                Latitude: 43.56871762144956
+                <br />
+                Altitude: 0
+            </description>
+            <Point>
+                <coordinates>-78.79309387229237,43.56871762144956,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>T4</name>
+            <description>
+                Step Speed: 10
+                <br />
+                Step Heading: 0
+                <br />
+                Step Distance: 4500
+                <br />
+                Longitude: -78.8302295244111
+                <br />
+                Latitude: 43.56871159042496
+                <br />
+                Altitude: 0
+            </description>
+            <Point>
+                <coordinates>-78.8302295244111,43.56871159042496,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>T5</name>
+            <description>
+                Step Speed: 10
+                <br />
+                Step Heading: 90
+                <br />
+                Step Distance: 4500
+                <br />
+                Longitude: -78.8302295244111
+                <br />
+                Latitude: 43.60921410257405
+                <br />
+                Altitude: 0
+            </description>
+            <Point>
+                <coordinates>-78.8302295244111,43.60921410257405,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>T6</name>
+            <description>
+                Step Speed: 10
+                <br />
+                Step Heading: 180
+                <br />
+                Step Distance: 6000
+                <br />
+                Longitude: -78.77448869232259
+                <br />
+                Latitude: 43.6092005136796
+                <br />
+                Altitude: 0
+            </description>
+            <Point>
+                <coordinates>-78.77448869232259,43.6092005136796,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>T7</name>
+            <description>
+                Step Speed: 10
+                <br />
+                Step Heading: 270
+                <br />
+                Step Distance: 6000
+                <br />
+                Longitude: -78.77448869232259
+                <br />
+                Latitude: 43.55519710000383
+                <br />
+                Altitude: 0
+            </description>
+            <Point>
+                <coordinates>-78.77448869232259,43.55519710000383,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>T8</name>
+            <description>
+                Step Speed: 10
+                <br />
+                Step Heading: 0
+                <br />
+                Step Distance: 7500
+                <br />
+                Longitude: -78.8487433744386
+                <br />
+                Latitude: 43.555172987231145
+                <br />
+                Altitude: 0
+            </description>
+            <Point>
+                <coordinates>-78.8487433744386,43.555172987231145,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>T9</name>
+            <description>
+                Step Speed: 10
+                <br />
+                Step Heading: 90
+                <br />
+                Step Distance: 7500
+                <br />
+                Longitude: -78.8487433744386
+                <br />
+                Latitude: 43.62267717459106
+                <br />
+                Altitude: 0
+            </description>
+            <Point>
+                <coordinates>-78.8487433744386,43.62267717459106,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>T10</name>
+            <description>
+                Step Speed: 10
+                <br />
+                Step Heading: 180
+                <br />
+                Step Distance: 9000
+                <br />
+                Longitude: -78.75582128382067
+                <br />
+                Latitude: 43.622639410027325
+                <br />
+                Altitude: 0
+            </description>
+            <Point>
+                <coordinates>-78.75582128382067,43.622639410027325,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>T11</name>
+            <description>
+                Step Speed: 10
+                <br />
+                Step Heading: 270
+                <br />
+                Step Distance: 9000
+                <br />
+                Longitude: -78.75582128382067
+                <br />
+                Latitude: 43.5416342886367
+                <br />
+                Altitude: 0
+            </description>
+            <Point>
+                <coordinates>-78.75582128382067,43.5416342886367,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>T12</name>
+            <description>
+                Step Speed: 10
+                <br />
+                Step Heading: 0
+                <br />
+                Step Distance: 10500
+                <br />
+                Longitude: -78.86717829861706
+                <br />
+                Latitude: 43.54158006045665
+                <br />
+                Altitude: 0
+            </description>
+            <Point>
+                <coordinates>-78.86717829861706,43.54158006045665,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>T13</name>
+            <description>
+                Step Speed: 10
+                <br />
+                Step Heading: 90
+                <br />
+                Step Distance: 10500
+                <br />
+                Longitude: -78.86717829861706
+                <br />
+                Latitude: 43.636085924282725
+                <br />
+                Altitude: 0
+            </description>
+            <Point>
+                <coordinates>-78.86717829861706,43.636085924282725,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>T14</name>
+            <description>
+                Step Speed: 10
+                <br />
+                Step Heading: 180
+                <br />
+                Step Distance: 12000
+                <br />
+                Longitude: -78.73705850093225
+                <br />
+                Latitude: 43.63601187130809
+                <br />
+                Altitude: 0
+            </description>
+            <Point>
+                <coordinates>-78.73705850093225,43.63601187130809,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>T15</name>
+            <description>
+                Step Speed: 10
+                <br />
+                Step Heading: 270
+                <br />
+                Step Distance: 12000
+                <br />
+                Longitude: -78.73705850093225
+                <br />
+                Latitude: 43.52800504036028
+                <br />
+                Altitude: 0
+            </description>
+            <Point>
+                <coordinates>-78.73705850093225,43.52800504036028,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>T16</name>
+            <description>
+                Step Speed: 10
+                <br />
+                Step Heading: 0
+                <br />
+                Step Distance: 13500
+                <br />
+                Longitude: -78.88550101694922
+                <br />
+                Latitude: 43.52790868035915
+                <br />
+                Altitude: 0
+            </description>
+            <Point>
+                <coordinates>-78.88550101694922,43.52790868035915,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>T17</name>
+            <description>
+                Step Speed: 10
+                <br />
+                Step Heading: 90
+                <br />
+                Step Distance: 13500
+                <br />
+                Longitude: -78.88550101694922
+                <br />
+                Latitude: 43.64941622319253
+                <br />
+                Altitude: 0
+            </description>
+            <Point>
+                <coordinates>-78.88550101694922,43.64941622319253,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>T18</name>
+            <description>
+                Step Speed: 10
+                <br />
+                Step Heading: 180
+                <br />
+                Step Distance: 15000
+                <br />
+                Longitude: -78.71816722924638
+                <br />
+                Latitude: 43.649293752502366
+                <br />
+                Altitude: 0
+            </description>
+            <Point>
+                <coordinates>-78.71816722924638,43.649293752502366,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>T19</name>
+            <description>
+                Step Speed: 10
+                <br />
+                Step Heading: 270
+                <br />
+                Step Distance: 15000
+                <br />
+                Longitude: -78.71816722924639
+                <br />
+                Latitude: 43.514285208639286
+                <br />
+                Altitude: 0
+            </description>
+            <Point>
+                <coordinates>-78.71816722924639,43.514285208639286,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>T20</name>
+            <description>
+                Step Speed: 10
+                <br />
+                Step Heading: 0
+                <br />
+                Step Distance: 16500
+                <br />
+                Longitude: -78.9036782220525
+                <br />
+                Latitude: 43.514134717930894
+                <br />
+                Altitude: 0
+            </description>
+            <Point>
+                <coordinates>-78.9036782220525,43.514134717930894,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>T21</name>
+            <description>
+                Step Speed: 10
+                <br />
+                Step Heading: 90
+                <br />
+                Step Distance: 16500
+                <br />
+                Longitude: -78.9036782220525
+                <br />
+                Latitude: 43.6626439440562
+                <br />
+                Altitude: 0
+            </description>
+            <Point>
+                <coordinates>-78.9036782220525,43.6626439440562,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>T22</name>
+            <description>
+                Step Speed: 10
+                <br />
+                Step Heading: 180
+                <br />
+                Step Distance: 18000
+                <br />
+                Longitude: -78.69911438681709
+                <br />
+                Latitude: 43.66246091011774
+                <br />
+                Altitude: 0
+            </description>
+            <Point>
+                <coordinates>-78.69911438681709,43.66246091011774,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>T23</name>
+            <description>
+                Step Speed: 10
+                <br />
+                Step Heading: 270
+                <br />
+                Step Distance: 18000
+                <br />
+                Longitude: -78.69911438681709
+                <br />
+                Latitude: 43.500450648007664
+                <br />
+                Altitude: 0
+            </description>
+            <Point>
+                <coordinates>-78.69911438681709,43.500450648007664,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>T24</name>
+            <description>
+                Step Speed: 10
+                <br />
+                Step Heading: 0
+                <br />
+                Step Distance: 19500
+                <br />
+                Longitude: -78.92167658075331
+                <br />
+                Latitude: 43.50023404561505
+                <br />
+                Altitude: 0
+            </description>
+            <Point>
+                <coordinates>-78.92167658075331,43.50023404561505,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>T25</name>
+            <description>
+                Step Speed: 10
+                <br />
+                Step Heading: 90
+                <br />
+                Step Distance: 19500
+                <br />
+                Longitude: -78.92167658075331
+                <br />
+                Latitude: 43.67574496151793
+                <br />
+                Altitude: 0
+            </description>
+            <Point>
+                <coordinates>-78.92167658075331,43.67574496151793,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>T26</name>
+            <description>
+                Step Speed: 10
+                <br />
+                Step Heading: 180
+                <br />
+                Step Distance: 21000
+                <br />
+                Longitude: -78.67986692640307
+                <br />
+                Latitude: 43.67548920300783
+                <br />
+                Altitude: 0
+            </description>
+            <Point>
+                <coordinates>-78.67986692640307,43.67548920300783,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>T27</name>
+            <description>
+                Step Speed: 10
+                <br />
+                Step Heading: 270
+                <br />
+                Step Distance: 21000
+                <br />
+                Longitude: -78.67986692640307
+                <br />
+                Latitude: 43.48647721488758
+                <br />
+                Altitude: 0
+            </description>
+            <Point>
+                <coordinates>-78.67986692640307,43.48647721488758,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>T28</name>
+            <description>
+                Step Speed: 10
+                <br />
+                Step Heading: 0
+                <br />
+                Step Distance: 22500
+                <br />
+                Longitude: -78.93946273604836
+                <br />
+                Latitude: 43.486182538225194
+                <br />
+                Altitude: 0
+            </description>
+            <Point>
+                <coordinates>-78.93946273604836,43.486182538225194,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>T29</name>
+            <description>
+                Step Speed: 10
+                <br />
+                Step Heading: 90
+                <br />
+                Step Distance: 22500
+                <br />
+                Longitude: -78.93946273604836
+                <br />
+                Latitude: 43.688695153049785
+                <br />
+                Altitude: 0
+            </description>
+            <Point>
+                <coordinates>-78.93946273604836,43.688695153049785,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>T30</name>
+            <description>
+                Step Speed: 10
+                <br />
+                Step Heading: 180
+                <br />
+                Step Distance: 24000
+                <br />
+                Longitude: -78.66039183732562
+                <br />
+                Latitude: 43.688354493393774
+                <br />
+                Altitude: 0
+            </description>
+            <Point>
+                <coordinates>-78.66039183732562,43.688354493393774,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>T31</name>
+            <description>
+                Step Speed: 10
+                <br />
+                Step Heading: 270
+                <br />
+                Step Distance: 24000
+                <br />
+                Longitude: -78.66039183732562
+                <br />
+                Latitude: 43.47234076861093
+                <br />
+                Altitude: 0
+            </description>
+            <Point>
+                <coordinates>-78.66039183732562,43.47234076861093,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>T32</name>
+            <description>
+                Step Speed: 10
+                <br />
+                Step Heading: 0
+                <br />
+                Step Distance: 25500
+                <br />
+                Longitude: -78.9570033095164
+                <br />
+                Latitude: 43.4719560740661
+                <br />
+                Altitude: 0
+            </description>
+            <Point>
+                <coordinates>-78.9570033095164,43.4719560740661,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>T33</name>
+            <description>
+                Step Speed: 10
+                <br />
+                Step Heading: 90
+                <br />
+                Step Distance: 25500
+                <br />
+                Longitude: -78.9570033095164
+                <br />
+                Latitude: 43.70147040007243
+                <br />
+                Altitude: 0
+            </description>
+            <Point>
+                <coordinates>-78.9570033095164,43.70147040007243,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>T34</name>
+            <description>
+                Step Speed: 10
+                <br />
+                Step Heading: 180
+                <br />
+                Step Distance: 27000
+                <br />
+                Longitude: -78.64065614811621
+                <br />
+                Latitude: 43.701032648087555
+                <br />
+                Altitude: 0
+            </description>
+            <Point>
+                <coordinates>-78.64065614811621,43.701032648087555,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>T35</name>
+            <description>
+                Step Speed: 10
+                <br />
+                Step Heading: 270
+                <br />
+                Step Distance: 27000
+                <br />
+                Longitude: -78.64065614811621
+                <br />
+                Latitude: 43.45801717264281
+                <br />
+                Altitude: 0
+            </description>
+            <Point>
+                <coordinates>-78.64065614811621,43.45801717264281,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>T36</name>
+            <description>
+                Step Speed: 10
+                <br />
+                Step Heading: 0
+                <br />
+                Step Distance: 28500
+                <br />
+                Longitude: -78.97426490413936
+                <br />
+                Latitude: 43.45753053625643
+                <br />
+                Altitude: 0
+            </description>
+            <Point>
+                <coordinates>-78.97426490413936,43.45753053625643,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>T37</name>
+            <description>
+                Step Speed: 10
+                <br />
+                Step Heading: 90
+                <br />
+                Step Distance: 28500
+                <br />
+                Longitude: -78.97426490413936
+                <br />
+                Latitude: 43.71404658927763
+                <br />
+                Altitude: 0
+            </description>
+            <Point>
+                <coordinates>-78.97426490413936,43.71404658927763,0</coordinates>
+            </Point>
+        </Placemark>
+    </Document>
+</kml>
