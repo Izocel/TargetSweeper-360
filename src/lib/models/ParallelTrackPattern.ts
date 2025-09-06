@@ -142,9 +142,11 @@ export class ParallelTrackPattern extends BaseModel<typeof ParallelTrackPatternS
 
         // Pre-calculate all constant values to avoid redundant calculations
         const trackBearing = (this.vector.heading + 90) % 360;
-        const headingToTrackEnd = trackBearing;
-        const headingAlongVector = this.vector.heading;
-        const headingToVector = (trackBearing + 180) % 360;
+
+        // Pre-calculate the only 3 possible step headings used in the entire pattern
+        const headingToTrackEnd = trackBearing;           // Perpendicular out (90° from vector)
+        const headingToVector = (trackBearing + 180) % 360; // Perpendicular back (270° from vector)
+        const headingAlongVector = this.vector.heading;   // Along vector direction
 
         // Cache frequently accessed values
         const vectorAltitude = this.vector.altitude;
@@ -192,8 +194,8 @@ export class ParallelTrackPattern extends BaseModel<typeof ParallelTrackPatternS
                     height,
                     trackBearing
                 );
-                startStepHeading = headingToTrackEnd;
-                endStepHeading = headingAlongVector;
+                startStepHeading = headingToTrackEnd;  // Go perpendicular to track end
+                endStepHeading = headingAlongVector;   // Go along vector to next track
             } else {
                 // Backward track: start at extended position, end at vector position
                 startPosition = GeoCalculator.offsetTarget(
@@ -202,8 +204,8 @@ export class ParallelTrackPattern extends BaseModel<typeof ParallelTrackPatternS
                     trackBearing
                 );
                 endPosition = vectorPosition;
-                startStepHeading = headingToVector;
-                endStepHeading = headingAlongVector;
+                startStepHeading = headingToVector;    // Go perpendicular back to vector line
+                endStepHeading = headingAlongVector;   // Go along vector to next track
             }
 
             // Batch update start target properties

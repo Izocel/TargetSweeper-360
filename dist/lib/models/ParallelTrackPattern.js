@@ -121,9 +121,10 @@ class ParallelTrackPattern extends BaseModel_1.BaseModel {
         const totalTargets = numTracks * 2;
         // Pre-calculate all constant values to avoid redundant calculations
         const trackBearing = (this.vector.heading + 90) % 360;
-        const headingToTrackEnd = trackBearing;
-        const headingAlongVector = this.vector.heading;
-        const headingToVector = (trackBearing + 180) % 360;
+        // Pre-calculate the only 3 possible step headings used in the entire pattern
+        const headingToTrackEnd = trackBearing; // Perpendicular out (90° from vector)
+        const headingToVector = (trackBearing + 180) % 360; // Perpendicular back (270° from vector)
+        const headingAlongVector = this.vector.heading; // Along vector direction
         // Cache frequently accessed values
         const vectorAltitude = this.vector.altitude;
         const speed = this.speed;
@@ -159,15 +160,15 @@ class ParallelTrackPattern extends BaseModel_1.BaseModel {
                 // Forward track: start at vector position, extend in track bearing direction
                 startPosition = vectorPosition;
                 endPosition = GeoCalculator_1.GeoCalculator.offsetTarget({ ...this.vector, longitude: vectorPosition.longitude, latitude: vectorPosition.latitude }, height, trackBearing);
-                startStepHeading = headingToTrackEnd;
-                endStepHeading = headingAlongVector;
+                startStepHeading = headingToTrackEnd; // Go perpendicular to track end
+                endStepHeading = headingAlongVector; // Go along vector to next track
             }
             else {
                 // Backward track: start at extended position, end at vector position
                 startPosition = GeoCalculator_1.GeoCalculator.offsetTarget({ ...this.vector, longitude: vectorPosition.longitude, latitude: vectorPosition.latitude }, height, trackBearing);
                 endPosition = vectorPosition;
-                startStepHeading = headingToVector;
-                endStepHeading = headingAlongVector;
+                startStepHeading = headingToVector; // Go perpendicular back to vector line
+                endStepHeading = headingAlongVector; // Go along vector to next track
             }
             // Batch update start target properties
             startTarget.name = trackIndex === 0 ? "Datum" : `Track ${trackIndex + 1} Start`;
