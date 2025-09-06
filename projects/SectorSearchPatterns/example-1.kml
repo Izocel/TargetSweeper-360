@@ -99,9 +99,11 @@
             <styleUrl>#targetStyle</styleUrl>
             <name>S1 - T1</name>
             <description>
-                Vessel Speed:10
+                Step Speed:10
                 <br />
-                Vessel Heading:120
+                Step Heading:120
+                <br />
+                Step Distance:1500
                 <br />
                 Longitude:-90.06723415861805
                 <br />
@@ -116,9 +118,11 @@
             <styleUrl>#targetStyle</styleUrl>
             <name>S1 - T2</name>
             <description>
-                Vessel Speed:10
+                Step Speed:10
                 <br />
-                Vessel Heading:240
+                Step Heading:240
+                <br />
+                Step Distance:1500
                 <br />
                 Longitude:-90.05433286506782
                 <br />
@@ -133,9 +137,11 @@
             <styleUrl>#targetStyle</styleUrl>
             <name>S2 - T1</name>
             <description>
-                Vessel Speed:10
+                Step Speed:10
                 <br />
-                Vessel Heading:0
+                Step Heading:0
+                <br />
+                Step Distance:1500
                 <br />
                 Longitude:-90.0801340183254
                 <br />
@@ -150,9 +156,11 @@
             <styleUrl>#targetStyle</styleUrl>
             <name>S2 - T2</name>
             <description>
-                Vessel Speed:10
+                Step Speed:10
                 <br />
-                Vessel Heading:120
+                Step Heading:120
+                <br />
+                Step Distance:1500
                 <br />
                 Longitude:-90.08013545216828
                 <br />
@@ -167,9 +175,11 @@
             <styleUrl>#targetStyle</styleUrl>
             <name>S3 - T1</name>
             <description>
-                Vessel Speed:10
+                Step Speed:10
                 <br />
-                Vessel Heading:240
+                Step Heading:240
+                <br />
+                Step Distance:1500
                 <br />
                 Longitude:-90.05433429891072
                 <br />
@@ -184,9 +194,11 @@
             <styleUrl>#targetStyle</styleUrl>
             <name>S3 - T2</name>
             <description>
-                Vessel Speed:10
+                Step Speed:10
                 <br />
-                Vessel Heading:0
+                Step Heading:0
+                <br />
+                Step Distance:1500
                 <br />
                 Longitude:-90.06723415861805
                 <br />

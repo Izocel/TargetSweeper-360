@@ -17,6 +17,7 @@ export declare const ParallelTrackPatternSchema: z.ZodObject<{
         stepDistance: z.ZodNumber;
     }, z.core.$strip>;
     speed: z.ZodNumber;
+    height: z.ZodNumber;
     spacing: z.ZodNumber;
     targets: z.ZodArray<z.ZodObject<{
         name: z.ZodString;
@@ -39,6 +40,8 @@ export declare class ParallelTrackPattern extends BaseModel<typeof ParallelTrack
     set vector(vector: Target);
     get speed(): number;
     set speed(speed: number);
+    get height(): number;
+    set height(height: number);
     get spacing(): number;
     set spacing(spacing: number);
     get targets(): Target[];
@@ -55,7 +58,7 @@ export declare class ParallelTrackPattern extends BaseModel<typeof ParallelTrack
      */
     generateKmlPlacemarks(): string[];
     /**
-     * Generates KML polygons (triangles) for each sector in the search pattern.
+     * Generates KML polygons (track lines and connecting lines) for the search pattern.
      * @returns An array of KML polygon strings.
      */
     generateKmlPolygons(): string[];

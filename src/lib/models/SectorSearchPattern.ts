@@ -1,6 +1,6 @@
 import z from "zod";
 import { GeoCalculator } from "../utils/GeoCalculator";
-import { getIsosceleTriangleSideLength, handleFlooredOverflow, handleOverflow } from "../utils/Math";
+import { handleFlooredOverflow, handleOverflow } from "../utils/Math";
 import { BaseModel } from "./BaseModel";
 import { Target } from "./Target";
 
@@ -105,6 +105,7 @@ export class SectorSearchPattern extends BaseModel<typeof SectorSearchPatternSch
         this.updateSector(0);
         this.updateSector(1);
         this.updateSector(2);
+        this.validate();
     }
 
     /**
@@ -130,9 +131,6 @@ export class SectorSearchPattern extends BaseModel<typeof SectorSearchPatternSch
         const apexCoords = GeoCalculator.offsetTarget(this.datum, this.radius, apexHeading);
         const legCoords = GeoCalculator.offsetTarget(this.datum, this.radius, legHeading);
 
-        // use trigonometry to determine distance to leg and apex
-        const longStepDistance = getIsosceleTriangleSideLength(this.radius, 60);
-
         this.sectors[index]?.forEach((target, i) => {
             target.speed = this.datum.speed;
             target.heading = this.datum.heading;
@@ -141,12 +139,12 @@ export class SectorSearchPattern extends BaseModel<typeof SectorSearchPatternSch
             target.stepSpeed = this.speed;
 
             if (i === 0) {
-                target.stepDistance = longStepDistance;
+                target.stepDistance = this.radius;
                 target.latitude = apexCoords.latitude;
                 target.longitude = apexCoords.longitude;
                 target.stepHeading = handleFlooredOverflow(apexHeading + 120, 0, 360);
             } else if (i === 1) {
-                target.stepDistance = longStepDistance;
+                target.stepDistance = this.radius;
                 target.latitude = legCoords.latitude;
                 target.longitude = legCoords.longitude;
                 target.stepHeading = handleFlooredOverflow(apexHeading + 240, 0, 360);
@@ -155,7 +153,6 @@ export class SectorSearchPattern extends BaseModel<typeof SectorSearchPatternSch
                 target.latitude = this.datum.latitude;
                 target.longitude = this.datum.longitude;
                 target.stepHeading = handleFlooredOverflow(apexHeading + 180, 0, 360);
-                target.stepDistance = GeoCalculator.getDistance(this.datum, target);
 
             }
         });
@@ -196,9 +193,11 @@ export class SectorSearchPattern extends BaseModel<typeof SectorSearchPatternSch
             <styleUrl>#targetStyle</styleUrl>
             <name>${target.name}</name>
             <description>
-                Vessel Speed:${target.stepSpeed}
+                Step Speed:${target.stepSpeed}
                 <br />
-                Vessel Heading:${target.stepHeading}
+                Step Heading:${target.stepHeading}
+                <br />
+                Step Distance:${target.stepDistance}
                 <br />
                 Longitude:${target.longitude}
                 <br />

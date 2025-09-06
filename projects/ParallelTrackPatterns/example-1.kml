@@ -1,0 +1,1679 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
+    <Document>
+        <name>Target</name>
+        <description>Parallel Track - Papa Sierra (PS)</description>
+
+        <Style id="trackStyle">
+            <LineStyle>
+                <color>ff0000ff</color>
+                <width>2</width>
+            </LineStyle>
+        </Style>
+
+        <Style id="connectionStyle">
+            <LineStyle>
+                <color>ff00ff00</color>
+                <width>1</width>
+            </LineStyle>
+        </Style>
+
+        <Style id="polygonStyle">
+            <LineStyle>
+                <color>ff0000ff</color>
+                <width>1</width>
+            </LineStyle>
+            <PolyStyle>
+                <color>4d0000ff</color>
+                <fill>0</fill>
+                <outline>1</outline>
+            </PolyStyle>
+        </Style>
+
+        <Style id="targetStyle">
+            <IconStyle>
+                <Icon>
+                    <href>http://maps.google.com/mapfiles/kml/shapes/placemark_circle.png</href>
+                </Icon>
+                <scale>1.2</scale>
+                <color>ea2e00ff</color>
+            </IconStyle>
+            <LabelStyle>
+                <color>ffffffff</color>
+                <scale>1</scale>
+            </LabelStyle>
+        </Style>
+        
+        <Style id="datumStyle">
+            <IconStyle>
+                <Icon>
+                    <href>http://maps.google.com/mapfiles/kml/shapes/target.png</href>
+                </Icon>
+                <scale>1.2</scale>
+                <color>ff00ff00</color>
+            </IconStyle>
+            <LabelStyle>
+                <color>ffffffff</color>
+                <scale>1.1</scale>
+            </LabelStyle>
+        </Style>
+
+        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Track 1</name>
+            <LineString>
+                <coordinates>
+                    -79.78602,43.301860000000005,0
+                    -79.66277732609862,43.30179360675784,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Track 2</name>
+            <LineString>
+                <coordinates>
+                    -79.66275004484623,43.3152950774949,0
+                    -79.78602,43.31536150187974,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Track 3</name>
+            <LineString>
+                <coordinates>
+                    -79.78602,43.32886297176603,0
+                    -79.66272274468942,43.328796516224855,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Track 4</name>
+            <LineString>
+                <coordinates>
+                    -79.66269542561261,43.34229792294689,0
+                    -79.78602,43.34236440965806,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Track 5</name>
+            <LineString>
+                <coordinates>
+                    -79.78602,43.35586581555508,0
+                    -79.66266808760028,43.355799297660226,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Track 6</name>
+            <LineString>
+                <coordinates>
+                    -79.66264073063675,43.369300640364074,0
+                    -79.78602,43.36936718945631,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Track 7</name>
+            <LineString>
+                <coordinates>
+                    -79.78602,43.38286853136102,0
+                    -79.66261335470645,43.382801951057694,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Track 8</name>
+            <LineString>
+                <coordinates>
+                    -79.66258595979374,43.39630322974027,0
+                    -79.78602,43.396369841268395,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Track 9</name>
+            <LineString>
+                <coordinates>
+                    -79.78602,43.40987111917775,0
+                    -79.66255854588297,43.40980447641108,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Track 10</name>
+            <LineString>
+                <coordinates>
+                    -79.66253111295843,43.423305691069345,0
+                    -79.78602,43.423372365088305,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Track 11</name>
+            <LineString>
+                <coordinates>
+                    -79.78602,43.43687357899934,0
+                    -79.66250366100446,43.436806873714325,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Track 12</name>
+            <LineString>
+                <coordinates>
+                    -79.66247619000536,43.450308024345304,0
+                    -79.78602,43.45037476091013,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Track 13</name>
+            <LineString>
+                <coordinates>
+                    -79.78602,43.46387591081995,0
+                    -79.66244869994537,43.463809142961516,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Track 14</name>
+            <LineString>
+                <coordinates>
+                    -79.66242119080876,43.47731022956226,0
+                    -79.78602,43.477377028728085,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Track 15</name>
+            <LineString>
+                <coordinates>
+                    -79.78602,43.49087811463384,0
+                    -79.66239366257975,43.490811284146815,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Track 16</name>
+            <LineString>
+                <coordinates>
+                    -79.66236611524255,43.504312306714446,0
+                    -79.78602,43.504379168536516,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Track 17</name>
+            <LineString>
+                <coordinates>
+                    -79.78602,43.51788019043542,0
+                    -79.66233854878138,43.517813297264496,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Track 18</name>
+            <LineString>
+                <coordinates>
+                    -79.66231096318042,43.531314255796225,0
+                    -79.78602,43.531381180329866,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Track 19</name>
+            <LineString>
+                <coordinates>
+                    -79.78602,43.54488213821919,0
+                    -79.66228335842378,43.54481518230898,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Track 20</name>
+            <LineString>
+                <coordinates>
+                    -79.66225573449566,43.558316076802036,0
+                    -79.78602,43.558383064102706,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Track 21</name>
+            <LineString>
+                <coordinates>
+                    -79.78602,43.57188395797975,0
+                    -79.66222809138014,43.571816939274754,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Track 22</name>
+            <LineString>
+                <coordinates>
+                    -79.66220042906134,43.58531776972646,0
+                    -79.78602,43.58538481984969,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Track 23</name>
+            <LineString>
+                <coordinates>
+                    -79.78602,43.59888564971187,0
+                    -79.66217274752336,43.5988185681565,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Track 24</name>
+            <LineString>
+                <coordinates>
+                    -79.66214504675023,43.612319334564184,0
+                    -79.78602,43.61238644756562,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Track 25</name>
+            <LineString>
+                <coordinates>
+                    -79.78602,43.625887213410344,0
+                    -79.662117326726,43.6258200689489,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Track 26</name>
+            <LineString>
+                <coordinates>
+                    -79.66208958743472,43.63932077131,0
+                    -79.78602,43.6393879472454,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Track 27</name>
+            <LineString>
+                <coordinates>
+                    -79.78602,43.65288864907017,0
+                    -79.66206182886039,43.652821441646864,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Track 28</name>
+            <LineString>
+                <coordinates>
+                    -79.66203405098699,43.66632207995883,0
+                    -79.78602,43.66638931888404,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Track 29</name>
+            <LineString>
+                <coordinates>
+                    -79.78602,43.67988995668641,0
+                    -79.66200625379848,43.67982268624532,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#connectionStyle</styleUrl>
+            <name>Connection 1-2</name>
+            <LineString>
+                <coordinates>
+                    -79.66277732609862,43.30179360675784,0
+                    -79.66275004484623,43.3152950774949,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#connectionStyle</styleUrl>
+            <name>Connection 2-3</name>
+            <LineString>
+                <coordinates>
+                    -79.78602,43.31536150187974,0
+                    -79.78602,43.32886297176603,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#connectionStyle</styleUrl>
+            <name>Connection 3-4</name>
+            <LineString>
+                <coordinates>
+                    -79.66272274468942,43.328796516224855,0
+                    -79.66269542561261,43.34229792294689,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#connectionStyle</styleUrl>
+            <name>Connection 4-5</name>
+            <LineString>
+                <coordinates>
+                    -79.78602,43.34236440965806,0
+                    -79.78602,43.35586581555508,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#connectionStyle</styleUrl>
+            <name>Connection 5-6</name>
+            <LineString>
+                <coordinates>
+                    -79.66266808760028,43.355799297660226,0
+                    -79.66264073063675,43.369300640364074,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#connectionStyle</styleUrl>
+            <name>Connection 6-7</name>
+            <LineString>
+                <coordinates>
+                    -79.78602,43.36936718945631,0
+                    -79.78602,43.38286853136102,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#connectionStyle</styleUrl>
+            <name>Connection 7-8</name>
+            <LineString>
+                <coordinates>
+                    -79.66261335470645,43.382801951057694,0
+                    -79.66258595979374,43.39630322974027,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#connectionStyle</styleUrl>
+            <name>Connection 8-9</name>
+            <LineString>
+                <coordinates>
+                    -79.78602,43.396369841268395,0
+                    -79.78602,43.40987111917775,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#connectionStyle</styleUrl>
+            <name>Connection 9-10</name>
+            <LineString>
+                <coordinates>
+                    -79.66255854588297,43.40980447641108,0
+                    -79.66253111295843,43.423305691069345,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#connectionStyle</styleUrl>
+            <name>Connection 10-11</name>
+            <LineString>
+                <coordinates>
+                    -79.78602,43.423372365088305,0
+                    -79.78602,43.43687357899934,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#connectionStyle</styleUrl>
+            <name>Connection 11-12</name>
+            <LineString>
+                <coordinates>
+                    -79.66250366100446,43.436806873714325,0
+                    -79.66247619000536,43.450308024345304,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#connectionStyle</styleUrl>
+            <name>Connection 12-13</name>
+            <LineString>
+                <coordinates>
+                    -79.78602,43.45037476091013,0
+                    -79.78602,43.46387591081995,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#connectionStyle</styleUrl>
+            <name>Connection 13-14</name>
+            <LineString>
+                <coordinates>
+                    -79.66244869994537,43.463809142961516,0
+                    -79.66242119080876,43.47731022956226,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#connectionStyle</styleUrl>
+            <name>Connection 14-15</name>
+            <LineString>
+                <coordinates>
+                    -79.78602,43.477377028728085,0
+                    -79.78602,43.49087811463384,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#connectionStyle</styleUrl>
+            <name>Connection 15-16</name>
+            <LineString>
+                <coordinates>
+                    -79.66239366257975,43.490811284146815,0
+                    -79.66236611524255,43.504312306714446,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#connectionStyle</styleUrl>
+            <name>Connection 16-17</name>
+            <LineString>
+                <coordinates>
+                    -79.78602,43.504379168536516,0
+                    -79.78602,43.51788019043542,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#connectionStyle</styleUrl>
+            <name>Connection 17-18</name>
+            <LineString>
+                <coordinates>
+                    -79.66233854878138,43.517813297264496,0
+                    -79.66231096318042,43.531314255796225,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#connectionStyle</styleUrl>
+            <name>Connection 18-19</name>
+            <LineString>
+                <coordinates>
+                    -79.78602,43.531381180329866,0
+                    -79.78602,43.54488213821919,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#connectionStyle</styleUrl>
+            <name>Connection 19-20</name>
+            <LineString>
+                <coordinates>
+                    -79.66228335842378,43.54481518230898,0
+                    -79.66225573449566,43.558316076802036,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#connectionStyle</styleUrl>
+            <name>Connection 20-21</name>
+            <LineString>
+                <coordinates>
+                    -79.78602,43.558383064102706,0
+                    -79.78602,43.57188395797975,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#connectionStyle</styleUrl>
+            <name>Connection 21-22</name>
+            <LineString>
+                <coordinates>
+                    -79.66222809138014,43.571816939274754,0
+                    -79.66220042906134,43.58531776972646,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#connectionStyle</styleUrl>
+            <name>Connection 22-23</name>
+            <LineString>
+                <coordinates>
+                    -79.78602,43.58538481984969,0
+                    -79.78602,43.59888564971187,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#connectionStyle</styleUrl>
+            <name>Connection 23-24</name>
+            <LineString>
+                <coordinates>
+                    -79.66217274752336,43.5988185681565,0
+                    -79.66214504675023,43.612319334564184,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#connectionStyle</styleUrl>
+            <name>Connection 24-25</name>
+            <LineString>
+                <coordinates>
+                    -79.78602,43.61238644756562,0
+                    -79.78602,43.625887213410344,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#connectionStyle</styleUrl>
+            <name>Connection 25-26</name>
+            <LineString>
+                <coordinates>
+                    -79.662117326726,43.6258200689489,0
+                    -79.66208958743472,43.63932077131,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#connectionStyle</styleUrl>
+            <name>Connection 26-27</name>
+            <LineString>
+                <coordinates>
+                    -79.78602,43.6393879472454,0
+                    -79.78602,43.65288864907017,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#connectionStyle</styleUrl>
+            <name>Connection 27-28</name>
+            <LineString>
+                <coordinates>
+                    -79.66206182886039,43.652821441646864,0
+                    -79.66203405098699,43.66632207995883,0
+                </coordinates>
+            </LineString>
+        </Placemark>        <Placemark>
+            <styleUrl>#connectionStyle</styleUrl>
+            <name>Connection 28-29</name>
+            <LineString>
+                <coordinates>
+                    -79.78602,43.66638931888404,0
+                    -79.78602,43.67988995668641,0
+                </coordinates>
+            </LineString>
+        </Placemark>
+        <Placemark>
+            <styleUrl>#datumStyle</styleUrl>
+            <name>Datum</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:90
+                <br />
+                Step Distance:10000
+                <br />
+                Longitude:-79.78602
+                <br />
+                Latitude:43.301860000000005
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.78602,43.301860000000005,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 1 End</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:0
+                <br />
+                Step Distance:1500
+                <br />
+                Longitude:-79.66277732609862
+                <br />
+                Latitude:43.30179360675784
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.66277732609862,43.30179360675784,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 2 Start</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:270
+                <br />
+                Step Distance:10000
+                <br />
+                Longitude:-79.66275004484623
+                <br />
+                Latitude:43.3152950774949
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.66275004484623,43.3152950774949,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 2 End</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:0
+                <br />
+                Step Distance:1500
+                <br />
+                Longitude:-79.78602
+                <br />
+                Latitude:43.31536150187974
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.78602,43.31536150187974,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 3 Start</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:90
+                <br />
+                Step Distance:10000
+                <br />
+                Longitude:-79.78602
+                <br />
+                Latitude:43.32886297176603
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.78602,43.32886297176603,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 3 End</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:0
+                <br />
+                Step Distance:1500
+                <br />
+                Longitude:-79.66272274468942
+                <br />
+                Latitude:43.328796516224855
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.66272274468942,43.328796516224855,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 4 Start</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:270
+                <br />
+                Step Distance:10000
+                <br />
+                Longitude:-79.66269542561261
+                <br />
+                Latitude:43.34229792294689
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.66269542561261,43.34229792294689,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 4 End</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:0
+                <br />
+                Step Distance:1500
+                <br />
+                Longitude:-79.78602
+                <br />
+                Latitude:43.34236440965806
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.78602,43.34236440965806,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 5 Start</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:90
+                <br />
+                Step Distance:10000
+                <br />
+                Longitude:-79.78602
+                <br />
+                Latitude:43.35586581555508
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.78602,43.35586581555508,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 5 End</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:0
+                <br />
+                Step Distance:1500
+                <br />
+                Longitude:-79.66266808760028
+                <br />
+                Latitude:43.355799297660226
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.66266808760028,43.355799297660226,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 6 Start</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:270
+                <br />
+                Step Distance:10000
+                <br />
+                Longitude:-79.66264073063675
+                <br />
+                Latitude:43.369300640364074
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.66264073063675,43.369300640364074,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 6 End</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:0
+                <br />
+                Step Distance:1500
+                <br />
+                Longitude:-79.78602
+                <br />
+                Latitude:43.36936718945631
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.78602,43.36936718945631,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 7 Start</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:90
+                <br />
+                Step Distance:10000
+                <br />
+                Longitude:-79.78602
+                <br />
+                Latitude:43.38286853136102
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.78602,43.38286853136102,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 7 End</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:0
+                <br />
+                Step Distance:1500
+                <br />
+                Longitude:-79.66261335470645
+                <br />
+                Latitude:43.382801951057694
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.66261335470645,43.382801951057694,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 8 Start</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:270
+                <br />
+                Step Distance:10000
+                <br />
+                Longitude:-79.66258595979374
+                <br />
+                Latitude:43.39630322974027
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.66258595979374,43.39630322974027,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 8 End</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:0
+                <br />
+                Step Distance:1500
+                <br />
+                Longitude:-79.78602
+                <br />
+                Latitude:43.396369841268395
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.78602,43.396369841268395,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 9 Start</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:90
+                <br />
+                Step Distance:10000
+                <br />
+                Longitude:-79.78602
+                <br />
+                Latitude:43.40987111917775
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.78602,43.40987111917775,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 9 End</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:0
+                <br />
+                Step Distance:1500
+                <br />
+                Longitude:-79.66255854588297
+                <br />
+                Latitude:43.40980447641108
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.66255854588297,43.40980447641108,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 10 Start</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:270
+                <br />
+                Step Distance:10000
+                <br />
+                Longitude:-79.66253111295843
+                <br />
+                Latitude:43.423305691069345
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.66253111295843,43.423305691069345,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 10 End</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:0
+                <br />
+                Step Distance:1500
+                <br />
+                Longitude:-79.78602
+                <br />
+                Latitude:43.423372365088305
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.78602,43.423372365088305,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 11 Start</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:90
+                <br />
+                Step Distance:10000
+                <br />
+                Longitude:-79.78602
+                <br />
+                Latitude:43.43687357899934
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.78602,43.43687357899934,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 11 End</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:0
+                <br />
+                Step Distance:1500
+                <br />
+                Longitude:-79.66250366100446
+                <br />
+                Latitude:43.436806873714325
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.66250366100446,43.436806873714325,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 12 Start</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:270
+                <br />
+                Step Distance:10000
+                <br />
+                Longitude:-79.66247619000536
+                <br />
+                Latitude:43.450308024345304
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.66247619000536,43.450308024345304,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 12 End</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:0
+                <br />
+                Step Distance:1500
+                <br />
+                Longitude:-79.78602
+                <br />
+                Latitude:43.45037476091013
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.78602,43.45037476091013,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 13 Start</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:90
+                <br />
+                Step Distance:10000
+                <br />
+                Longitude:-79.78602
+                <br />
+                Latitude:43.46387591081995
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.78602,43.46387591081995,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 13 End</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:0
+                <br />
+                Step Distance:1500
+                <br />
+                Longitude:-79.66244869994537
+                <br />
+                Latitude:43.463809142961516
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.66244869994537,43.463809142961516,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 14 Start</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:270
+                <br />
+                Step Distance:10000
+                <br />
+                Longitude:-79.66242119080876
+                <br />
+                Latitude:43.47731022956226
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.66242119080876,43.47731022956226,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 14 End</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:0
+                <br />
+                Step Distance:1500
+                <br />
+                Longitude:-79.78602
+                <br />
+                Latitude:43.477377028728085
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.78602,43.477377028728085,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 15 Start</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:90
+                <br />
+                Step Distance:10000
+                <br />
+                Longitude:-79.78602
+                <br />
+                Latitude:43.49087811463384
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.78602,43.49087811463384,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 15 End</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:0
+                <br />
+                Step Distance:1500
+                <br />
+                Longitude:-79.66239366257975
+                <br />
+                Latitude:43.490811284146815
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.66239366257975,43.490811284146815,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 16 Start</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:270
+                <br />
+                Step Distance:10000
+                <br />
+                Longitude:-79.66236611524255
+                <br />
+                Latitude:43.504312306714446
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.66236611524255,43.504312306714446,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 16 End</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:0
+                <br />
+                Step Distance:1500
+                <br />
+                Longitude:-79.78602
+                <br />
+                Latitude:43.504379168536516
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.78602,43.504379168536516,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 17 Start</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:90
+                <br />
+                Step Distance:10000
+                <br />
+                Longitude:-79.78602
+                <br />
+                Latitude:43.51788019043542
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.78602,43.51788019043542,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 17 End</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:0
+                <br />
+                Step Distance:1500
+                <br />
+                Longitude:-79.66233854878138
+                <br />
+                Latitude:43.517813297264496
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.66233854878138,43.517813297264496,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 18 Start</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:270
+                <br />
+                Step Distance:10000
+                <br />
+                Longitude:-79.66231096318042
+                <br />
+                Latitude:43.531314255796225
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.66231096318042,43.531314255796225,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 18 End</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:0
+                <br />
+                Step Distance:1500
+                <br />
+                Longitude:-79.78602
+                <br />
+                Latitude:43.531381180329866
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.78602,43.531381180329866,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 19 Start</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:90
+                <br />
+                Step Distance:10000
+                <br />
+                Longitude:-79.78602
+                <br />
+                Latitude:43.54488213821919
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.78602,43.54488213821919,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 19 End</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:0
+                <br />
+                Step Distance:1500
+                <br />
+                Longitude:-79.66228335842378
+                <br />
+                Latitude:43.54481518230898
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.66228335842378,43.54481518230898,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 20 Start</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:270
+                <br />
+                Step Distance:10000
+                <br />
+                Longitude:-79.66225573449566
+                <br />
+                Latitude:43.558316076802036
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.66225573449566,43.558316076802036,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 20 End</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:0
+                <br />
+                Step Distance:1500
+                <br />
+                Longitude:-79.78602
+                <br />
+                Latitude:43.558383064102706
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.78602,43.558383064102706,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 21 Start</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:90
+                <br />
+                Step Distance:10000
+                <br />
+                Longitude:-79.78602
+                <br />
+                Latitude:43.57188395797975
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.78602,43.57188395797975,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 21 End</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:0
+                <br />
+                Step Distance:1500
+                <br />
+                Longitude:-79.66222809138014
+                <br />
+                Latitude:43.571816939274754
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.66222809138014,43.571816939274754,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 22 Start</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:270
+                <br />
+                Step Distance:10000
+                <br />
+                Longitude:-79.66220042906134
+                <br />
+                Latitude:43.58531776972646
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.66220042906134,43.58531776972646,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 22 End</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:0
+                <br />
+                Step Distance:1500
+                <br />
+                Longitude:-79.78602
+                <br />
+                Latitude:43.58538481984969
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.78602,43.58538481984969,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 23 Start</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:90
+                <br />
+                Step Distance:10000
+                <br />
+                Longitude:-79.78602
+                <br />
+                Latitude:43.59888564971187
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.78602,43.59888564971187,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 23 End</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:0
+                <br />
+                Step Distance:1500
+                <br />
+                Longitude:-79.66217274752336
+                <br />
+                Latitude:43.5988185681565
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.66217274752336,43.5988185681565,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 24 Start</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:270
+                <br />
+                Step Distance:10000
+                <br />
+                Longitude:-79.66214504675023
+                <br />
+                Latitude:43.612319334564184
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.66214504675023,43.612319334564184,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 24 End</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:0
+                <br />
+                Step Distance:1500
+                <br />
+                Longitude:-79.78602
+                <br />
+                Latitude:43.61238644756562
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.78602,43.61238644756562,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 25 Start</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:90
+                <br />
+                Step Distance:10000
+                <br />
+                Longitude:-79.78602
+                <br />
+                Latitude:43.625887213410344
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.78602,43.625887213410344,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 25 End</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:0
+                <br />
+                Step Distance:1500
+                <br />
+                Longitude:-79.662117326726
+                <br />
+                Latitude:43.6258200689489
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.662117326726,43.6258200689489,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 26 Start</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:270
+                <br />
+                Step Distance:10000
+                <br />
+                Longitude:-79.66208958743472
+                <br />
+                Latitude:43.63932077131
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.66208958743472,43.63932077131,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 26 End</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:0
+                <br />
+                Step Distance:1500
+                <br />
+                Longitude:-79.78602
+                <br />
+                Latitude:43.6393879472454
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.78602,43.6393879472454,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 27 Start</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:90
+                <br />
+                Step Distance:10000
+                <br />
+                Longitude:-79.78602
+                <br />
+                Latitude:43.65288864907017
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.78602,43.65288864907017,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 27 End</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:0
+                <br />
+                Step Distance:1500
+                <br />
+                Longitude:-79.66206182886039
+                <br />
+                Latitude:43.652821441646864
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.66206182886039,43.652821441646864,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 28 Start</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:270
+                <br />
+                Step Distance:10000
+                <br />
+                Longitude:-79.66203405098699
+                <br />
+                Latitude:43.66632207995883
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.66203405098699,43.66632207995883,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 28 End</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:0
+                <br />
+                Step Distance:1500
+                <br />
+                Longitude:-79.78602
+                <br />
+                Latitude:43.66638931888404
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.78602,43.66638931888404,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 29 Start</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:90
+                <br />
+                Step Distance:10000
+                <br />
+                Longitude:-79.78602
+                <br />
+                Latitude:43.67988995668641
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.78602,43.67988995668641,0</coordinates>
+            </Point>
+        </Placemark>        <Placemark>
+            <styleUrl>#targetStyle</styleUrl>
+            <name>Track 29 End</name>
+            <description>
+                Step Speed:10
+                <br />
+                Step Heading:0
+                <br />
+                Step Distance:0
+                <br />
+                Longitude:-79.66200625379848
+                <br />
+                Latitude:43.67982268624532
+                <br />
+                Altitude:0
+            </description>
+            <Point>
+                <coordinates>-79.66200625379848,43.67982268624532,0</coordinates>
+            </Point>
+        </Placemark>
+    </Document>
+</kml>

@@ -4,17 +4,19 @@ import { Target } from "../lib/models/Target";
 import { handleFlooredOverflow, handleOverflow } from "../lib/utils/Math";
 
 const ParallelTrackVector = new Target();
-ParallelTrackVector.stepDistance = 80; // meters
-ParallelTrackVector.heading = handleFlooredOverflow(63, 0, 360);
-ParallelTrackVector.latitude = handleOverflow(43.30750, -90, 90);
-ParallelTrackVector.longitude = handleOverflow(-79.62972, -180, 180);
+ParallelTrackVector.stepDistance = 42_000; // meters
+ParallelTrackVector.heading = handleFlooredOverflow(0, 0, 360); //63
+ParallelTrackVector.latitude = handleOverflow(43.30186, -90, 90);
+ParallelTrackVector.longitude = handleOverflow(-79.78602, -180, 180);
 
 const ParallelTrackSpeed = 10; // knots/s
-const ParallelTrackSpacing = 20; // meters
+const ParallelTrackSpacing = 1_500; // meters
+const ParallelTrackHeight = 10_000; // meters
 const ParallelTrackTargets = [] as Target[];
 
 const data = {
     speed: ParallelTrackSpeed,
+    height: ParallelTrackHeight,
     vector: ParallelTrackVector,
     targets: ParallelTrackTargets,
     spacing: ParallelTrackSpacing,

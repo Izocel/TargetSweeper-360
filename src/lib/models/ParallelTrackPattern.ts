@@ -1,10 +1,12 @@
 import z from "zod";
+import { GeoCalculator } from "../utils/GeoCalculator";
 import { BaseModel } from "./BaseModel";
 import { Target } from "./Target";
 
 export const ParallelTrackPatternSchema = z.object({
     vector: Target.Schema,
     speed: z.number().min(0),
+    height: z.number().min(0),
     spacing: z.number().min(0),
     targets: z.array(Target.Schema),
 });
@@ -14,6 +16,7 @@ export class ParallelTrackPattern extends BaseModel<typeof ParallelTrackPatternS
         super(ParallelTrackPatternSchema, {
             vector: data?.vector ?? new Target(),
             speed: data?.speed ?? 10,
+            height: data?.height ?? 20,
             spacing: data?.spacing ?? 20,
             targets: data?.targets ?? [],
         });
@@ -37,6 +40,15 @@ export class ParallelTrackPattern extends BaseModel<typeof ParallelTrackPatternS
 
     set speed(speed: number) {
         this._data.speed = Math.max(0, speed);
+        this.update();
+    }
+
+    get height(): number {
+        return this._data.height;
+    }
+
+    set height(height: number) {
+        this._data.height = Math.max(0, height);
         this.update();
     }
 
@@ -72,22 +84,83 @@ export class ParallelTrackPattern extends BaseModel<typeof ParallelTrackPatternS
     }
 
     updateTargets(): void {
-        if (this.vector.stepDistance <= 0 || this.speed <= 0 || this.spacing <= 0) {
-            this.targets = [];
-            return;
+        const numTracks = Math.ceil(this.vector.stepDistance / this.spacing) + 1;
+
+        // Each track has 2 targets (start and end), so total targets = numTracks * 2
+        const totalTargets = numTracks * 2;
+
+        // Calculate the perpendicular bearing for track direction (90° from vector heading)
+        const trackBearing = (this.vector.heading + 90) % 360;
+
+        // Calculate the three constant headings for the perpendicular turns
+        const headingToTrackEnd = trackBearing;           // Perpendicular out (e.g., 90° for north vector)
+        const headingAlongVector = this.vector.heading;   // Along vector line (e.g., 0° for north vector)  
+        const headingToVector = (trackBearing + 180) % 360; // Perpendicular back (e.g., 270° for north vector)
+
+        if (this.targets.length !== totalTargets) {
+            this.targets = Array.from({ length: totalTargets }, () => new Target());
         }
 
-        const numTargets = Math.floor(this.vector.stepDistance / this.spacing);
-        this.targets = Array.from({ length: numTargets }, (_, i) => {
-            const target = new Target();
-            target.stepDistance = this.vector.stepDistance;
-            target.stepSpeed = this.speed;
-            target.stepHeading = this.vector.heading;
-            target.longitude = this.vector.longitude + i * this.spacing;
-            target.latitude = this.vector.latitude;
-            target.altitude = this.vector.altitude;
-            return target;
-        });
+        for (let trackIndex = 0; trackIndex < numTracks; trackIndex++) {
+            // Calculate position along the vector line for this track
+            const vectorDistance = trackIndex * this.spacing;
+            const vectorPosition = GeoCalculator.offsetTarget(this.vector, vectorDistance, this.vector.heading);
+
+            // For alternating pattern: even tracks go one way, odd tracks go the other way
+            const isForwardTrack = trackIndex % 2 === 0;
+
+            let startPosition, endPosition;
+            let startStepHeading, endStepHeading;
+
+            if (isForwardTrack) {
+                // Forward track: start at vector position, extend in track bearing direction
+                startPosition = vectorPosition;
+                endPosition = GeoCalculator.offsetTarget(
+                    { ...this.vector, longitude: vectorPosition.longitude, latitude: vectorPosition.latitude },
+                    this.height,
+                    trackBearing
+                );
+                startStepHeading = headingToTrackEnd;  // Go perpendicular out to track end
+                endStepHeading = headingAlongVector;   // Go along vector to next track start
+            } else {
+                // Backward track: start at extended position, end at vector position
+                const extendedPosition = GeoCalculator.offsetTarget(
+                    { ...this.vector, longitude: vectorPosition.longitude, latitude: vectorPosition.latitude },
+                    this.height,
+                    trackBearing
+                );
+                startPosition = extendedPosition;
+                endPosition = vectorPosition;
+                startStepHeading = headingToVector;    // Go perpendicular back to vector line
+                endStepHeading = headingAlongVector;   // Go along vector to next track start
+            }
+
+            // Start target (even indices: 0, 2, 4...)
+            const startTarget = this.targets[trackIndex * 2]!;
+            startTarget.name = trackIndex === 0 ? "Datum" : `Track ${trackIndex + 1} Start`;
+            startTarget.longitude = startPosition.longitude;
+            startTarget.latitude = startPosition.latitude;
+            startTarget.altitude = this.vector.altitude;
+            startTarget.heading = startStepHeading;
+            startTarget.speed = this.speed;
+            startTarget.stepDistance = this.height;
+            startTarget.stepSpeed = this.speed;
+            startTarget.stepHeading = startStepHeading;
+
+            // End target (odd indices: 1, 3, 5...)
+            const endTarget = this.targets[trackIndex * 2 + 1]!;
+            endTarget.name = `Track ${trackIndex + 1} End`;
+            endTarget.longitude = endPosition.longitude;
+            endTarget.latitude = endPosition.latitude;
+            endTarget.altitude = this.vector.altitude;
+            endTarget.heading = endStepHeading;
+            endTarget.speed = this.speed;
+            endTarget.stepDistance = trackIndex < numTracks - 1 ? this.spacing : 0; // Last track has no next step
+            endTarget.stepSpeed = this.speed;
+            endTarget.stepHeading = endStepHeading;
+        }
+
+        this.validate();
     }
 
     /**
@@ -96,6 +169,11 @@ export class ParallelTrackPattern extends BaseModel<typeof ParallelTrackPatternS
      */
     generateKmlPlacemarks(): string[] {
         const placemarks: string[] = [];
+
+        if (this.targets.length === 0) {
+            return placemarks;
+        }
+
         const datum = this.targets[0]!;
 
         // Add datum placemark
@@ -103,9 +181,11 @@ export class ParallelTrackPattern extends BaseModel<typeof ParallelTrackPatternS
             <styleUrl>#datumStyle</styleUrl>
             <name>${datum.name}</name>
             <description>
-                Speed:${datum.speed}
+                Step Speed:${datum.stepSpeed}
                 <br />
-                Heading:${datum.heading}
+                Step Heading:${datum.stepHeading}
+                <br />
+                Step Distance:${datum.stepDistance}
                 <br />
                 Longitude:${datum.longitude}
                 <br />
@@ -119,14 +199,18 @@ export class ParallelTrackPattern extends BaseModel<typeof ParallelTrackPatternS
         </Placemark>`);
 
         // Add target placemarks
-        this.targets.forEach((target) => {
+        this.targets.forEach((target, i) => {
+            if (i === 0) return; // Skip datum, already added
+
             placemarks.push(`        <Placemark>
             <styleUrl>#targetStyle</styleUrl>
             <name>${target.name}</name>
             <description>
-                Vessel Speed:${target.stepSpeed}
+                Step Speed:${target.stepSpeed}
                 <br />
-                Vessel Heading:${target.stepHeading}
+                Step Heading:${target.stepHeading}
+                <br />
+                Step Distance:${target.stepDistance}
                 <br />
                 Longitude:${target.longitude}
                 <br />
@@ -144,30 +228,51 @@ export class ParallelTrackPattern extends BaseModel<typeof ParallelTrackPatternS
     }
 
     /**
-     * Generates KML polygons (triangles) for each sector in the search pattern.
+     * Generates KML polygons (track lines and connecting lines) for the search pattern.
      * @returns An array of KML polygon strings.
      */
     generateKmlPolygons(): string[] {
         const polygons: string[] = [];
-        this.targets.forEach((target, i) => {
-            if (i === 0) return; // Skip the datum
 
-            const prevTarget = this.targets[i - 1]!;
+        if (this.targets.length === 0) {
+            return polygons;
+        }
+
+        const numTracks = this.targets.length / 2;
+
+        // Generate track lines (parallel tracks)
+        for (let trackIndex = 0; trackIndex < numTracks; trackIndex++) {
+            const startTarget = this.targets[trackIndex * 2]!;
+            const endTarget = this.targets[trackIndex * 2 + 1]!;
+
             polygons.push(`        <Placemark>
-            <styleUrl>#polygonStyle</styleUrl>
-            <name>Sector ${i}</name>
-            <Polygon>
-                <outerBoundaryIs>
-                    <LinearRing>
-                        <coordinates>
-                            ${prevTarget.longitude},${prevTarget.latitude},${prevTarget.altitude}
-                            ${target.longitude},${target.latitude},${target.altitude}
-                        </coordinates>
-                    </LinearRing>
-                </outerBoundaryIs>
-            </Polygon>
+            <styleUrl>#trackStyle</styleUrl>
+            <name>Track ${trackIndex + 1}</name>
+            <LineString>
+                <coordinates>
+                    ${startTarget.longitude},${startTarget.latitude},${startTarget.altitude}
+                    ${endTarget.longitude},${endTarget.latitude},${endTarget.altitude}
+                </coordinates>
+            </LineString>
         </Placemark>`);
-        });
+        }
+
+        // Generate connecting lines between tracks
+        for (let trackIndex = 0; trackIndex < numTracks - 1; trackIndex++) {
+            const currentTrackEnd = this.targets[trackIndex * 2 + 1]!;
+            const nextTrackStart = this.targets[(trackIndex + 1) * 2]!;
+
+            polygons.push(`        <Placemark>
+            <styleUrl>#connectionStyle</styleUrl>
+            <name>Connection ${trackIndex + 1}-${trackIndex + 2}</name>
+            <LineString>
+                <coordinates>
+                    ${currentTrackEnd.longitude},${currentTrackEnd.latitude},${currentTrackEnd.altitude}
+                    ${nextTrackStart.longitude},${nextTrackStart.latitude},${nextTrackStart.altitude}
+                </coordinates>
+            </LineString>
+        </Placemark>`);
+        }
 
         return polygons;
     }
@@ -184,7 +289,21 @@ export class ParallelTrackPattern extends BaseModel<typeof ParallelTrackPatternS
 <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
     <Document>
         <name>${this.vector.name}</name>
-        <description>Sector Search - Victor Sierra (VS)</description>
+        <description>Parallel Track - Papa Sierra (PS)</description>
+
+        <Style id="trackStyle">
+            <LineStyle>
+                <color>ff0000ff</color>
+                <width>2</width>
+            </LineStyle>
+        </Style>
+
+        <Style id="connectionStyle">
+            <LineStyle>
+                <color>ff00ff00</color>
+                <width>1</width>
+            </LineStyle>
+        </Style>
 
         <Style id="polygonStyle">
             <LineStyle>
